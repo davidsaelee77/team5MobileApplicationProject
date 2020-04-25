@@ -1,0 +1,2 @@
+rootProject.name='Team5TCSS450Client'
+include ':app'
