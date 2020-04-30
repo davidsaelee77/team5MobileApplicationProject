@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/home_clip_art_black"
         android:title="@string/home_menu_text" />
     <item
-        android:id="@+id/navigation_chat"
+        android:id="@+id/chatFragment"
         android:icon="@drawable/chat_bubble_clip_art_black"
         android:title="@string/chat_menu_text" />
     <item
-        android:id="@+id/navigation_contacts"
+        android:id="@+id/contactFragment"
         android:icon="@drawable/contacts_clip_art_black"
         android:title="@string/contacts_menu_text" />
     <item
-        android:id="@+id/navigation_weather"
+        android:id="@+id/weatherFragment"
         android:icon="@drawable/weather_clip_art_black"
         android:title="@string/weather_menu_text" />
 </menu>

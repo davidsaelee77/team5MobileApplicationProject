@@ -20,4 +20,9 @@
         android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment"
         android:label="@string/weather_menu_text"
         tools:layout="@layout/fragment_weather" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ChatFragment"
+        android:label="@string/chat_menu_text"
+        tools:layout="@layout/fragment_chat" />
 </navigation>

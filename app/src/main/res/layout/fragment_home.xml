@@ -8,24 +8,15 @@
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
-        android:id="@+id/placeholder_logo_imageview"
-        android:layout_width="409dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginBottom="112dp"
-        android:src="@drawable/ic_crop_16_9_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/placeholder_icon_imageview"
+        android:id="@+id/imageView2"
+        android:layout_width="106dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="305dp"
+        android:layout_marginBottom="559dp"
+        android:src="@drawable/home_clip_art_black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/placeholder_icon_imageview"
-        android:layout_width="409dp"
-        android:layout_height="315dp"
-        android:layout_marginTop="112dp"
-        android:src="@drawable/temp_box_clip_art_black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeholder_logo_imageview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
