@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"
+        android:label="@string/home_menu_text"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactFragment"
+        android:label="@string/contacts_menu_text"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment"
+        android:label="@string/weather_menu_text"
+        tools:layout="@layout/fragment_weather" />
+</navigation>

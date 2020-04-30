@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Team5TCSS450Client</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_menu_text">Home</string>
+    <string name="chat_menu_text">Chat</string>
+    <string name="contacts_menu_text">Contacts</string>
+    <string name="weather_menu_text">Weather</string>
+    <string name="email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="login_button">Sign-In</string>
+    <string name="register_button">Register</string>
+    <string name="icon_imageview">Icon</string>
+    <string name="lastname_text">Last Name</string>
+    <string name="firstname_text">First Name</string>
+    <string name="retype_password_text">Retype Password</string>
+    <string name="search_contacts_text">Search Contacts</string>
 </resources>
