@@ -16,4 +16,5 @@
     <string name="firstname_text">First Name</string>
     <string name="retype_password_text">Retype Password</string>
     <string name="search_contacts_text">Search Contacts</string>
+    <string name="search_text">Search</string>
 </resources>

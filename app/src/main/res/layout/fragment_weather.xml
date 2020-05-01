@@ -7,16 +7,72 @@
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="110dp"
-        android:layout_height="107dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginBottom="538dp"
-        android:src="@drawable/weather_clip_art_black"
+    <ImageButton
+        android:id="@+id/add_weather_button"
+        android:layout_width="88dp"
+        android:layout_height="79dp"
+        android:layout_marginBottom="548dp"
+        android:src="@drawable/add_button_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/temp_todays_weather_text"
+        android:layout_width="404dp"
+        android:layout_height="156dp"
+        android:layout_marginBottom="374dp"
+        android:background="#3F51B5"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TODAYS WEATHER"
+        android:textAlignment="center"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/temp_hourly_forecast_text"
+        android:layout_width="404dp"
+        android:layout_height="147dp"
+        android:layout_marginBottom="227dp"
+        android:background="#F44336"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="HOURLY FORECAST"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp_todays_weather_text" />
+
+    <EditText
+        android:id="@+id/temp_weekly_forecast_text"
+        android:layout_width="402dp"
+        android:layout_height="218dp"
+        android:background="#FFEB3B"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="WEEKLY FORECAST"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp_hourly_forecast_text" />
+
+    <EditText
+        android:id="@+id/search_text"
+        android:layout_width="313dp"
+        android:layout_height="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/search_text"
+        app:layout_constraintEnd_toStartOf="@+id/add_weather_button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
