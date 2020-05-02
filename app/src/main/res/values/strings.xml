@@ -17,4 +17,11 @@
     <string name="retype_password_text">Retype Password</string>
     <string name="search_contacts_text">Search Contacts</string>
     <string name="search_text">Search</string>
+
+
+    <!-- Chat -->
+    <string name="conversation_message_text">Message</string>
+    <string name="conversation_send_button">Send</string>
+    <string name="newmessage_send_button">Send</string>
+    <string name="newmessage_contact_text">Enter Contact</string>
 </resources>

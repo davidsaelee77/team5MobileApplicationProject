@@ -15,19 +15,21 @@
         android:layout_marginBottom="559dp"
         android:src="@drawable/chat_bubble_clip_art_black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_weather_button"
+        app:layout_constraintEnd_toStartOf="@+id/chat_button_newmessage"
         app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/add_weather_button"
+        android:id="@+id/chat_button_newmessage"
         android:layout_width="88dp"
         android:layout_height="79dp"
-        android:layout_marginBottom="548dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="559dp"
         android:src="@drawable/add_button_black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/temp_place_holder_CHAT_M"
