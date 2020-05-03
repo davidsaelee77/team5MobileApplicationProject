@@ -55,6 +55,7 @@ public class LoginFragment extends Fragment {
         FragmentLoginBinding binding = FragmentLoginBinding.bind(getView());
 
         binding.signinButton.setOnClickListener(button -> Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity()));
+        binding.registerButton.setOnClickListener(button -> Navigation.findNavController(getView()).navigate((LoginFragmentDirections.actionLoginFragmentToRegisterFragment())));
 
         binding.registerButton.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(

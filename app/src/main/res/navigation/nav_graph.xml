@@ -24,5 +24,20 @@
         android:id="@+id/chatFragment"
         android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ChatFragment"
         android:label="@string/chat_menu_text"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_conversationFragment"
+            app:destination="@id/conversationFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_newMessageFragment"
+            app:destination="@id/newMessageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/conversationFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ConversationFragment"
+        android:label="@string/conversation_text_title" />
+    <fragment
+        android:id="@+id/newMessageFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.NewMessageFragment"
+        android:label="@string/newmessage_text_title" />
 </navigation>

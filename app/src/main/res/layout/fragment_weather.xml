@@ -8,7 +8,7 @@
     tools:context=".ui.weather.WeatherFragment">
 
     <ImageButton
-        android:id="@+id/add_weather_button"
+        android:id="@+id/chat_button_newmessage"
         android:layout_width="88dp"
         android:layout_height="79dp"
         android:layout_marginBottom="548dp"
@@ -71,7 +71,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/search_text"
-        app:layout_constraintEnd_toStartOf="@+id/add_weather_button"
+        app:layout_constraintEnd_toStartOf="@+id/chat_button_newmessage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
