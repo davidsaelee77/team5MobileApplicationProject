@@ -13,11 +13,27 @@ import android.view.ViewGroup;
 
 import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentLoginBinding;
+import edu.uw.tcss450.team5tcss450client.utility.PasswordValidator;
+
+import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkExcludeWhiteSpace;
+import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdLength;
+import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdSpecialChar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
+
+    private FragmentLoginBinding binding;
+    private LoginViewModel mSignInModel;
+
+    private PasswordValidator mEmailValidator = checkPwdLength(2)
+            .and(checkExcludeWhiteSpace())
+            .and(checkPwdSpecialChar("@"));
+
+    private PasswordValidator mPassWordValidator = checkPwdLength(1)
+            .and(checkExcludeWhiteSpace());
+
 
     public LoginFragment() {
         // Required empty public constructor
@@ -40,5 +56,9 @@ public class LoginFragment extends Fragment {
 
         binding.signinButton.setOnClickListener(button -> Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity()));
 
+        binding.registerButton.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(
+                        LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                ));
     }
 }
