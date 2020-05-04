@@ -1,6 +1,7 @@
 package edu.uw.tcss450.team5tcss450client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import edu.uw.tcss450.team5tcss450client.model.UserInfoViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
+
+        new ViewModelProvider(this,
+                new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt())
+        ).get(UserInfoViewModel.class);
 
     }
 
