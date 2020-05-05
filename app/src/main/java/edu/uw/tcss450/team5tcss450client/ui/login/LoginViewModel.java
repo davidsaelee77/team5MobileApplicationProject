@@ -65,7 +65,7 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void connect(final String email, final String password) {
-        String url = "https://cfb3-lab4-backend-2020sp.herokuapp.com/auth";
+        String url = "https://team5-tcss450-server.herokuapp.com/auth";
         Request request = new JsonObjectRequest(Request.Method.GET, url, null, //no body for this get request
                 mResponse::setValue, this::handleError) {
             @Override

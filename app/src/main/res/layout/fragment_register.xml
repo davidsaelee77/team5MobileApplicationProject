@@ -32,8 +32,8 @@
     <EditText
         android:id="@+id/firstname_text"
         android:layout_width="335dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="101dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="31dp"
         android:ems="10"
         android:hint="@string/firstname_text"
         android:inputType="textPersonName"
@@ -51,13 +51,26 @@
         android:hint="@string/email_text"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+
+    <EditText
+        android:id="@+id/username_text"
+        android:layout_width="335dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/username_text"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastname_text" />
 
     <EditText
         android:id="@+id/retypepassword_text"
-        android:layout_width="338dp"
+        android:layout_width="335dp"
         android:layout_height="51dp"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -70,7 +83,7 @@
 
     <EditText
         android:id="@+id/password_text"
-        android:layout_width="337dp"
+        android:layout_width="335dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -86,9 +99,7 @@
         android:layout_width="231dp"
         android:layout_height="148dp"
         android:layout_marginTop="58dp"
-        android:layout_marginBottom="101dp"
         android:src="@drawable/temp_label_clip_art_black"
-        app:layout_constraintBottom_toTopOf="@+id/firstname_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -20,11 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/temp_place_holder_NOTIFICATIONS_text"
         android:layout_width="407dp"
         android:layout_height="558dp"
-        android:background="#673AB7"
+        android:background="@color/colorPrimary_UW"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="NOTIFICATIONS"
@@ -33,7 +33,6 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.0" />

@@ -87,14 +87,21 @@ public class RegisterFragment extends Fragment {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.firstnameText.getText().toString().trim()),
                 this::validateLast,
-                result -> binding.emailText.setError("Please enter a valid Email address."));
+                result -> binding.firstnameText.setError("Please enter a valid first name."));
     }
 
     private void validateLast() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.lastnameText.getText().toString().trim()),
+                this::validateUsername,
+                result -> binding.lastnameText.setError("Please enter a valid last name."));
+    }
+
+    private void validateUsername() {
+        mNameValidator.processResult(
+                mNameValidator.apply(binding.usernameText.getText().toString().trim()),
                 this::validateEmail,
-                result -> binding.emailText.setError("Please enter a valid Email address."));
+                result -> binding.usernameText.setError("Please enter a valid user name."));
     }
 
     private void validateEmail() {
@@ -116,6 +123,7 @@ public class RegisterFragment extends Fragment {
         mRegisterModel.connect(
                 binding.firstnameText.getText().toString(),
                 binding.lastnameText.getText().toString(),
+                binding.usernameText.getText().toString(),
                 binding.emailText.getText().toString(),
                 binding.passwordText.getText().toString());
         //This is an Asynchronous call. No statements after should rely on the

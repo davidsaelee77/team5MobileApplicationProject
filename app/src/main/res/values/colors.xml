@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <!-- UW COLORS -->
+    <color name="colorPrimary_UW">#673AB7</color>
+    <color name="colorPrimaryDark_UW">#512DA8</color>
+    <color name="colorAccent_UW">#FFD700</color>
+    <color name="colorLightPrimary_UW">#D1C4E9</color>
+
+
+    <!-- SEATTLE SONICS COLORS -->
+    <color name="colorPrimary_SONIC">#4CAF50</color>
+    <color name="colorPrimaryDark_SONIC">#388E3C</color>
+    <color name="colorAccent_SONIC">#FFEB3B</color>
+    <color name="colorLightPrimary_SONIC">#C8E6C9</color>
+
+    <!-- BLUE & GREY COLORS-->
+
+    <color name="colorPrimary_BG">#3F51B5</color>
+    <color name="colorPrimaryDark_BG">#303F9F</color>
+    <color name="colorAccent_BG">#9E9E9E</color>
+    <color name="colorLightPrimary_BG">#C5CAE9</color>
+
+
+    <!-- TEXT COLORS -->
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorTextIcon">#FFFFFF</color>
+
 </resources>

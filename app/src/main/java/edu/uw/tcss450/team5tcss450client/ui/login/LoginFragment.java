@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentLoginBinding;
 import edu.uw.tcss450.team5tcss450client.utility.PasswordValidator;
 
@@ -63,7 +62,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         binding.registerButton.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment()));
@@ -135,12 +133,16 @@ public class LoginFragment extends Fragment {
                     binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
+                    binding.emailText.requestFocus();
+                    binding.emailText.setError("Invalid credentials");
                 }
             } else {
                 try {
                     navigateToSuccess(binding.emailText.getText().toString(), response.getString("token"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
+                    binding.emailText.requestFocus();
+                    binding.emailText.setError("Invalid credentials");
                 }
             }
         } else {
