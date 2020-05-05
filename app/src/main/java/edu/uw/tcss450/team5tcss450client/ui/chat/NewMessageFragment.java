@@ -11,6 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import edu.uw.tcss450.team5tcss450client.R;
 
+/**
+ *
+ * @author Tyler Lorella
+ * @version May 2020
+ */
 public class NewMessageFragment extends Fragment {
 
     public NewMessageFragment() {

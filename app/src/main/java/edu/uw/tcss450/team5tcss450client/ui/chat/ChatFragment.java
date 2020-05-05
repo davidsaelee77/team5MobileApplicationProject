@@ -15,7 +15,9 @@ import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentChatBinding;
 
 /**
- * A simple {@link Fragment} subclass.
+ *
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
  */
 public class ChatFragment extends Fragment {
 
