@@ -26,21 +26,50 @@ import java.util.Objects;
 
 import edu.uw.tcss450.team5tcss450client.io.RequestQueueSingleton;
 
+
+/**
+ *
+ * @author David Saelee
+ * @version May 2020
+ */
+/**
+ * Store and manage login UI-related data in lifecycle.
+ */
 public class LoginViewModel extends AndroidViewModel {
 
+    /**
+     * Store JSON object variable.
+     */
     private MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constructor that initializes JSON object and sets its value.
+     *
+     * @param application maintains application state.
+     */
     public LoginViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Notifies observer of any modifications of
+     * wrapped data.
+     *
+     * @param owner    lifespan of given owner.
+     * @param observer callback from live data.
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Server credential authentication error handling.
+     *
+     * @param error message
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -64,6 +93,12 @@ public class LoginViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Server credential verification.
+     *
+     * @param email    string user input value
+     * @param password string user input value
+     */
     public void connect(final String email, final String password) {
         String url = "https://team5-tcss450-server.herokuapp.com/auth";
         Request request = new JsonObjectRequest(Request.Method.GET, url, null, //no body for this get request

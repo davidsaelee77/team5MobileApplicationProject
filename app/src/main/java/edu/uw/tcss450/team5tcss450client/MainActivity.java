@@ -14,10 +14,28 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.uw.tcss450.team5tcss450client.model.UserInfoViewModel;
 
+/**
+ *
+ * @author David Saelee
+ * @version May 2020
+ */
+/**
+ * Activity used to navigate between fragments after
+ * successful login via button clicks or menu bar.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Stores AppBarConfiguration value.
+     */
     private AppBarConfiguration mAppBarConfiguration;
 
+    /**
+     * Instantiates a main activity fragment, and builds a menu bar
+     * for fragment navigation.
+     *
+     * @param savedInstanceState reconstructed activity from previous saved state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +57,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Provides clickable back navigation on the top of the screen within fragment.
+     *
+     * @return previous fragment.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
 
-
+    /**
+     * Toolbar menu with defined functions.
+     *
+     * @param menu the options menu where we place the items.
+     * @return boolean to determine if menu is to be displayed.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);

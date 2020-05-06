@@ -5,17 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.team5tcss450client.R;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactBinding;
-import edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment;
 
+
+/**
+ *
+ * @author David Saelee
+ * @version May 2020
+ */
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -25,7 +27,14 @@ public class ContactFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * Instantiates contact fragment UI view.
+     *
+     * @param inflater           object to inflate any view in layout.
+     * @param container          parent view fragment UI is attached to.
+     * @param savedInstanceState reconstructed fragment from previous saved state.
+     * @return home fragment view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +42,12 @@ public class ContactFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_contact, container, false);
     }
 
+    /**
+     * Contact fragment view constructor
+     *
+     * @param view               returned by onCreateView.
+     * @param savedInstanceState reconstructed fragment from previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

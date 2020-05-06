@@ -1,18 +1,22 @@
 package edu.uw.tcss450.team5tcss450client.ui.home;
 
-        import android.os.Bundle;
+import android.os.Bundle;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.fragment.app.Fragment;
-        import androidx.navigation.Navigation;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-        import edu.uw.tcss450.team5tcss450client.R;
+import edu.uw.tcss450.team5tcss450client.R;
 
+/**
+ *
+ * @author David Saelee
+ * @version May 2020
+ */
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -23,6 +27,14 @@ public class HomeFragment extends Fragment {
     }
 
 
+    /**
+     * Instantiates home fragment UI view.
+     *
+     * @param inflater           object to inflate any view in layout.
+     * @param container          parent view fragment UI is attached to.
+     * @param savedInstanceState reconstructed fragment from previous saved state.
+     * @return home fragment view.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +42,12 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    /**
+     * Home fragment view constructor
+     *
+     * @param view               returned by onCreateView.
+     * @param savedInstanceState reconstructed fragment from previous saved state.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

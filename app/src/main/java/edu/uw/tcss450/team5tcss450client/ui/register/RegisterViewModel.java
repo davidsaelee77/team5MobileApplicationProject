@@ -1,7 +1,6 @@
 package edu.uw.tcss450.team5tcss450client.ui.register;
 
 import android.app.Application;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -21,25 +19,51 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
+/**
+ *
+ * @author David Saelee
+ * @version May 2020
+ */
+/**
+ * Store and manage register UI-related data in lifecycle.
+ */
 public class RegisterViewModel extends AndroidViewModel {
 
+    /**
+     * Store JSON object variable.
+     */
     private MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constructor that initializes JSON object and sets its value.
+     *
+     * @param application maintains application state.
+     */
     public RegisterViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Notifies observer of any modifications of
+     * wrapped data.
+     *
+     * @param owner    lifespan of given owner.
+     * @param observer callback from live data.
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Server credential authentication error handling.
+     *
+     * @param error message
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -63,6 +87,15 @@ public class RegisterViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Server credential verification.
+     *
+     * @param first    string user input value
+     * @param last     string user input value
+     * @param username string user input value
+     * @param email    string user input value
+     * @param password string user input value
+     */
     public void connect(final String first, final String last, final String username, final String email, final String password) {
         String url = "https://team5-tcss450-server.herokuapp.com/auth";
         JSONObject body = new JSONObject();
