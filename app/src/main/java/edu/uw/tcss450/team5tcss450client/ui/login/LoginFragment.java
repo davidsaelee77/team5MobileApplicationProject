@@ -107,6 +107,9 @@ public class LoginFragment extends Fragment {
 
         binding.signinButton.setOnClickListener(this::attemptSignIn);
 
+        binding.helpButton.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToHelpFragment()));
+
 
         mSignInModel.addResponseObserver(
                 getViewLifecycleOwner(),
