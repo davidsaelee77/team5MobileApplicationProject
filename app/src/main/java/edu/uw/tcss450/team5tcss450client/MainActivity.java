@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -121,6 +122,15 @@ public class MainActivity extends AppCompatActivity {
 
                 navController.navigate(R.id.changeThemeFragment);
 
+                break;
+
+//            case R.id.navigate_help_fragment:
+//
+//                Intent intent = new Intent(this, AuthActivity.class);
+//
+//
+//                authNavController.navigate(R.id.helpFragment);
+//                break;
         }
 
         return super.onOptionsItemSelected(item);

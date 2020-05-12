@@ -24,5 +24,10 @@
     android:title="Navigate to Change Theme"
     app:showAsAction="never" >
     </item>
+    <item
+        android:id="@+id/navigate_help_fragment"
+        android:title="Navigate to Help Fragment"
+        app:showAsAction="never" >
+    </item>
 
 </menu>

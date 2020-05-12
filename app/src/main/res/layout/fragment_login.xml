@@ -40,7 +40,6 @@
         style="@android:style/Widget.Material.Light.Button"
         android:layout_width="103dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="144dp"
         android:layout_marginBottom="118dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -48,7 +47,7 @@
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signin_button"
+        app:layout_constraintEnd_toStartOf="@+id/help_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
@@ -62,8 +61,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/register_button"
+        app:layout_constraintStart_toEndOf="@+id/help_button"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="118dp"
+        android:text="@string/login_button_help"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signin_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/register_button" />
 
     <ImageView
         android:id="@+id/imageView3"
