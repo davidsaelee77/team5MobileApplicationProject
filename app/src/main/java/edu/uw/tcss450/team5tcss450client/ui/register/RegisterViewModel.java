@@ -47,6 +47,7 @@ public class RegisterViewModel extends AndroidViewModel {
         mResponse.setValue(new JSONObject());
     }
 
+
     /**
      * Notifies observer of any modifications of
      * wrapped data.

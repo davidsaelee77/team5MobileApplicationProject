@@ -9,14 +9,14 @@
     </style>
 
 
-    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="SonicsTheme">
+       <!-- Customize your theme here. --> >
         <item name="colorPrimary">@color/colorPrimary_SONIC</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_SONIC</item>
         <item name="colorAccent">@color/colorAccent_SONIC</item>
     </style>
 
-    <style name="CustomTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BluegreyTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary_BG</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_BG</item>
@@ -24,3 +24,5 @@
     </style>
 
 </resources>
+
+

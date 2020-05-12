@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,10 +27,10 @@ import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkP
 import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdUpperCase;
 
 /**
- *
  * @author David Saelee
  * @version May 2020
  */
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -102,6 +101,12 @@ public class RegisterFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     /**
      * When view is created the register fragment allows user to add input into text fields.
      * An observer checks for proper credentials before allowing user to register account.
@@ -116,12 +121,6 @@ public class RegisterFragment extends Fragment {
         mRegisterModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observeResponse);
 
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d("HI", "HI");
     }
 
     /**
@@ -210,10 +209,8 @@ public class RegisterFragment extends Fragment {
         RegisterFragmentDirections.ActionRegisterFragmentToLoginFragment directions =
                 RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
 
-        directions.setEmail(binding.emailText.getText().toString());
-        directions.setPassword(binding.passwordText.getText().toString());
-
-        Navigation.findNavController(getView()).navigate(directions);
+         directions.setEmail(binding.emailText.getText().toString());
+         directions.setPassword(binding.passwordText.getText().toString());
 
     }
 

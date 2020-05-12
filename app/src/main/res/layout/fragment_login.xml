@@ -11,10 +11,12 @@
         android:id="@+id/email_text"
         android:layout_width="371dp"
         android:layout_height="0dp"
-        android:layout_marginTop="237dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/email_text"
         android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,9 +24,9 @@
 
     <EditText
         android:id="@+id/password_text"
-        android:layout_width="368dp"
+        android:layout_width="371dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/password_text"
         android:inputType="textPassword"
@@ -35,55 +37,42 @@
 
     <Button
         android:id="@+id/register_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        style="@android:style/Widget.Material.Light.Button"
         android:layout_width="103dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="118dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/register_button"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signin_button"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/signin_button"
         android:layout_width="122dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="@string/contacts_menu_text"
+        android:layout_height="0dp"
+        android:layout_marginBottom="118dp"
         android:text="@string/login_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/register_button"
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="265dp"
         android:layout_height="184dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginBottom="237dp"
+        android:layout_marginTop="51dp"
         android:src="@drawable/temp_label_clip_art_black"
-        app:layout_constraintBottom_toTopOf="@+id/email_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/help_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/login_button_help"
-        app:layout_constraintBaseline_toBaselineOf="@+id/register_button"
-        app:layout_constraintEnd_toStartOf="@+id/signin_button"
-        app:layout_constraintHorizontal_bias="0.649"
-        app:layout_constraintStart_toEndOf="@+id/register_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

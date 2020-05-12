@@ -40,4 +40,9 @@
         android:id="@+id/newMessageFragment"
         android:name="edu.uw.tcss450.team5tcss450client.ui.chat.NewMessageFragment"
         android:label="@string/newmessage_text_title" />
+    <fragment
+        android:id="@+id/changeThemeFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.settings.ChangeThemeFragment"
+        android:label="fragment_change_theme"
+        tools:layout="@layout/fragment_change_theme" />
 </navigation>

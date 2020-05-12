@@ -24,10 +24,10 @@ import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkP
 import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdSpecialChar;
 
 /**
- *
  * @author David Saelee
  * @version May 2020
  */
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -90,12 +90,19 @@ public class LoginFragment extends Fragment {
         return binding.getRoot();
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     /**
      * When view is created the login fragment allows navigation to home fragment or registration fragment.
      * An observer checks for proper credentials before allowing user into home screen.
      * Passes parameters to fill email and password fields.
      *
-     * @param view returned by onCreateView.
+     * @param view               returned by onCreateView.
      * @param savedInstanceState reconstructed fragment from previous saved state.
      */
     @Override
@@ -120,6 +127,9 @@ public class LoginFragment extends Fragment {
 
         binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
         binding.passwordText.setText(args.getPassword().equals("default") ? "" : args.getPassword());
+
+//        binding.emailText.setText("dsael1@uw.edu");
+//        binding.passwordText.setText("A1234567!");
     }
 
     /**
@@ -132,7 +142,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     *Helper method to validate email.  Sets error message
+     * Helper method to validate email.  Sets error message
      * if incorrect input is given.  Calls validate password method.
      */
     private void validateEmail() {
@@ -145,7 +155,6 @@ public class LoginFragment extends Fragment {
     /**
      * Helper method to  validate password.  Sets error message if
      * incorrect input is given.  Calls method to verify and authenticate credentials.
-     *
      */
     private void validatePassword() {
         mPassWordValidator.processResult(
@@ -171,8 +180,8 @@ public class LoginFragment extends Fragment {
      * @param jwt   the JSON Web Token supplied by the server
      */
     private void navigateToSuccess(final String email, final String jwt) {
-        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt));
 
+        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt));
     }
 
     /**

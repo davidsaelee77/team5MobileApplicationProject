@@ -10,15 +10,14 @@
     <string name="username_text">Username</string>
     <string name="email_text">Email</string>
     <string name="password_text">Password</string>
-    <string name="login_button">Sign-In</string>
-    <string name="register_button">Register</string>
+    <string name="login_button">SIGN-IN</string>
+    <string name="register_button">REGISTER</string>
     <string name="icon_imageview">Icon</string>
     <string name="lastname_text">Last Name</string>
     <string name="firstname_text">First Name</string>
     <string name="retype_password_text">Retype Password</string>
     <string name="search_contacts_text">Search Contacts</string>
     <string name="search_text">Search</string>
-    <string name="login_button_help">Help</string>
 
 
     <!-- Chat -->
@@ -28,11 +27,8 @@
     <string name="conversation_send_button">Send</string>
     <string name="newmessage_send_button">Send</string>
     <string name="newmessage_contact_text">Enter Contact</string>
-
-    <!-- Help -->
-    <string name="help_text_emailHint">Enter Email</string>
-    <string name="help_text_welcomeMessage">Welcome to the help page! What is your issue?</string>
-    <string name="help_text_resendEmailMessage"> A validation email has been resent for the specified count if it exists</string>
-    <string name="help_button_resend">Resend Email Validation</string>
-    <string name="help_button_password">Password Reset</string>
+    <string name="change_theme_text">CHANGE THEME</string>
+    <string name="bluegrey_theme_text">Blue and Grey Theme</string>
+    <string name="sonics_theme_text">Sonics Theme</string>
+    <string name="UW_theme_text">UW Theme</string>
 </resources>
