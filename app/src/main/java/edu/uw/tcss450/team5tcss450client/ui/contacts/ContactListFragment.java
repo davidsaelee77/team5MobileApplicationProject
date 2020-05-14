@@ -11,19 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.team5tcss450client.R;
+import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactListBinding;
+import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactlistCardBinding;
 
 
 /**
- *
  * @author David Saelee
  * @version May 2020
  */
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContactFragment extends Fragment {
+public class ContactListFragment extends Fragment {
 
-    public ContactFragment() {
+    public ContactListFragment() {
         // Required empty public constructor
     }
 
@@ -39,7 +41,7 @@ public class ContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        return inflater.inflate(R.layout.fragment_contact_list, container, false);
     }
 
     /**
@@ -52,7 +54,11 @@ public class ContactFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
 
+        FragmentContactListBinding binding = FragmentContactListBinding.bind(view);
+
+
+
+    }
 
 }

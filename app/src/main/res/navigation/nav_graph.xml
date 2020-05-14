@@ -11,10 +11,10 @@
         android:label="@string/home_menu_text"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/contactFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactFragment"
+        android:id="@+id/contactListFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactListFragment"
         android:label="@string/contacts_menu_text"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_contact_list" />
     <fragment
         android:id="@+id/weatherFragment"
         android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment"
@@ -45,4 +45,8 @@
         android:name="edu.uw.tcss450.team5tcss450client.ui.settings.ChangeThemeFragment"
         android:label="fragment_change_theme"
         tools:layout="@layout/fragment_change_theme" />
+    <fragment
+        android:id="@+id/listOfContactFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ListOfContactFragment"
+        android:label="ListOfContactFragment" />
 </navigation>
