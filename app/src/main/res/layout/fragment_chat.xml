@@ -5,7 +5,7 @@
     android:id="@+id/contact_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.ContactListFragment">
+    tools:context=".ui.contacts.ContactsListFragment">
 
     <ImageView
         android:id="@+id/imageView"

@@ -125,11 +125,11 @@ public class LoginFragment extends Fragment {
 
         LoginFragmentArgs args = LoginFragmentArgs.fromBundle(getArguments());
 
-        binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
-        binding.passwordText.setText(args.getPassword().equals("default") ? "" : args.getPassword());
+//        binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
+//        binding.passwordText.setText(args.getPassword().equals("default") ? "" : args.getPassword());
 
-//        binding.emailText.setText("dsael1@uw.edu");
-//        binding.passwordText.setText("A1234567!");
+        binding.emailText.setText("dsael1@uw.edu");
+        binding.passwordText.setText("A1234567!");
     }
 
     /**

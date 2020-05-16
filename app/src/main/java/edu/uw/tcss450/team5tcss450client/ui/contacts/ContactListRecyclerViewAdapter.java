@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -14,36 +13,45 @@ import java.util.List;
 import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactlistCardBinding;
 
-public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter {
+public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<ContactListRecyclerViewAdapter.ContactListViewHolder> {
 
-    List<ContactList> mContactList;
+    List<Contacts> mContacts;
+   // List<String> alphabet;
 
-
-    public ContactListRecyclerViewAdapter(List<ContactList> contacts) {
-        this.mContactList = contacts;
+    public ContactListRecyclerViewAdapter(List<Contacts> contacts) {
+        this.mContacts = contacts;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ContactListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new ContactListViewHolder(LayoutInflater
                 .from(parent.getContext()).inflate(R.layout.fragment_contactlist_card, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ContactListViewHolder holder, int position) {
 
-      //  holder.setContact(mContactList.get(position));
-
+        holder.setContact(mContacts.get(position));
     }
+
+//    public void generateAlphabet() {
+//
+//        for (int i = 0; i < 26; i++) {
+//
+//            alphabet.add(Character.toString((char) (65 + i)));
+//
+//        }
+//    }
 
     @Override
     public int getItemCount() {
-        return mContactList.size();
+        return mContacts.size();
     }
 
     public class ContactListViewHolder extends RecyclerView.ViewHolder {
+
         public final View mView;
 
         public FragmentContactlistCardBinding binding;
@@ -68,9 +76,16 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter {
             }
         }
 
-//        void setContact(final ContactList contact) {
+        void setContact(final Contacts contact) {
+
+            binding.contactNameText.setText(contact.getFirstName());
+            binding.contactPreviewText.setText(contact.getLastName());
+
+        }
 //
+//        void setAlphabet(final String alphabet) {
 //
+//            binding.alphabetLetterText.setText(alphabet);
 //        }
     }
 }

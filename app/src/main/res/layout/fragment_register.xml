@@ -9,9 +9,9 @@
 
     <Button
         android:id="@+id/register_acct_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="137dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="82dp"
         android:text="@string/register_button"
@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/lastname_text"
         android:layout_width="335dp"
-        android:layout_height="53dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/lastname_text"
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/firstname_text"
         android:layout_width="335dp"
-        android:layout_height="53dp"
+        android:layout_height="0dp"
         android:layout_marginTop="31dp"
         android:ems="10"
         android:hint="@string/firstname_text"
@@ -42,12 +42,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeholder_icon_imageview" />
+        app:layout_constraintTop_toBottomOf="@+id/griffin_logo_imageView" />
 
     <EditText
         android:id="@+id/email_text"
         android:layout_width="335dp"
-        android:layout_height="53dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/email_text"
@@ -60,7 +60,7 @@
     <EditText
         android:id="@+id/username_text"
         android:layout_width="335dp"
-        android:layout_height="53dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/username_text"
@@ -73,7 +73,7 @@
     <EditText
         android:id="@+id/retypepassword_text"
         android:layout_width="335dp"
-        android:layout_height="51dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/retype_password_text"
@@ -86,7 +86,7 @@
     <EditText
         android:id="@+id/password_text"
         android:layout_width="335dp"
-        android:layout_height="53dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/password_text"
@@ -97,11 +97,11 @@
         app:layout_constraintTop_toBottomOf="@+id/email_text" />
 
     <ImageView
-        android:id="@+id/placeholder_icon_imageview"
-        android:layout_width="231dp"
-        android:layout_height="148dp"
+        android:id="@+id/griffin_logo_imageView"
+        android:layout_width="285dp"
+        android:layout_height="184dp"
         android:layout_marginTop="58dp"
-        android:src="@drawable/temp_label_clip_art_black"
+        android:src="@drawable/ic_griffin_logo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

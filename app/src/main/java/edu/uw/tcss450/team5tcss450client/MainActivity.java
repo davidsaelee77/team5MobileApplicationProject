@@ -8,7 +8,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.bottom_menu_bar);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.chatFragment, R.id.listOfContactFragment, R.id.weatherFragment).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.chatFragment, R.id.contactListFragment, R.id.weatherFragment).build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);

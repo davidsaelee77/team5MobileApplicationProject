@@ -11,7 +11,7 @@
         android:icon="@drawable/chat_bubble_clip_art_black"
         android:title="@string/chat_menu_text" />
     <item
-        android:id="@+id/listOfContactFragment"
+        android:id="@+id/contactListFragment"
         android:icon="@drawable/contacts_clip_art_black"
         android:title="@string/contacts_menu_text" />
     <item

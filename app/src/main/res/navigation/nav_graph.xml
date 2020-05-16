@@ -6,15 +6,10 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"
-        android:label="@string/home_menu_text"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/contactListFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactListFragment"
-        android:label="@string/contacts_menu_text"
-        tools:layout="@layout/fragment_contact_list" />
+    android:id="@+id/homeFragment"
+    android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"
+    android:label="@string/home_menu_text"
+    tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/weatherFragment"
         android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment"
@@ -46,7 +41,21 @@
         android:label="fragment_change_theme"
         tools:layout="@layout/fragment_change_theme" />
     <fragment
-        android:id="@+id/listOfContactFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ListOfContactFragment"
-        android:label="ListOfContactFragment" />
+        android:id="@+id/contactListFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsListFragment"
+        android:label="Contact List"
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_contactListFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment" >
+        <argument
+            android:name="contacts"
+            app:argType="edu.uw.tcss450.team5tcss450client.ui.contacts.Contacts" />
+    </fragment>
+
 </navigation>
