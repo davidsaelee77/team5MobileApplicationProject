@@ -28,9 +28,7 @@ public class WeatherListFragment extends Fragment {
 
     private FragmentWeatherListBinding binding;
 
-    private RecyclerView rv;
-
-    private List<WeatherData> list = new ArrayList<>();
+    private List<WeatherData> list;
 
     public WeatherListFragment() {
         // Required empty public constructor
@@ -44,9 +42,9 @@ public class WeatherListFragment extends Fragment {
         generate();
     }
 
-    public void generate(){
-        for (int i=0; i < 10; i++){
-            list.add(new WeatherData("Sunny", "Wednesday", 56+i, 70+i));
+    public void generate() {
+        for (int i = 0; i < 10; i++) {
+            list.add(new WeatherData("Sunny", "Wednesday", 56 + i + "", 70 + i + ""));
         }
     }
 
@@ -56,18 +54,16 @@ public class WeatherListFragment extends Fragment {
 //        // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_weather_list, container, false);
         binding = FragmentWeatherListBinding.inflate(inflater);
-        return  binding.getRoot();
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FragmentWeatherListBinding  binding = FragmentWeatherListBinding.bind(getView());
+        FragmentWeatherListBinding binding = FragmentWeatherListBinding.bind(getView());
 
-
-
-        mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList ->{
-            if (!weatherList.isEmpty()){
+        mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
+            if (!weatherList.isEmpty()) {
                 binding.listPage.setAdapter(new WeatherRecyclerViewAdapter(list));
             }
         });

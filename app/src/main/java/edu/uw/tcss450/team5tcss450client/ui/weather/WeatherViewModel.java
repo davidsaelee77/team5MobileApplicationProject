@@ -39,7 +39,7 @@ public class WeatherViewModel extends AndroidViewModel {
         mWeatherData = new MutableLiveData<>();
 
         for (int i=0; i < 10; i++){
-            list.add(new WeatherData("Sunny", "Wednesday", 56+i, 70+i));
+            list.add(new WeatherData("Sunny", "Wednesday", 56+i + "", 70+i + ""));
         }
 
         mWeatherData.setValue((list));

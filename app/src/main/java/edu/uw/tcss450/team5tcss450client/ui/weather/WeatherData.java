@@ -24,12 +24,12 @@ public class WeatherData implements Serializable {
     /**
      * Low temperature.
      */
-    private final int mLowTemp;
+    private final String mLowTemp;
 
     /**
      * High temperature
      */
-    private final int mHighTemp;
+    private final String mHighTemp;
 
 //    private final int mZipCode;
 
@@ -41,11 +41,11 @@ public class WeatherData implements Serializable {
      * @param low Int of low temperature.
      * @param high Int of high temperature.
      */
-    public WeatherData(String weather, String time, int low, int high){
-        mWeather = weather;
-        mTime = time;
-        mLowTemp = low;
-        mHighTemp = high;
+    public WeatherData(String weather, String time, String low, String high){
+        this.mWeather = weather;
+        this.mTime = time;
+        this.mLowTemp = low;
+        this.mHighTemp = high;
 //        mZipCode = zip;
     }
 
@@ -55,10 +55,10 @@ public class WeatherData implements Serializable {
      * @return WeatherData object based on the JSON.
      * @throws JSONException
      */
-    public static WeatherData createFromJsonString(final String cmAsJson) throws JSONException {
-        final JSONObject msg = new JSONObject(cmAsJson);
-        return new WeatherData(msg.getString("weather"),msg.getString("time"),msg.getInt("low"),msg.getInt("high"));//,msg.getInt("zip"));
-    }
+//    public static WeatherData createFromJsonString(final String cmAsJson) throws JSONException {
+//        final JSONObject msg = new JSONObject(cmAsJson);
+//        return new WeatherData(msg.getString("weather"),msg.getString("time"),msg.getInt("low"),msg.getInt("high"));//,msg.getInt("zip"));
+//    }
 
 
     /**
@@ -81,7 +81,7 @@ public class WeatherData implements Serializable {
      * Gets the low temperature.
      * @return Int of the low temperature.
      */
-    public int getmLowTemp() {
+    public String getmLowTemp() {
         return mLowTemp;
     }
 
@@ -89,7 +89,7 @@ public class WeatherData implements Serializable {
      * Gets the high temperature.
      * @return Int of the high temperature.
      */
-    public int getmHighTemp() {
+    public String getmHighTemp() {
         return mHighTemp;
     }
 
