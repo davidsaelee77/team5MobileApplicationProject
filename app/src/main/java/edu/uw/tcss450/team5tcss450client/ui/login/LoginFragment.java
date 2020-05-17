@@ -1,5 +1,6 @@
 package edu.uw.tcss450.team5tcss450client.ui.login;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentLoginBinding;
 import edu.uw.tcss450.team5tcss450client.utility.PasswordValidator;
 
@@ -114,8 +116,7 @@ public class LoginFragment extends Fragment {
 
         binding.signinButton.setOnClickListener(this::attemptSignIn);
 
-        binding.helpButton.setOnClickListener(button ->
-                Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToHelpFragment()));
+        binding.helpButton.setOnClickListener(button -> createDialogResendVerification());
 
 
         mSignInModel.addResponseObserver(
@@ -195,11 +196,17 @@ public class LoginFragment extends Fragment {
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
-                    binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
-                } catch (JSONException e) {
-                    Log.e("JSON Parse Error", e.getMessage());
+                    JSONObject jObject = new JSONObject(response.getString("data"));
+                    String message = jObject.getString("message");
+                    if (message.contains("verified")) {
+                        createDialogResendVerification();
+                    }
+                    binding.emailText.setError("Error Authenticating: " + message);
                     binding.emailText.requestFocus();
-                    binding.emailText.setError("Invalid credentials");
+                } catch (JSONException e) {
+                    Log.wtf("JSON Parse Error", e.getMessage());
+                    binding.emailText.requestFocus();
+                    binding.emailText.setError("Contact Developer");
                 }
             } else {
                 try {
@@ -207,7 +214,8 @@ public class LoginFragment extends Fragment {
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
                     binding.emailText.requestFocus();
-                    binding.emailText.setError("Invalid credentials");
+                    //binding.emailText.setError("Invalid credentials");
+                    binding.emailText.setError(e.getMessage());
                 }
             }
         } else {
@@ -215,4 +223,27 @@ public class LoginFragment extends Fragment {
         }
 
     }
+
+    /**
+     * Creates a dialog prompting the user if they would like to resent the verification email.
+     * This method will only be called when an unverified user attempts to sign in.
+     */
+    private void createDialogResendVerification() {
+        Log.d("Resend", "Attempting to create resend dialog");
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setMessage(R.string.resenddialog_text_description);
+        builder.setTitle(R.string.resenddialog_text_title);
+        builder.setPositiveButton(R.string.resenddialog_button_resend, (dialog, which) -> {
+            //resend verification email
+            Log.d("Resend", "Resend button clicked!");
+            mSignInModel.connectResendVerification(binding.emailText.getText().toString());
+        });
+        builder.setNegativeButton(R.string.resenddialog_button_cancel, (dialog, which) -> {
+            //cancel, user doesn't want to resend apparently :c
+        });
+        builder.create();
+        builder.show();
+    }
+
 }

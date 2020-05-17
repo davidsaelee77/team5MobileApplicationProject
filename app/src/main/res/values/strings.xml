@@ -20,6 +20,13 @@
     <string name="search_text">Search</string>
     <string name="login_button_help">Help</string>
 
+    <!-- Resend Verification Email Dialog -->
+    <string name="resenddialog_text_title">Unverified Email!</string>
+    <string name="resenddialog_text_description">It appears that the account information you 
+        entered has not been verified, would you like to resend the verification email?</string>
+    <string name="resenddialog_button_resend">Resend Verification!</string>
+    <string name="resenddialog_button_cancel">Cancel</string>
+
 
     <!-- Chat -->
     <string name="newmessage_text_title">New Message</string>
