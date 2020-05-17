@@ -12,11 +12,11 @@
         android:id="@+id/layout_inner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/contact_name_text"
-        app:layout_constraintTop_toTopOf="@+id/contact_name_text">
+        app:layout_constraintBottom_toTopOf="@+id/weather_low_text"
+        app:layout_constraintTop_toTopOf="@+id/weather_low_text">
 
         <TextView
-            android:id="@+id/alphabet_letter_text"
+            android:id="@+id/weather_time_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary_UW"
@@ -28,57 +28,64 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="hour/week" />
 
         <TextView
-            android:id="@+id/contact_name_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:id="@+id/weather_low_text"
+            android:layout_width="148dp"
+            android:layout_height="28dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/see_more_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alphabet_letter_text" />
+            app:layout_constraintStart_toEndOf="@+id/low"
+            app:layout_constraintTop_toBottomOf="@+id/weather_type_text"
+            tools:text="Low" />
 
         <TextView
-            android:id="@+id/contact_preview_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:id="@+id/weather_high_text"
+            android:layout_width="165dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="4dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/see_more_button" />
+            app:layout_constraintTop_toBottomOf="@+id/weather_type_text"
+            tools:text="High" />
 
-        <ImageButton
-            android:id="@+id/see_more_button"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/screen_background_light_transparent"
-            app:layout_constraintBottom_toBottomOf="@+id/contact_name_text"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <Button
-            android:id="@+id/button_full_post"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/firstname_text"
+        <TextView
+            android:id="@+id/weather_type_text"
+            android:layout_width="401dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="3dp"
             android:textColor="@color/colorAccent_UW"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact_preview_text"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_time_text"
+            tools:text="Type" />
+
+        <TextView
+            android:id="@+id/low"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Low" />
+
+        <TextView
+            android:id="@+id/high"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/weather_high_text"
+            app:layout_constraintStart_toEndOf="@+id/weather_low_text"
+            tools:text="High" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
