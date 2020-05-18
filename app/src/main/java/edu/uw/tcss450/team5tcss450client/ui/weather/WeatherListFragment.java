@@ -6,14 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import edu.uw.tcss450.team5tcss450client.R;
@@ -29,10 +28,13 @@ public class WeatherListFragment extends Fragment {
     private FragmentWeatherListBinding binding;
 
     private List<WeatherData> list;
+    private List<WeatherData> dayList;
+    private List<String> days = Arrays.asList("Sunday","Monday","Tuesday","Wednesday","Thurdsay","Friday","Saturday");
 
     public WeatherListFragment() {
         // Required empty public constructor
         list = new ArrayList<>();
+        dayList = new ArrayList<>();
     }
 
     @Override
@@ -42,10 +44,18 @@ public class WeatherListFragment extends Fragment {
         generate();
     }
 
+    /**
+     * Method to generate dummy data.
+     */
     public void generate() {
-        for (int i = 0; i < 10; i++) {
-            list.add(new WeatherData("Sunny", "Wednesday", 56 + i + "", 70 + i + ""));
+        for (int i = 0; i < 7; i++){
+            list.add(new WeatherData("Sunny", days.get(i), 56 - i + "", 70 - i + ""));
         }
+        for (int i = 0; i < 24; i++) {
+
+            dayList.add(new WeatherData("Sunny", i + ":00", 56 + i + "", 70 + i + ""));
+        }
+
     }
 
     @Override
@@ -64,7 +74,13 @@ public class WeatherListFragment extends Fragment {
 
         mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
-                binding.listPage.setAdapter(new WeatherRecyclerViewAdapter(list));
+                //Using dummy data
+                binding.weatherTodayList.setAdapter(new WeatherRecyclerViewAdapter(dayList));
+                binding.weatherWeekList.setAdapter(new WeatherRecyclerViewAdapter(list));
+                binding.weatherCurrentText.setText(list.get(1).getmWeather());
+                binding.weatherPlaceText.setText("Tacoma");
+
+
             }
         });
     }

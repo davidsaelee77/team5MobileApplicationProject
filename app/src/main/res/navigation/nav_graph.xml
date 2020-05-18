@@ -64,8 +64,8 @@
     <fragment
         android:id="@+id/weatherListFragment"
         android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherListFragment"
-        android:label="fragment_weather_list"
-        tools:layout="@layout/fragment_weather_list" >
+        android:label="Weather"
+        tools:layout="@layout/fragment_weather_list">
         <action
             android:id="@+id/action_weatherListFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
