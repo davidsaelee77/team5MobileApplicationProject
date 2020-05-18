@@ -24,8 +24,8 @@
             app:argType="string"
             android:defaultValue="default" />
         <action
-            android:id="@+id/action_loginFragment_to_helpFragment"
-            app:destination="@id/helpFragment" />
+            android:id="@+id/action_loginFragment_to_passwordRecoveryFragment"
+            app:destination="@id/passwordRecoveryFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -49,8 +49,15 @@
             app:argType="string" />
     </activity>
     <fragment
-        android:id="@+id/helpFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.Help.HelpFragment"
-        android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
+        android:id="@+id/passwordRecoveryFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.recovery.PasswordRecoveryFragment"
+        android:label="PasswordRecoveryFragment" >
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="default" />
+        <action
+            android:id="@+id/action_passwordRecoveryFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

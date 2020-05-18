@@ -114,10 +114,9 @@ public class LoginFragment extends Fragment {
         binding.registerButton.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment()));
 
+        binding.forgotPButton.setOnClickListener(this::navigateToRecovery);
+
         binding.signinButton.setOnClickListener(this::attemptSignIn);
-
-        binding.helpButton.setOnClickListener(button -> createDialogResendVerification());
-
 
         mSignInModel.addResponseObserver(
                 getViewLifecycleOwner(),
@@ -131,6 +130,15 @@ public class LoginFragment extends Fragment {
 
         binding.emailText.setText("dsael1@uw.edu");
         binding.passwordText.setText("A1234567!");
+    }
+
+    private void navigateToRecovery(final View button) {
+        LoginFragmentDirections.ActionLoginFragmentToPasswordRecoveryFragment directions =
+                LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment();
+
+        directions.setEmail(binding.emailText.getText().toString());
+
+        Navigation.findNavController(getView()).navigate(directions);
     }
 
     /**
@@ -238,6 +246,7 @@ public class LoginFragment extends Fragment {
             //resend verification email
             Log.d("Resend", "Resend button clicked!");
             mSignInModel.connectResendVerification(binding.emailText.getText().toString());
+            binding.emailText.setError(null);
         });
         builder.setNegativeButton(R.string.resenddialog_button_cancel, (dialog, which) -> {
             //cancel, user doesn't want to resend apparently :c

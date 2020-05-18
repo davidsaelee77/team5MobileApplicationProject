@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">Team5TCSS450Client</string>
+    <string name="app_name">Griffin</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_menu_text">Home</string>
     <string name="chat_menu_text">Chat</string>
     <string name="contacts_menu_text">Contacts</string>
@@ -10,15 +9,18 @@
     <string name="username_text">Username</string>
     <string name="email_text">Email</string>
     <string name="password_text">Password</string>
-    <string name="login_button">SIGN-IN</string>
-    <string name="register_button">REGISTER</string>
     <string name="icon_imageview">Icon</string>
     <string name="lastname_text">Last Name</string>
     <string name="firstname_text">First Name</string>
     <string name="retype_password_text">Retype Password</string>
     <string name="search_contacts_text">Search Contacts</string>
     <string name="search_text">Search</string>
-    <string name="login_button_help">Help</string>
+
+    <!-- Login Fragment -->
+    <string name="register_button">REGISTER</string>
+    <string name="login_button">SIGN-IN</string>
+    <string name="login_button_forgotPassword">FORGOT PASSWORD</string>
+
 
     <!-- Resend Verification Email Dialog -->
     <string name="resenddialog_text_title">Unverified Email!</string>
@@ -27,6 +29,17 @@
     <string name="resenddialog_button_resend">Resend Verification!</string>
     <string name="resenddialog_button_cancel">Cancel</string>
 
+    <!-- Forgot Password Fragment -->
+    <string name="forgotPassword_text_title">Password Recovery</string>
+    <string name="forgotPassword_text_description">Enter the email address associated with the
+        account and if it exists, an email with password recovery instructions will be sent!</string>
+    <string name="forgotPassword_text_emailHint">Email</string>
+    <string name="forgotPassword_button_sendRecovery">Send Recovery Link</string>
+    <string name="forgotPassword_button_cancel">Cancel</string>
+    <string name="forgotPassword_snackbar_acknowledge">Recovery Acknowledged!</string>
+    <string name="forgotPassword_dialog_title">Success!</string>
+    <string name="forgotPassword_dialog_message">If the entered email exists as a user, an email has been sent!, </string>
+    <string name="forgotPassword_dialog_acknowledge">Acknowledge</string>
 
     <!-- Chat -->
     <string name="newmessage_text_title">New Message</string>
@@ -40,11 +53,11 @@
     <string name="sonics_theme_text">Sonics Theme</string>
     <string name="UW_theme_text">UW Theme</string>
 
-    <!-- Help -->
+    <!-- Help DEFUNCT-->
     <string name="help_text_emailHint">Enter Email</string>
     <string name="help_text_welcomeMessage">Welcome to the help page! What is your issue?</string>
     <string name="help_text_resendEmailMessage"> A validation email has been resent for the specified count if it exists</string>
     <string name="help_button_resend">Resend Email Validation</string>
-    <string name="help_button_password">Password Reset</string>
+
 
 </resources>
