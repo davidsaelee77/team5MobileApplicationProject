@@ -133,7 +133,10 @@ public class PasswordRecoveryFragment extends Fragment {
         builder.setMessage(R.string.forgotPassword_dialog_message);
         builder.setTitle(R.string.forgotPassword_dialog_title);
         builder.setPositiveButton(R.string.forgotPassword_dialog_acknowledge, (dialog, which) -> {
-            Log.d("Recovery", "Returning to Login");
+            Log.d("Recovery", "Acknowledge");
+        });
+        builder.setOnDismissListener(dialog -> {
+            Log.d("Recovery", "Dismissing, returning to login");
             navigateToLogin();
         });
         builder.create();

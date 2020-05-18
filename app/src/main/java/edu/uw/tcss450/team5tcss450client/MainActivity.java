@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -95,41 +96,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        Log.d("Theme", "onOptionsItemSelected");
         switch (item.getItemId()) {
-
-            case R.id.UW_theme_toolbar:
-
-                GriffinApplication.id = R.style.AppTheme;
-                recreate();
-
-                break;
-            case R.id.sonics_theme_toolbar:
-
-                GriffinApplication.id = R.style.SonicsTheme;
-                recreate();
-
-                break;
-            case R.id.bluegrey_theme_toolbar:
-
-                GriffinApplication.id = R.style.BluegreyTheme;
-                recreate();
-
-                break;
-
-            case R.id.navigate_changetheme_fragment:
-
+            case R.id.navigate_button_theme:
                 navController.navigate(R.id.changeThemeFragment);
-
                 break;
 
-//            case R.id.navigate_help_fragment:
-//
-//                Intent intent = new Intent(this, AuthActivity.class);
-//
-//
-//                authNavController.navigate(R.id.helpFragment);
-//                break;
+            case R.id.navigate_button_password:
+
         }
 
         return super.onOptionsItemSelected(item);

@@ -3,31 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/change_theme_toolbar"
-        android:title="@string/change_theme_text"
-        app:showAsAction="never" >
-        <menu >
-            <item
-                android:id="@+id/UW_theme_toolbar"
-                android:title="@string/UW_theme_text" />
-            <item
-                android:id="@+id/bluegrey_theme_toolbar"
-                android:title="@string/bluegrey_theme_text" />
-            <item
-                android:id="@+id/sonics_theme_toolbar"
-                android:title="@string/sonics_theme_text" />
-        </menu>
-
-    </item>
+        android:id="@+id/navigate_button_theme"
+        android:title="@string/settings_button_theme"
+        app:showAsAction="never"></item>
     <item
-    android:id="@+id/navigate_changetheme_fragment"
-    android:title="Navigate to Change Theme"
-    app:showAsAction="never" >
-    </item>
-    <item
-        android:id="@+id/navigate_help_fragment"
-        android:title="Navigate to Help Fragment"
-        app:showAsAction="never" >
-    </item>
+        android:id="@+id/navigate_button_password"
+        android:title="@string/settings_button_changePassword"
+        app:showAsAction="never"></item>
 
 </menu>
