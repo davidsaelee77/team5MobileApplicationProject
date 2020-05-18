@@ -194,9 +194,9 @@ public class LoginFragment extends Fragment {
      * @param email users email
      * @param jwt   the JSON Web Token supplied by the server
      */
-    private void navigateToSuccess(final String email, final String jwt) {
+    private void navigateToSuccess(final String email, final String jwt, final int memberid) {
 
-        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt));
+        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt, memberid));
     }
 
     /**
@@ -220,10 +220,13 @@ public class LoginFragment extends Fragment {
                 try {
 
                     mUserViewModel = new ViewModelProvider(getActivity(), new UserInfoViewModel.UserInfoViewModelFactory(
-                            binding.emailText.getText().toString(), response.getString("token"))).get(UserInfoViewModel.class);
-                    sendPushyToken();
+                            binding.emailText.getText().toString(),
+                            response.getString("token"),
+                            response.getInt("memberid")
+                    )).get(UserInfoViewModel.class);
+//                    sendPushyToken();
 
-//                    navigateToSuccess(binding.emailText.getText().toString(), response.getString("token"));
+                    navigateToSuccess(binding.emailText.getText().toString(), response.getString("token"), response.getInt("memberid"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
                     binding.emailText.requestFocus();
@@ -252,7 +255,7 @@ public class LoginFragment extends Fragment {
                 //this error cannot be fixed by the user changing credentials...
                 binding.emailText.setError("Error Authenticating on Push Token. Please contact support");
             } else {
-                navigateToSuccess(binding.emailText.getText().toString(), mUserViewModel.getJwt());
+                navigateToSuccess(binding.emailText.getText().toString(), mUserViewModel.getJwt(), mUserViewModel.getMemberId());
             }
         }
     }

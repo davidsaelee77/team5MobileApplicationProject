@@ -109,6 +109,7 @@ public class RegisterViewModel extends AndroidViewModel {
             body.put("last", last);
             body.put("email", email);
             body.put("password", password);
+            body.put("username", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }

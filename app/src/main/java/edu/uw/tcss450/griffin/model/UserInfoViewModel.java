@@ -8,6 +8,7 @@ public class UserInfoViewModel extends ViewModel {
 
     private final String mEmail;
     private final String mJwt;
+    private final int mMemberId;
 
     /**
      * Constructor that instantiates fields with given email and jwt.
@@ -16,9 +17,10 @@ public class UserInfoViewModel extends ViewModel {
      * @param email
      * @param jwt
      */
-    private UserInfoViewModel(String email, String jwt) {
+    private UserInfoViewModel(String email, String jwt, int memberId) {
         mEmail = email;
         mJwt = jwt;
+        mMemberId = memberId;
     }
 
     /**
@@ -41,6 +43,10 @@ public class UserInfoViewModel extends ViewModel {
         return mJwt;
     }
 
+    public int getMemberId(){
+        return mMemberId;
+    }
+
     /**
      * Subclass that instantiates ViewModels
      * @author David Salee
@@ -50,22 +56,24 @@ public class UserInfoViewModel extends ViewModel {
 
         private final String email;
         private final String jwt;
+        private final int memberId;
 
         /**
          * UserInfoViewModelFactory constructor.
          * @param email
          * @param jwt
          */
-        public UserInfoViewModelFactory(String email, String jwt) {
+        public UserInfoViewModelFactory(String email, String jwt, int memberId) {
             this.email = email;
             this.jwt = jwt;
+            this.memberId = memberId;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass == UserInfoViewModel.class) {
-                return (T) new UserInfoViewModel(email, jwt);
+                return (T) new UserInfoViewModel(email, jwt, memberId);
             }
             throw new IllegalArgumentException(
                     "Argument must be: " + UserInfoViewModel.class);
