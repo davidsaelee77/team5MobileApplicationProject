@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.login.LoginFragment"
+        android:name="edu.uw.tcss450.griffin.ui.login.LoginFragment"
         android:label="@string/login_button"
         tools:layout="@layout/fragment_login">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.register.RegisterFragment"
+        android:name="edu.uw.tcss450.griffin.ui.register.RegisterFragment"
         android:label="@string/register_button"
         tools:layout="@layout/fragment_register">
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="edu.uw.tcss450.team5tcss450client.MainActivity"
+        android:name="edu.uw.tcss450.griffin.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" >
         <argument
@@ -50,7 +50,7 @@
     </activity>
     <fragment
         android:id="@+id/helpFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.Help.HelpFragment"
+        android:name="edu.uw.tcss450.griffin.ui.Help.HelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
 </navigation>

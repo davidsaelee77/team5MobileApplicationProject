@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsListFragment"
+        tools:context="edu.uw.tcss450.griffin.ui.contacts.ContactsListFragment"
         tools:listitem="@layout/fragment_contactlist_card" />
 
 

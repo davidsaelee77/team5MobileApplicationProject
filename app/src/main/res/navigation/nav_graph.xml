@@ -7,42 +7,27 @@
 
     <fragment
     android:id="@+id/homeFragment"
-    android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"
+    android:name="edu.uw.tcss450.griffin.ui.home.HomeFragment"
     android:label="@string/home_menu_text"
     tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherFragment"
+        android:name="edu.uw.tcss450.griffin.ui.weather.WeatherFragment"
         android:label="@string/weather_menu_text"
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ChatFragment"
+        android:name="edu.uw.tcss450.griffin.ui.chat.ChatFragment"
         android:label="@string/chat_menu_text"
-        tools:layout="@layout/fragment_chat" >
-        <action
-            android:id="@+id/action_chatFragment_to_conversationFragment"
-            app:destination="@id/conversationFragment" />
-        <action
-            android:id="@+id/action_chatFragment_to_newMessageFragment"
-            app:destination="@id/newMessageFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/conversationFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ConversationFragment"
-        android:label="@string/conversation_text_title" />
-    <fragment
-        android:id="@+id/newMessageFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.chat.NewMessageFragment"
-        android:label="@string/newmessage_text_title" />
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/changeThemeFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.settings.ChangeThemeFragment"
+        android:name="edu.uw.tcss450.griffin.ui.settings.ChangeThemeFragment"
         android:label="fragment_change_theme"
         tools:layout="@layout/fragment_change_theme" />
     <fragment
         android:id="@+id/contactListFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsListFragment"
+        android:name="edu.uw.tcss450.griffin.ui.contacts.ContactsListFragment"
         android:label="Contact List"
         tools:layout="@layout/fragment_contact_list">
         <action
@@ -51,11 +36,11 @@
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsFragment"
+        android:name="edu.uw.tcss450.griffin.ui.contacts.ContactsFragment"
         android:label="ContactsFragment" >
         <argument
-            android:name="contacts"
-            app:argType="edu.uw.tcss450.team5tcss450client.ui.contacts.Contacts" />
+            android:name="contact"
+            app:argType="edu.uw.tcss450.griffin.ui.contacts.Contacts" />
     </fragment>
 
 </navigation>

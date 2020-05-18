@@ -1,33 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/change_theme_toolbar"
-        android:title="@string/change_theme_text"
-        app:showAsAction="never" >
-        <menu >
-            <item
-                android:id="@+id/UW_theme_toolbar"
-                android:title="@string/UW_theme_text" />
-            <item
-                android:id="@+id/bluegrey_theme_toolbar"
-                android:title="@string/bluegrey_theme_text" />
-            <item
-                android:id="@+id/sonics_theme_toolbar"
-                android:title="@string/sonics_theme_text" />
-        </menu>
+        android:id="@+id/navigate_changetheme_fragment"
+        android:title="Navigate to Change Theme"
+        app:showAsAction="never">
 
-    </item>
-    <item
-    android:id="@+id/navigate_changetheme_fragment"
-    android:title="Navigate to Change Theme"
-    app:showAsAction="never" >
-    </item>
-    <item
-        android:id="@+id/navigate_help_fragment"
-        android:title="Navigate to Help Fragment"
-        app:showAsAction="never" >
     </item>
 
 </menu>
