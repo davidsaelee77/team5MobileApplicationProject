@@ -37,7 +37,10 @@ public class ContactsFragment extends Fragment {
 
         ContactsFragmentArgs args = ContactsFragmentArgs.fromBundle(getArguments());
         FragmentContactsBinding binding = FragmentContactsBinding.bind(getView());
-        binding.listofcontactsTextView.setText(args.getContacts().getFullName());
+        binding.memberidTextView.setText(args.getContacts().getMemberID());
+        binding.usernameTextView.setText(args.getContacts().getUserName());
+        binding.firstnameTextView.setText(args.getContacts().getFirstName());
+        binding.lastnameTextView.setText(args.getContacts().getLastName());
 
     }
 }

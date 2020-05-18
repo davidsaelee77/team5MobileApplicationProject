@@ -37,7 +37,7 @@ public class UserInfoViewModel extends ViewModel {
      * @version May 2020
      * @return mJwt
      */
-    public String getmJwt() {
+    public String getJwt() {
         return mJwt;
     }
 

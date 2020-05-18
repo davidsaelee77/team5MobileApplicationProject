@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactlistCardBinding;
@@ -16,7 +18,6 @@ import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactlistCardBind
 public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<ContactListRecyclerViewAdapter.ContactListViewHolder> {
 
     List<Contacts> mContacts;
-   // List<String> alphabet;
 
     public ContactListRecyclerViewAdapter(List<Contacts> contacts) {
         this.mContacts = contacts;
@@ -36,17 +37,9 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
         holder.setContact(mContacts.get(position));
     }
 
-//    public void generateAlphabet() {
-//
-//        for (int i = 0; i < 26; i++) {
-//
-//            alphabet.add(Character.toString((char) (65 + i)));
-//
-//        }
-//    }
-
     @Override
     public int getItemCount() {
+
         return mContacts.size();
     }
 
@@ -78,15 +71,25 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
 
         void setContact(final Contacts contact) {
 
-            binding.contactNameText.setText(contact.getFirstName());
-            binding.contactPreviewText.setText(contact.getLastName());
 
+            // binding.alphabetLetterText.setText(contact.getAlphabet());
+
+            // if (contact.getAlphabet().indexOf(0) == contact.getFirstName().charAt(0)) {
+
+
+            binding.buttonFullPost.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ContactsListFragmentDirections.actionContactListFragmentToContactsFragment(contact)));
+
+
+            binding.memberidText.setText(contact.getMemberID());
+            binding.contactUsernameText.setText(contact.getUserName());
+            binding.contactFirstNameText.setText(contact.getFirstName());
+            binding.contactLastNameText.setText(contact.getLastName());
+
+
+            // }
         }
-//
-//        void setAlphabet(final String alphabet) {
-//
-//            binding.alphabetLetterText.setText(alphabet);
-//        }
     }
+
+
 }
 

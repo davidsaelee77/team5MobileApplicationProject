@@ -2,52 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contact_layout"
+    android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.contacts.ContactsListFragment">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="88dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginBottom="559dp"
-        android:src="@drawable/chat_bubble_clip_art_black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/chat_button_newmessage"
-        app:layout_constraintHorizontal_bias="0.016"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/chat_button_newmessage"
-        android:layout_width="88dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginBottom="559dp"
-        android:src="@drawable/add_button_black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".ui.chat.ChatFragment">
 
     <EditText
-        android:id="@+id/temp_place_holder_CHAT_M"
-        android:layout_width="407dp"
-        android:layout_height="481dp"
-        android:layout_marginTop="71dp"
-        android:background="@color/colorAccent_UW"
+        android:id="@+id/edit_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="CHAT MENU"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintEnd_toStartOf="@+id/button_send"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0" />
+        android:autofillHints="" />
+
+    <ImageButton
+        android:id="@+id/button_send"
+        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_send_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--  Used for loading new messages  -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="edu.uw.tcss450.team5tcss450client.ui.contacts.ContactListFragment"
+            tools:listitem="@layout/fragment_chat_message"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

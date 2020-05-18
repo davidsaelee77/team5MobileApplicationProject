@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +14,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.uw.tcss450.team5tcss450client.MainActivity;
 import edu.uw.tcss450.team5tcss450client.databinding.FragmentContactListBinding;
 
-import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomIdentifier;
+//import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
 
 
 /**
@@ -31,24 +31,27 @@ import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.ra
 public class ContactsListFragment extends Fragment {
 
     private ContactListViewModel mModel;
-
     private FragmentContactListBinding binding;
-
-    private RecyclerView rv;
-
-    private List<Contacts> list = new ArrayList<Contacts>();
+    //private List<Contacts> list;
+    // private List<String> alphabet;
 
     public ContactsListFragment() {
         // Required empty public constructor
+
+//        list = new ArrayList<Contacts>();
+//        alphabet = new ArrayList<>();
     }
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(ContactListViewModel.class);
-        // mModel.connectGet();
-        // mModel.connect("BOB", "JONES");
-        generateRandomData();
-
+        if (getActivity() instanceof MainActivity){
+            MainActivity activity = (MainActivity) getActivity();
+            mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
+        }
+        mModel.connectGet();
+        //generateAlphabet();
+        //generateRandomData();
     }
 
     /**
@@ -64,16 +67,26 @@ public class ContactsListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentContactListBinding.inflate(inflater);
+
         return binding.getRoot();
     }
+//
+//    public void generateRandomData() {
+//
+//        for (int i = 0; i < 26; i++) {
+//
+//            list.add(new Contacts(randomNameGenerator(), randomNameGenerator(), randomNameGenerator(), alphabet.get(i)));
+//        }
+//    }
 
-    public void generateRandomData() {
+//    public void generateAlphabet() {
+//
+//        for (int i = 0; i < 26; i++) {
+//
+//            alphabet.add(Character.toString((char) (65 + i)));
+//        }
+//    }
 
-        for (int i = 0; i < 10; i++) {
-
-            list.add(new Contacts(randomIdentifier(), randomIdentifier(), randomIdentifier()));
-        }
-    }
     /**
      * Contact fragment view constructor
      *
@@ -89,9 +102,11 @@ public class ContactsListFragment extends Fragment {
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
 
             if (!contactList.isEmpty()) {
-                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(list));
+//                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(list));
+                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(contactList));
 
             }
         });
     }
 }
+

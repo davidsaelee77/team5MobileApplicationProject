@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import edu.uw.tcss450.team5tcss450client.R;
 import edu.uw.tcss450.team5tcss450client.io.RequestQueueSingleton;
 
 
@@ -101,7 +102,7 @@ public class LoginViewModel extends AndroidViewModel {
      * @param password string user input value
      */
     public void connect(final String email, final String password) {
-        String url = "https://team5-tcss450-server.herokuapp.com/auth";
+        String url = getApplication().getResources().getString(R.string.base_url) + "auth";
         Request request = new JsonObjectRequest(Request.Method.GET, url, null, //no body for this get request
                 mResponse::setValue, this::handleError) {
             @Override

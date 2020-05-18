@@ -26,43 +26,48 @@ import java.util.Map;
 import java.util.function.IntFunction;
 
 import edu.uw.tcss450.team5tcss450client.R;
+import edu.uw.tcss450.team5tcss450client.constants.JSONKeys;
+import edu.uw.tcss450.team5tcss450client.model.UserInfoViewModel;
 
-import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomIdentifier;
+//import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
 
 public class ContactListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Contacts>> mContactList;
 
- //  private MutableLiveData<List<String>> mAlaphabet;
+    private UserInfoViewModel userInfoViewModel;
+    // private MutableLiveData<List<String>> mAlaphabet;
 
-    private List<Contacts> list;
+//    private List<Contacts> list;
+//
+//    private List<String> alphabet;
 
-   // private List<String> alphabet;
+//    private MutableLiveData<JSONObject> mResponse;
 
-    // private MutableLiveData<JSONObject> mResponse;
+    // private MutableLiveData<List<Contacts>> mResponse;
 
     public ContactListViewModel(@NonNull Application application) {
         super(application);
 
-        list = new ArrayList<>();
-
-      //  alphabet = new ArrayList<>();
+//        list = new ArrayList<>();
+//
+//        alphabet = new ArrayList<>();
 
         mContactList = new MutableLiveData<>();
+        mContactList.setValue(new ArrayList<>());
         // mResponse.setValue(new JSONObject());
 
 //        for (int i = 0; i < 26; i++) {
 //
 //            alphabet.add(Character.toString((char) (65 + i)));
 //        }
+//
+//        for (int i = 0; i < 26; i++) {
+//            list.add(new Contacts(randomNameGenerator(), randomNameGenerator(), randomNameGenerator(), alphabet.get(i)));
+//        }
 
+        //mContactList.setValue(list);
 
-        for (int i = 0; i < 26; i++) {
-            list.add(new Contacts(randomIdentifier(), randomIdentifier(), randomIdentifier()));
-        }
-
-        mContactList.setValue(list);
-       // mAlaphabet.setValue(alphabet);
     }
 
 
@@ -71,29 +76,34 @@ public class ContactListViewModel extends AndroidViewModel {
     }
 
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
-        throw new IllegalStateException(error.getMessage());
+        if (error != null && error.getMessage() != null) {
+            Log.e("CONNECTION ERROR", error.getMessage());
+            throw new IllegalStateException(error.getMessage());
+        }
     }
 
-
     private void handleResult(final JSONObject result) {
-        IntFunction<String> getString = getApplication().getResources()::getString;
+        // IntFunction<String> getString = getApplication().getResources()::getString;
         try {
             JSONObject root = result;
-            if (root.has(getString.apply(R.string.keys_json_contactlist_response))) {
-                JSONObject response = root.getJSONObject(getString.apply(R.string.keys_json_contactlist_response));
-                if (response.has(getString.apply(R.string.keys_json_contactlist_full_name))) {
-                    JSONArray data = response.getJSONArray(
-                            getString.apply(R.string.keys_json_contactlist_full_name));
-                    for (int i = 0; i < data.length(); i++) {
-                        JSONObject jsonContacts = data.getJSONObject(i);
-
-                        mContactList.getValue().add(new Contacts.Builder(jsonContacts.getString(getString.apply(R.string.keys_json_contactlist_first_name)),
-                                jsonContacts.getString(getString.apply(R.string.keys_json_contactlist_last_name))).build());
-                    }
-                } else {
-                    Log.e("ERROR!", "No data array");
+            if (root.has(JSONKeys.success)) {
+                boolean isSuccess = root.getBoolean(JSONKeys.success);
+                if (!isSuccess) {
+                    return;
                 }
+                JSONArray contacts = root.getJSONArray(JSONKeys.message);
+                ArrayList<Contacts> listOfContacts = new ArrayList<>();
+                for (int i = 0; i < contacts.length(); i++) {
+                    JSONObject jsonContacts = contacts.getJSONObject(i);
+                    try {
+                        Contacts contact = new Contacts(jsonContacts);
+                        listOfContacts.add(contact);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        ;
+                    }
+                }
+                mContactList.setValue(listOfContacts);
             } else {
                 Log.e("ERROR!", "No response");
             }
@@ -105,7 +115,14 @@ public class ContactListViewModel extends AndroidViewModel {
     }
 
     public void connectGet() {
-        String url = "https://dsael1-lab4-backend.herokuapp.com/demosql";
+        if (userInfoViewModel == null) {
+            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+        }
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "contact/?memberid=3";
+
+//        String url = getApplication().getResources().getString(R.string.base_url);
+
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request
                 this::handleResult, this::handleError) {
@@ -113,10 +130,7 @@ public class ContactListViewModel extends AndroidViewModel {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
-                headers.put("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV" +
-                        "CJ9.eyJ1c2VybmFtZSI6InV3bmV0aWQ1QGZha2UuZW1haWwuY29tIi" +
-                        "wiaWF0IjoxNTg3NTMwNTM5LCJleHAiOjE1ODg3NDAxMzl9.g02500z" +
-                        "joCH0pHxx9-9Ye_ILZHCAdbMvdjpwdfvktcU");
+                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
                 return headers;
             }
         };
@@ -125,21 +139,8 @@ public class ContactListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
-//    public void connect(final String first, final String last) {
-//        String url = "https://team5-tcss450-server.herokuapp.com/auth";
-//        JSONObject body = new JSONObject();
-//        try {
-//            body.put("first", first);
-//            body.put("last", last);
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        Request request = new JsonObjectRequest(Request.Method.POST, url, body, mResponse::setValue, this::handleError);
-//        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//        //Instantiate the RequestQueue and add the request to the queue
-//        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
-//    }
-
+    public void setUserInfoViewModel(UserInfoViewModel vm) {
+        userInfoViewModel = vm;
+    }
 
 }

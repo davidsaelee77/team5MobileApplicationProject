@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="keys_json_contactlist_response">response</string>
+    <string name="keys_json_contactlist_response">message</string>
     <string name="keys_json_contactlist_first_name">First Name</string>
     <string name="keys_json_contactlist_last_name">Last Name</string>
     <string name="keys_json_contactlist_full_name">Full Name</string>
+    <string name="keys_json_contactlist_username">User Name</string>
+    <string name="keys_json_contactlist_memeberID">Member ID</string>
+    <integer name="keys_json_contactlist_memeberID">1</integer>
+
 
 </resources>

@@ -21,11 +21,13 @@ import org.json.JSONObject;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
+import edu.uw.tcss450.team5tcss450client.R;
+
 /**
- *
  * @author David Saelee
  * @version May 2020
  */
+
 /**
  * Store and manage register UI-related data in lifecycle.
  */
@@ -98,21 +100,33 @@ public class RegisterViewModel extends AndroidViewModel {
      * @param password string user input value
      */
     public void connect(final String first, final String last, final String username, final String email, final String password) {
-        String url = "https://team5-tcss450-server.herokuapp.com/auth";
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "auth";
+        ;
         JSONObject body = new JSONObject();
         try {
             body.put("first", first);
             body.put("last", last);
-            body.put("username", username);
             body.put("email", email);
             body.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Request request = new JsonObjectRequest(Request.Method.POST, url, body, mResponse::setValue, this::handleError);
-        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                mResponse::setValue,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
-        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
     }
 
 }

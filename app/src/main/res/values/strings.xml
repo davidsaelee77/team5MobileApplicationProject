@@ -19,6 +19,13 @@
     <string name="search_contacts_text">Search Contacts</string>
     <string name="search_text">Search</string>
     <string name="login_button_help">Help</string>
+    <string name="see_more">See More</string>
+    <string name="member_info">Member Info.</string>
+
+
+    <!-- URL -->
+    <string name="base_url">https://team5-tcss450-server.herokuapp.com/</string>
+    <!--<string name="base_url">https://dsael1-lab4-backend.herokuapp.com/</string> -->
 
 
     <!-- Chat -->
