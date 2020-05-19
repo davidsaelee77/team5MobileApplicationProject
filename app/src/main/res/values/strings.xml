@@ -31,10 +31,15 @@
     <string name="UW_theme_text">UW Theme</string>
 
     <!-- Change Password Fragment -->
+    <string name="changePassword_text_title">Do you want to change your password?</string>
+    <string name="changePassword_text_message">If you accept, an email will be sent containing
+        further instructions for changing your password</string>
+    <string name="changePassword_button_accept">Accept</string>
+    <string name="changePassword_button_cancel">Cancel</string>
     <string name="changePassword_text_oldPasswordHint">Old password</string>
     <string name="changePassword_text_newPasswordHint">New password</string>
     <string name="changePassword_text_newPasswordConfirmHint">Confirm new password</string>
-    <string name="changePassword_button_reset">Change Password!</string>
+    <string name="changePassword_button_save">Save Changes!</string>
 
 
     <!-- Settings Menu -->

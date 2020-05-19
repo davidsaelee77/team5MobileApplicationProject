@@ -57,5 +57,14 @@
             android:name="contacts"
             app:argType="edu.uw.tcss450.team5tcss450client.ui.contacts.Contacts" />
     </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="edu.uw.tcss450.team5tcss450client.ui.settings.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" >
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="default" />
+    </fragment>
 
 </navigation>
