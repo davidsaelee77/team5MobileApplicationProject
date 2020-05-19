@@ -1,8 +1,10 @@
 package edu.uw.tcss450.griffin.ui.chat;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class ChatRoom implements Serializable {
@@ -26,6 +28,8 @@ public class ChatRoom implements Serializable {
     }
 
     public ChatRoom(JSONObject json) throws Exception {
+
+
         mMemberID = json.getLong("memberid");
         mUserName = json.getString("username");
         mFirstName = json.getString("firstname");
@@ -53,6 +57,14 @@ public class ChatRoom implements Serializable {
     public long getChatRoomID() {
         return mChatRoomID;
     }
+
+//        public String getmEmail() {
+//        return mEmail;
+//    }
+//    public JSONArray getmEmail() {
+//
+//        return mEmail;
+//    }
 
 }
 

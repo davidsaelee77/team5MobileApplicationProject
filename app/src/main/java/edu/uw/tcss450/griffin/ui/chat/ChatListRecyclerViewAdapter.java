@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
@@ -33,7 +35,11 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
     @Override
     public void onBindViewHolder(@NonNull ChatListViewHolder holder, int position) {
 
-        holder.setChatRoom(mChatRooms.get(position));
+        try {
+            holder.setChatRoom(mChatRooms.get(position));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -57,11 +63,12 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
 
         }
 
-        void setChatRoom(final ChatRoom chatRoom) {
+        void setChatRoom(final ChatRoom chatRoom) throws JSONException {
 
-            binding.navigateToChatroom.setOnClickListener(view-> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
+            binding.navigateToChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
             binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
 
+            // binding.chatRoomTextView.setText(chatRoom.getmEmail().getJSONObject(0).getString("email"));
         }
     }
 }

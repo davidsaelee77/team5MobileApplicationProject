@@ -82,6 +82,8 @@ public class ChatListViewModel extends AndroidViewModel {
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("ERROR!", e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         mChatRoomList.setValue(mChatRoomList.getValue());
     }
@@ -90,10 +92,10 @@ public class ChatListViewModel extends AndroidViewModel {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "chats/" + userInfoViewModel.getMemberId();
 //        String url = getApplication().getResources().getString(R.string.base_url) +
-//                "chats/" + "1";
+//                "chats/" + userInfoViewModel.getMemberId();
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "chats/" + "1";
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request

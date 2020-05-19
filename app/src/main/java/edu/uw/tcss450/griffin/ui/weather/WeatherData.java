@@ -35,7 +35,7 @@ public class WeatherData implements Serializable {
 //    private final int mZipCode;
 
 
-    private List<Double> currentTime;
+//    private List<Double> currentTime;
 
     /**
      * Constructor for weather data class.
@@ -69,8 +69,6 @@ public class WeatherData implements Serializable {
 //        currentTime = json.getJSONArray("currenttime");
 //        hourlyTime = json.getJSONArray("hourlytime");
 //
-
-
 //    }
 
     /**
