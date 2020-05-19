@@ -34,7 +34,7 @@ public class ChatListFragment extends Fragment {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
-//        mModel.connectGetDummy();
+  //      mModel.connectGetDummy();
         mModel.connectGet();
     }
 

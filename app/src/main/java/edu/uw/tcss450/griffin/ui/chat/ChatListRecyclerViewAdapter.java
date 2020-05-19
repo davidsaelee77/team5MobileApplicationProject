@@ -66,9 +66,11 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
         void setChatRoom(final ChatRoom chatRoom) throws JSONException {
 
             binding.navigateToChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
-            binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
+            // binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
 
-            // binding.chatRoomTextView.setText(chatRoom.getmEmail().getJSONObject(0).getString("email"));
+            for (int i = 0; i < chatRoom.getRowCount(); i++) {
+                binding.chatRoomTextView.setText("Chat Room Email: " + chatRoom.getEmail());
+            }
         }
     }
 }

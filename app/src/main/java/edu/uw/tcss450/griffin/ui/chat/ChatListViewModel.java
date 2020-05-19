@@ -27,7 +27,6 @@ import java.util.Map;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.constants.JSONKeys;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
-import edu.uw.tcss450.griffin.ui.contacts.Contacts;
 
 public class ChatListViewModel extends AndroidViewModel {
 
@@ -55,38 +54,69 @@ public class ChatListViewModel extends AndroidViewModel {
         }
     }
 
+
     private void handleResult(final JSONObject result) {
-        // IntFunction<String> getString = getApplication().getResources()::getString;
-        try {
-            JSONObject root = result;
-            if (root.has(JSONKeys.success)) {
-                boolean isSuccess = root.getBoolean(JSONKeys.success);
-                if (!isSuccess) {
-                    return;
-                }
-                JSONArray chats = root.getJSONArray(JSONKeys.message);
-                ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
-                for (int i = 0; i < chats.length(); i++) {
-                    JSONObject jsonChatRoom = chats.getJSONObject(i);
-                    try {
-                        ChatRoom chatRoom = new ChatRoom(jsonChatRoom);
-                        listOfChatRooms.add(chatRoom);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                mChatRoomList.setValue(listOfChatRooms);
-            } else {
-                Log.e("ERROR!", "No response");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Log.e("ERROR!", e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (!result.has("rows")) {
+            throw new IllegalStateException("Unexpected response in ChatListViewModel: " + result);
         }
-        mChatRoomList.setValue(mChatRoomList.getValue());
+        try {
+
+            ArrayList<ChatRoom> listOfEmails = new ArrayList<>();
+            JSONArray rows = result.getJSONArray("rows");
+            int rowCount = result.getInt("rowCount");
+
+            for (int i = 0; i < rows.length(); i++) {
+                JSONObject row = rows.getJSONObject(i);
+                ChatRoom cr = new ChatRoom(row, rowCount);
+                listOfEmails.add(cr);
+            }
+            mChatRoomList.setValue(listOfEmails);
+            Log.d("JSON", "" + listOfEmails.toString());
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
     }
+
+
+//    private void handleResult(final JSONObject result) {
+//        // IntFunction<String> getString = getApplication().getResources()::getString;
+//        try {
+//            JSONObject root = result;
+//
+//            Log.d("TEST", "" + root.toString());
+//            if (root.has(JSONKeys.success)) {
+//                boolean isSuccess = root.getBoolean(JSONKeys.success);
+//                if (!isSuccess) {
+//                    return;
+//                }
+//                JSONArray chats = root.getJSONArray(JSONKeys.message);
+//                ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
+//                for (int i = 0; i < chats.length(); i++) {
+//                    JSONObject jsonChatRoom = chats.getJSONObject(i);
+//                    try {
+//                        ChatRoom chatRoom = new ChatRoom(jsonChatRoom);
+//                        listOfChatRooms.add(chatRoom);
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+//                }
+//                mChatRoomList.setValue(listOfChatRooms);
+//            } else {
+//                Log.e("ERROR!", "No response");
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//            Log.e("ERROR!", e.getMessage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        mChatRoomList.setValue(mChatRoomList.getValue());
+//    }
 
     public void connectGet() {
         if (userInfoViewModel == null) {
