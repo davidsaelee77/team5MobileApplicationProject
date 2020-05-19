@@ -122,8 +122,8 @@ public class LoginFragment extends Fragment {
 
         binding.signinButton.setOnClickListener(this::attemptSignIn);
 
-        binding.helpButton.setOnClickListener(button ->
-                Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToHelpFragment()));
+        binding.forgotPButton.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
 
 
         mSignInModel.addResponseObserver(

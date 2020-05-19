@@ -1,22 +1,19 @@
-package edu.uw.tcss450.team5tcss450client.ui.weather;
+package edu.uw.tcss450.griffin.ui.weather;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import edu.uw.tcss450.griffin.R;
+import edu.uw.tcss450.griffin.databinding.FragmentWeatherBinding;
 
-import edu.uw.tcss450.team5tcss450client.R;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentWeatherBinding;
+
 
 /**
  * @author David Saelee

@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.databinding.FragmentContactListBinding;
 
-//import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
-
 
 /**
  * @author David Saelee

@@ -1,22 +1,23 @@
-package edu.uw.tcss450.team5tcss450client.ui.weather;
+package edu.uw.tcss450.griffin.ui.weather;
 
-import android.os.Bundle;
+        import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+        import androidx.annotation.NonNull;
+        import androidx.annotation.Nullable;
+        import androidx.fragment.app.Fragment;
+        import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.List;
 
-import edu.uw.tcss450.team5tcss450client.R;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentWeatherListBinding;
+        import edu.uw.tcss450.griffin.databinding.FragmentWeatherListBinding;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +30,7 @@ public class WeatherListFragment extends Fragment {
 
     private List<WeatherData> list;
     private List<WeatherData> dayList;
-    private List<String> days = Arrays.asList("Sunday","Monday","Tuesday","Wednesday","Thurdsay","Friday","Saturday");
+    private List<String> days = Arrays.asList("Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday", "Saturday");
 
     public WeatherListFragment() {
         // Required empty public constructor
@@ -48,7 +49,7 @@ public class WeatherListFragment extends Fragment {
      * Method to generate dummy data.
      */
     public void generate() {
-        for (int i = 0; i < 7; i++){
+        for (int i = 0; i < 7; i++) {
             list.add(new WeatherData("Sunny", days.get(i), 56 - i + "", 70 - i + ""));
         }
         for (int i = 0; i < 24; i++) {

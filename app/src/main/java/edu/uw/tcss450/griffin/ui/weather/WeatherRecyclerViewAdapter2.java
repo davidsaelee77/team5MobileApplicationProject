@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.weather;
+package edu.uw.tcss450.griffin.ui.weather;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import edu.uw.tcss450.team5tcss450client.R;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentWeatherCardBinding;
+import edu.uw.tcss450.griffin.R;
+import edu.uw.tcss450.griffin.databinding.FragmentWeatherCardBinding;
+
 
 public class WeatherRecyclerViewAdapter2 extends RecyclerView.Adapter<WeatherRecyclerViewAdapter2.WeatherViewHolder> {
 
     List<WeatherData> mData;
 
-    public WeatherRecyclerViewAdapter2(List<WeatherData> data){
+    public WeatherRecyclerViewAdapter2(List<WeatherData> data) {
         this.mData = data;
 
     }
@@ -43,13 +44,13 @@ public class WeatherRecyclerViewAdapter2 extends RecyclerView.Adapter<WeatherRec
         private final View mView;
         private FragmentWeatherCardBinding binding;
 
-        public WeatherViewHolder(@NonNull View view){
+        public WeatherViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             binding = FragmentWeatherCardBinding.bind(view);
         }
 
-        void setWeather(final WeatherData data){
+        void setWeather(final WeatherData data) {
             binding.weatherTypeText.setText(data.getmWeather());
             binding.weatherTimeText.setText(data.getmTime());
             binding.weatherLowText.setText(data.getmLowTemp());

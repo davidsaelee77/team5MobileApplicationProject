@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.settings;
+package edu.uw.tcss450.griffin.ui.settings;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import edu.uw.tcss450.team5tcss450client.MainActivityArgs;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentSettingsChangepasswordBinding;
-import edu.uw.tcss450.team5tcss450client.utility.PasswordValidator;
+import edu.uw.tcss450.griffin.databinding.FragmentSettingsChangepasswordBinding;
+import edu.uw.tcss450.griffin.utility.PasswordValidator;
 
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkClientPredicate;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkExcludeWhiteSpace;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdDigit;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdLength;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdLowerCase;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdSpecialChar;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdUpperCase;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkClientPredicate;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkExcludeWhiteSpace;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdDigit;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLength;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLowerCase;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdSpecialChar;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdUpperCase;
+
 
 public class ChangePasswordFragment extends Fragment {
 
@@ -36,16 +36,16 @@ public class ChangePasswordFragment extends Fragment {
     /**
      * Stores mChangePasswordModel variable.
      */
-    private ChangePasswordFragmentViewModel mChangePasswordModel;
+    private edu.uw.tcss450.griffin.ui.settings.ChangePasswordFragmentViewModel mChangePasswordModel;
 
     /**
      * Method to validate the old password.
      */
     private PasswordValidator mOldPasswordValidator = checkPwdLength(7)
-                    .and(checkPwdSpecialChar())
-                    .and(checkExcludeWhiteSpace())
-                    .and(checkPwdDigit())
-                    .and(checkPwdLowerCase().or(checkPwdUpperCase()));
+            .and(checkPwdSpecialChar())
+            .and(checkExcludeWhiteSpace())
+            .and(checkPwdDigit())
+            .and(checkPwdLowerCase().or(checkPwdUpperCase()));
 
     /**
      * Method to validate the new password.

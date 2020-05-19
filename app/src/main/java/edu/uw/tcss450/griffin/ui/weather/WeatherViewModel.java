@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.weather;
+package edu.uw.tcss450.griffin.ui.weather;
 
 import android.app.Application;
 import android.util.Log;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.IntFunction;
-import edu.uw.tcss450.team5tcss450client.R;
+
 
 public class WeatherViewModel extends AndroidViewModel {
 
@@ -38,8 +38,8 @@ public class WeatherViewModel extends AndroidViewModel {
 
         mWeatherData = new MutableLiveData<>();
 
-        for (int i=0; i < 10; i++){
-            list.add(new WeatherData("Sunny", "Wednesday", 56+i + "", 70+i + ""));
+        for (int i = 0; i < 10; i++) {
+            list.add(new WeatherData("Sunny", "Wednesday", 56 + i + "", 70 + i + ""));
         }
 
         mWeatherData.setValue((list));

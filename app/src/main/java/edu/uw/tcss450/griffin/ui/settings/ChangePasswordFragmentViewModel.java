@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.settings;
+package edu.uw.tcss450.griffin.ui.settings;
 
 import android.app.Application;
 import android.util.Log;

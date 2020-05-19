@@ -1,7 +1,9 @@
 package edu.uw.tcss450.griffin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -14,11 +16,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.Charset;
+import java.util.Objects;
 
 import edu.uw.tcss450.griffin.application.GriffinApplication;
 import edu.uw.tcss450.griffin.databinding.ActivityMainBinding;
@@ -55,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
     private UserInfoViewModel userInfoViewModel;
 
+    private MainActivityArgs mArgs;
+
+    private MutableLiveData<JSONObject> mResponse;
+
+
     /**
      * Instantiates a main activity fragment, and builds a menu bar
      * for fragment navigation.
@@ -76,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navView = findViewById(R.id.bottom_menu_bar);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.chatFragment, R.id.contactListFragment, R.id.weatherFragment).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.chatListFragment, R.id.contactListFragment, R.id.weatherListFragment).build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
@@ -87,6 +106,17 @@ public class MainActivity extends AppCompatActivity {
                 new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt(), args.getMemberid())
         ).get(UserInfoViewModel.class);
 
+
+        //MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
+        mArgs = MainActivityArgs.fromBundle(getIntent().getExtras());
+
+        mResponse = new MutableLiveData<>();
+        mResponse.setValue(new JSONObject());
+
+        new ViewModelProvider(this,
+                //new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt())
+                new UserInfoViewModel.UserInfoViewModelFactory(mArgs.getEmail(), mArgs.getJwt(), mArgs.getMemberid())
+        ).get(UserInfoViewModel.class);
 
         mNewMessageModel = new ViewModelProvider(this).get(NewMessageCountViewModel.class);
 
@@ -139,41 +169,84 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        Log.d("Theme", "onOptionsItemSelected");
         switch (item.getItemId()) {
+            case R.id.navigate_button_theme:
 
-
-            case R.id.navigate_changetheme_fragment:
+                GriffinApplication.id = R.style.AppTheme;
 
                 navController.navigate(R.id.changeThemeFragment);
-
                 break;
-//            case R.id.UW_theme_toolbar:
-//
-//                GriffinApplication.id = R.style.AppTheme;
-//                recreate();
-//
-//                break;
-//            case R.id.sonics_theme_toolbar:
-//
-//                GriffinApplication.id = R.style.SonicsTheme;
-//                recreate();
-//
-//                break;
-//            case R.id.bluegrey_theme_toolbar:
-//
-//                GriffinApplication.id = R.style.BluegreyTheme;
-//                recreate();
-//
-//                break;
-//
 
-
+            case R.id.navigate_button_password:
+                //navController.navigate(R.id.changePasswordFragment);
+                createChangePasswordDialog();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void createChangePasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.changePassword_text_title);
+        builder.setMessage(R.string.changePassword_text_message);
+        builder.setPositiveButton(R.string.changePassword_button_accept, (dialog, which) -> {
+            Log.d("ChangeP", "User wants to change password");
+            connectChangePassword();
+        });
+        builder.setNegativeButton(R.string.changePassword_button_cancel, (dialog, which) -> {
+            Log.d("changeP", "cancel change");
+            //do nothing
+        });
+        builder.create();
+        builder.show();
+    }
+
+    private void connectChangePassword() {
+        String url = "https://team5-tcss450-server.herokuapp.com/changePassword";
+        String email = mArgs.getEmail();
+        JSONObject body = new JSONObject();
+        try {
+            body.put("email", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Request request = new JsonObjectRequest(Request.Method.POST, url, body, mResponse::setValue, this::handleError);
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+    /**
+     * Server credential authentication error handling.
+     *
+     * @param error message
+     */
+    private void handleError(final VolleyError error) {
+        if (Objects.isNull(error.networkResponse)) {
+            try {
+                mResponse.setValue(new JSONObject("{" +
+                        "error:\"" + error.getMessage() +
+                        "\"}"));
+            } catch (JSONException e) {
+                Log.e("JSON PARSE", "JSON Parse Error in handleError");
+            }
+        } else {
+            String data = new String(error.networkResponse.data, Charset.defaultCharset())
+                    .replace('\"', '\'');
+            try {
+                mResponse.setValue(new JSONObject("{" +
+                        "code:" + error.networkResponse.statusCode +
+                        ", data:\"" + data +
+                        "\"}"));
+            } catch (JSONException e) {
+                Log.e("JSON PARSE", "JSON Parse Error in handleError");
+            }
+        }
     }
 
     /**

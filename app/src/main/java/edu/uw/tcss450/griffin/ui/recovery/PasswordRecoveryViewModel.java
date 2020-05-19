@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.recovery;
+package edu.uw.tcss450.griffin.ui.recovery;
 
 import android.app.Application;
 import android.util.Log;

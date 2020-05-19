@@ -17,13 +17,17 @@
         tools:layout="@layout/fragment_weather" >
         <argument
             android:name="weatherData"
-            app:argType="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherData" />
+            app:argType="edu.uw.tcss450.griffin.ui.weather.WeatherData" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.ChatFragment"
         android:label="@string/chat_menu_text"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="chatroom"
+            app:argType="edu.uw.tcss450.griffin.ui.chat.ChatRoom" />
+    </fragment>
     <fragment
         android:id="@+id/changeThemeFragment"
         android:name="edu.uw.tcss450.griffin.ui.settings.ChangeThemeFragment"
@@ -48,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.settings.ChangePasswordFragment"
+        android:name="edu.uw.tcss450.griffin.ui.settings.ChangePasswordFragment"
         android:label="ChangePasswordFragment" >
         <argument
             android:name="email"
@@ -57,12 +61,20 @@
     </fragment>
     <fragment
         android:id="@+id/weatherListFragment"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherListFragment"
+        android:name="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         android:label="Weather"
         tools:layout="@layout/fragment_weather_list">
         <action
             android:id="@+id/action_weatherListFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="edu.uw.tcss450.griffin.ui.chat.ChatListFragment"
+        android:label="ChatListFragment" >
+        <action
+            android:id="@+id/action_chatListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
 
 </navigation>

@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.weather;
+package edu.uw.tcss450.griffin.ui.weather;
 
 import org.json.JSONException;
 import org.json.JSONObject;

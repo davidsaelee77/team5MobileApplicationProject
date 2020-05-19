@@ -1,4 +1,4 @@
-package edu.uw.tcss450.team5tcss450client.ui.recovery;
+package edu.uw.tcss450.griffin.ui.recovery;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -6,23 +6,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import org.json.JSONObject;
 
-import edu.uw.tcss450.team5tcss450client.R;
-import edu.uw.tcss450.team5tcss450client.databinding.FragmentPasswordrecoveryBinding;
-import edu.uw.tcss450.team5tcss450client.utility.PasswordValidator;
+import edu.uw.tcss450.griffin.R;
+import edu.uw.tcss450.griffin.databinding.FragmentPasswordrecoveryBinding;
+import edu.uw.tcss450.griffin.utility.PasswordValidator;
 
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkExcludeWhiteSpace;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdLength;
-import static edu.uw.tcss450.team5tcss450client.utility.PasswordValidator.checkPwdSpecialChar;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkExcludeWhiteSpace;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLength;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdSpecialChar;
+
 
 public class PasswordRecoveryFragment extends Fragment {
 
@@ -34,7 +34,7 @@ public class PasswordRecoveryFragment extends Fragment {
     /**
      * Stores PasswordRecoveryViewModel variable.
      */
-    private PasswordRecoveryViewModel mPasswordRecoveryModel;
+    private edu.uw.tcss450.griffin.ui.recovery.PasswordRecoveryViewModel mPasswordRecoveryModel;
 
     /**
      * Method to validate email.
@@ -46,7 +46,8 @@ public class PasswordRecoveryFragment extends Fragment {
     /**
      * Empty public constructor.
      */
-    public PasswordRecoveryFragment() { }
+    public PasswordRecoveryFragment() {
+    }
 
     /**
      * Instantiates a PasswordRecoveryViewModel when PasswordRecoveryFragment is created.
@@ -57,7 +58,7 @@ public class PasswordRecoveryFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPasswordRecoveryModel = new ViewModelProvider(getActivity())
-                .get(PasswordRecoveryViewModel.class);
+                .get(edu.uw.tcss450.griffin.ui.recovery.PasswordRecoveryViewModel.class);
     }
 
     /**
@@ -104,7 +105,7 @@ public class PasswordRecoveryFragment extends Fragment {
 
         PasswordRecoveryFragmentArgs args = PasswordRecoveryFragmentArgs.fromBundle(getArguments());
 
-        binding.emailText.setText(args.getEmail().equals("default")? "": args.getEmail());
+        binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
     }
 
     /**
@@ -116,7 +117,7 @@ public class PasswordRecoveryFragment extends Fragment {
     private void observeResponse(final JSONObject response) {
         if (response.length() > 0) {
             //don't want the client "user" to know if the email was correct or not?
-             //email was or wasn't send, we want to create a dialog possible success dialog
+            //email was or wasn't send, we want to create a dialog possible success dialog
             createDialogAcknowledge();
             //Snackbar mySnackbar = Snackbar.make(getView(),
             //       R.string.forgotPassword_snackbar_acknowledge, Snackbar.LENGTH_SHORT);

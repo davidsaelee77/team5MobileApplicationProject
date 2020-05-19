@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weather_hourly_text"
-        tools:context="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherListFragment"
+        tools:context="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         tools:listitem="@layout/fragment_weather_card" />
 
     <TextView
@@ -79,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weather_weekly_text"
-        tools:context="edu.uw.tcss450.team5tcss450client.ui.weather.WeatherListFragment"
+        tools:context="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         tools:listitem="@layout/fragment_weather_card">
 
     </androidx.recyclerview.widget.RecyclerView>
