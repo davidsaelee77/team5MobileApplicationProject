@@ -1,8 +1,6 @@
-package edu.uw.tcss450.griffin.ui.login;
-
+package edu.uw.tcss450.team5tcss450client.ui.recovery;
 
 import android.app.Application;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,39 +19,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
-import edu.uw.tcss450.griffin.R;
-import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
-
-
-/**
- * @author David Saelee
- * @version May 2020
- */
-
-/**
- * Store and manage login UI-related data in lifecycle.
- */
-public class LoginViewModel extends AndroidViewModel {
+public class PasswordRecoveryViewModel extends AndroidViewModel {
 
     /**
      * Store JSON object variable.
      */
     private MutableLiveData<JSONObject> mResponse;
 
+
     /**
      * Constructor that initializes JSON object and sets its value.
      *
      * @param application maintains application state.
      */
-    public LoginViewModel(@NonNull Application application) {
+    public PasswordRecoveryViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
-
     }
 
     /**
@@ -68,11 +52,6 @@ public class LoginViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
-    /**
-     * Server credential authentication error handling.
-     *
-     * @param error message
-     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -96,54 +75,18 @@ public class LoginViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * Server credential verification.
-     *
-     * @param email    string user input value
-     * @param password string user input value
-     */
-
-    public void connect(final String email, final String password) {
-        String url = getApplication().getResources().getString(R.string.base_url) + "auth";
-
-        Request request = new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                null, //no body for this get request
-                mResponse::setValue,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                String credentials = email + ":" + password;
-                String auth = "Basic "
-                        + Base64.encodeToString(credentials.getBytes(),
-                        Base64.NO_WRAP);
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext()).addToRequestQueue(request);
-
-    }
-
-    public void connectResendVerification(final String email) {
-        String url = "https://team5-tcss450-server.herokuapp.com/resend";
+    public void connect(final String email) {
+        String url = "https://team5-tcss450-server.herokuapp.com/recovery";
         JSONObject body = new JSONObject();
         try {
             body.put("email", email);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Request request = new JsonObjectRequest(Request.Method.POST, url, body, mResponse::setValue, this::handleError);
+
+        Request request = new JsonObjectRequest(Request.Method.POST, url , body, mResponse::setValue, this::handleError);
         request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
-
 }
-
