@@ -25,6 +25,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.IntFunction;
 
+import edu.uw.tcss450.griffin.R;
+import edu.uw.tcss450.griffin.constants.JSONKeys;
+import edu.uw.tcss450.griffin.model.UserInfoViewModel;
+import edu.uw.tcss450.griffin.ui.contacts.Contacts;
+
 
 public class WeatherViewModel extends AndroidViewModel {
 
@@ -49,32 +54,35 @@ public class WeatherViewModel extends AndroidViewModel {
         mWeatherData.observe(owner, observer);
     }
 
-    private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
-        throw new IllegalStateException(error.getMessage());
-    }
-
-//Adding this stuff just for testing
-    ///////////////////////////////////////////////////////////////////
-
+//    private void handleError(final VolleyError error) {
+//        if (error != null && error.getMessage() != null) {
+//            Log.e("CONNECTION ERROR", error.getMessage());
+//            throw new IllegalStateException(error.getMessage());
+//        }
+//    }
+//
 //    private void handleResult(final JSONObject result) {
-//        IntFunction<String> getString = getApplication().getResources()::getString;
+//
 //        try {
 //            JSONObject root = result;
-//            if (root.has(getString.apply(R.string.keys_json_contactlist_response))) {
-//                JSONObject response = root.getJSONObject(getString.apply(R.string.keys_json_contactlist_response));
-//                if (response.has(getString.apply(R.string.keys_json_contactlist_full_name))) {
-//                    JSONArray data = response.getJSONArray(
-//                            getString.apply(R.string.keys_json_contactlist_full_name));
-//                    for (int i = 0; i < data.length(); i++) {
-//                        JSONObject jsonContacts = data.getJSONObject(i);
-//
-////                        mContactList.getValue().add(new Contacts.Builder(jsonContacts.getString(getString.apply(R.string.keys_json_contactlist_first_name)),
-////                                jsonContacts.getString(getString.apply(R.string.keys_json_contactlist_last_name))).build());
-//                    }
-//                } else {
-//                    Log.e("ERROR!", "No data array");
+//            if (root.has(JSONKeys.success)) {
+//                boolean isSuccess = root.getBoolean(JSONKeys.success);
+//                if (!isSuccess) {
+//                    return;
 //                }
+//                JSONArray weatherData = root.getJSONArray(JSONKeys.message);
+//                ArrayList<WeatherData> weatherDataValues = new ArrayList<>();
+//                for (int i = 0; i < weatherData.length(); i++) {
+//                    JSONObject jsonWeatherData = weatherData.getJSONObject(i);
+//                    try {
+//                        WeatherData data = new WeatherData(jsonWeatherData);
+//                        weatherDataValues.add(data);
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                        ;
+//                    }
+//                }
+//                mWeatherData.setValue(listOfContacts);
 //            } else {
 //                Log.e("ERROR!", "No response");
 //            }
@@ -82,12 +90,18 @@ public class WeatherViewModel extends AndroidViewModel {
 //            e.printStackTrace();
 //            Log.e("ERROR!", e.getMessage());
 //        }
-////        mContactList.setValue(mContactList.getValue());
-//        mWeatherData.setValue(mWeatherData.getValue());
+//        mContactList.setValue(mContactList.getValue());
 //    }
 //
 //    public void connectGet() {
-//        String url = "https://dsael1-lab4-backend.herokuapp.com/demosql";
+//        if (userInfoViewModel == null) {
+//            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+//        }
+//        String url = getApplication().getResources().getString(R.string.base_url) +
+//                "contact/?memberid=" + userInfoViewModel.getMemberId();
+//
+////        String url = getApplication().getResources().getString(R.string.base_url);
+//
 //        Request request = new JsonObjectRequest(Request.Method.GET, url, null,
 //                //no body for this get request
 //                this::handleResult, this::handleError) {
@@ -95,10 +109,7 @@ public class WeatherViewModel extends AndroidViewModel {
 //            public Map<String, String> getHeaders() {
 //                Map<String, String> headers = new HashMap<>();
 //                // add headers <key,value>
-//                headers.put("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV" +
-//                        "CJ9.eyJ1c2VybmFtZSI6InV3bmV0aWQ1QGZha2UuZW1haWwuY29tIi" +
-//                        "wiaWF0IjoxNTg3NTMwNTM5LCJleHAiOjE1ODg3NDAxMzl9.g02500z" +
-//                        "joCH0pHxx9-9Ye_ILZHCAdbMvdjpwdfvktcU");
+//                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
 //                return headers;
 //            }
 //        };
@@ -106,4 +117,10 @@ public class WeatherViewModel extends AndroidViewModel {
 //        //Instantiate the RequestQueue and add the request to the queue
 //        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
 //    }
+//
+//    public void setUserInfoViewModel(UserInfoViewModel vm) {
+//        userInfoViewModel = vm;
+//    }
+//
+
 }

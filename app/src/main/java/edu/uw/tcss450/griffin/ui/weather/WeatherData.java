@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Gordon Tran
@@ -34,20 +35,43 @@ public class WeatherData implements Serializable {
 //    private final int mZipCode;
 
 
+    private List<Double> currentTime;
+
     /**
      * Constructor for weather data class.
+     *
      * @param weather String of weather status.
-     * @param time String of hour or day of the week.
-     * @param low Int of low temperature.
-     * @param high Int of high temperature.
+     * @param time    String of hour or day of the week.
+     * @param low     Int of low temperature.
+     * @param high    Int of high temperature.
      */
-    public WeatherData(String weather, String time, String low, String high){
+    public WeatherData(String weather, String time, String low, String high) {
         this.mWeather = weather;
         this.mTime = time;
         this.mLowTemp = low;
         this.mHighTemp = high;
 //        mZipCode = zip;
     }
+
+//    public WeatherData(JSONObject json) throws Exception {
+
+//        currentTime = json.getDouble("currenttime");
+//        currentTimeHourly = json.getDouble("currenttimehourly");
+//        currentTimeDaily = json.getDouble("currenttimedaily");
+//        currentTemp = json.getDouble("currenttemp");
+//        currentWeather = json.getString("currentweather");
+//        hourlyTemp = json.getDouble("hourlytemp");
+//        hourlyWeather = json.getString("hourlyweather");
+//        dailyTempMin = json.getDouble("dailytempmin");
+//        dailyTempMax = json.getDouble("dailytempmax");
+//        dailyWeather = json.getString("dailyweather");
+
+//        currentTime = json.getJSONArray("currenttime");
+//        hourlyTime = json.getJSONArray("hourlytime");
+//
+
+
+//    }
 
     /**
      * Pulls data from JSON object.
@@ -63,6 +87,7 @@ public class WeatherData implements Serializable {
 
     /**
      * Gets the weather status.
+     *
      * @return String of weather status.
      */
     public String getmWeather() {
@@ -71,6 +96,7 @@ public class WeatherData implements Serializable {
 
     /**
      * Gets the time specified.
+     *
      * @return String of time.
      */
     public String getmTime() {
@@ -79,6 +105,7 @@ public class WeatherData implements Serializable {
 
     /**
      * Gets the low temperature.
+     *
      * @return Int of the low temperature.
      */
     public String getmLowTemp() {
@@ -87,6 +114,7 @@ public class WeatherData implements Serializable {
 
     /**
      * Gets the high temperature.
+     *
      * @return Int of the high temperature.
      */
     public String getmHighTemp() {

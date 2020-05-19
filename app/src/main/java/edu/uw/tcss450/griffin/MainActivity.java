@@ -84,13 +84,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         if (GriffinApplication.id != -1) {
             getTheme().applyStyle(GriffinApplication.id, true);
         }
 
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         //setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.bottom_menu_bar);
@@ -175,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Theme", "onOptionsItemSelected");
         switch (item.getItemId()) {
             case R.id.navigate_button_theme:
-
-                GriffinApplication.id = R.style.AppTheme;
 
                 navController.navigate(R.id.changeThemeFragment);
                 break;

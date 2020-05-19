@@ -44,7 +44,6 @@
 
     <!-- URL -->
     <string name="base_url">https://team5-tcss450-server.herokuapp.com/</string>
-    <!--<string name="base_url">https://dsael1-lab4-backend.herokuapp.com/</string> -->
 
     <!-- Settings Menu -->
     <string name="settings_button_theme">Change Theme</string>
