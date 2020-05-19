@@ -14,7 +14,6 @@ import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentWeatherBinding;
 
 
-
 /**
  * @author David Saelee
  * @version May 2020
@@ -44,10 +43,15 @@ public class WeatherFragment extends Fragment {
         FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
         WeatherFragmentArgs args = WeatherFragmentArgs.fromBundle(getArguments());
 
-        binding.weatherTextView.setText(args.getWeatherData().getmWeather());
-        binding.timeTextView.setText(args.getWeatherData().getmTime());
-        binding.lowTempTextView.setText(args.getWeatherData().getmLowTemp());
-        binding.highTempTextView.setText(args.getWeatherData().getmHighTemp());
+//        binding.weatherTextView.setText(args.getWeatherData().getmWeather());
+//        binding.timeTextView.setText(args.getWeatherData().getmTime());
+//        binding.lowTempTextView.setText(args.getWeatherData().getmLowTemp());
+//        binding.highTempTextView.setText(args.getWeatherData().getmHighTemp());
+
+        binding.weatherTextView.setText(args.getWeatherData().getCurrentWeather());
+        binding.timeTextView.setText(args.getWeatherData().getCurrentTemp() + "");
+        binding.lowTempTextView.setText(args.getWeatherData().getDailyTempMin() + "");
+        binding.highTempTextView.setText(args.getWeatherData().getDailyTempMax() + "");
 
 //Testing dummy data
 //        dummyData.add(new WeatherData("Sunny", "Tuesday", 56, 70));

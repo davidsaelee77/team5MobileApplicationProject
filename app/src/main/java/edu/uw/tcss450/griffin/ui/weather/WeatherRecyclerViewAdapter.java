@@ -52,10 +52,14 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
         }
 
         void setWeather(final WeatherData data) {
-            binding.weatherTypeText.setText(data.getmWeather());
-            binding.weatherTimeText.setText(data.getmTime());
-            binding.weatherLowText.setText(data.getmLowTemp());
-            binding.weatherHighText.setText(data.getmHighTemp());
+//            binding.weatherTypeText.setText(data.getmWeather());
+////            binding.weatherTimeText.setText(data.getmTime());
+////            binding.weatherLowText.setText(data.getmLowTemp());
+////            binding.weatherHighText.setText(data.getmHighTemp());
+            binding.weatherTypeText.setText(data.getCurrentWeather());
+            binding.weatherTimeText.setText(data.getDailyTempMin() + "");
+            binding.weatherLowText.setText(data.getHourlyTempMin() + "");
+            binding.weatherHighText.setText(data.getDailyTempMax() +"");
         }
     }
 }
