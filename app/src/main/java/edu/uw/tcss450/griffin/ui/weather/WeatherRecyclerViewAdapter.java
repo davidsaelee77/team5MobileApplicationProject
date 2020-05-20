@@ -61,7 +61,6 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
             } else {
                 binding.weatherHighText.setText(String.valueOf(data.getTemp()));
             }
-
         }
     }
 }
