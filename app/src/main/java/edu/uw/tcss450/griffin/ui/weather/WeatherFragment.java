@@ -40,27 +40,8 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
-        WeatherFragmentArgs args = WeatherFragmentArgs.fromBundle(getArguments());
+//        FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
+//        WeatherFragmentArgs args = WeatherFragmentArgs.fromBundle(getArguments());
 
-//        binding.weatherTextView.setText(args.getWeatherData().getmWeather());
-//        binding.timeTextView.setText(args.getWeatherData().getmTime());
-//        binding.lowTempTextView.setText(args.getWeatherData().getmLowTemp());
-//        binding.highTempTextView.setText(args.getWeatherData().getmHighTemp());
-
-//        binding.weatherTextView.setText(args.getWeatherData().getCurrentWeather());
-//        binding.timeTextView.setText(args.getWeatherData().getCurrentTemp() + "");
-//        binding.lowTempTextView.setText(args.getWeatherData().getDailyTempMin() + "");
-//        binding.highTempTextView.setText(args.getWeatherData().getDailyTempMax() + "");
-
-//Testing dummy data
-//        dummyData.add(new WeatherData("Sunny", "Tuesday", 56, 70));
-//        dummyData.add(new WeatherData("Sunny", "Wednesday", 56, 70));
-//        dummyData.add(new WeatherData("Sunny", "Thursday", 56, 70));
-//
-//        binding.weatherTodayList.setAdapter(new WeatherRecyclerViewAdapter(dummyData));
-
-//        binding.weatherHourList.setAdapter(new WeatherRecyclerViewAdapter(dummyData));
-//        binding.weatherWeekList.setAdapter(new WeatherRecyclerViewAdapter(dummyData));
     }
 }

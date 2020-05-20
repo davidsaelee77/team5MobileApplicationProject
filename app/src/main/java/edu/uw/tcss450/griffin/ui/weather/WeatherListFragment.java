@@ -30,7 +30,7 @@ public class WeatherListFragment extends Fragment {
 
     private List<WeatherData> hourList;
     private List<WeatherData> dayList;
-    private List<String> days = Arrays.asList("Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday", "Saturday");
+   // private List<String> days = Arrays.asList("Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday", "Saturday");
 
     public WeatherListFragment() {
 
@@ -44,7 +44,6 @@ public class WeatherListFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
-//        generate();
             mModel.connectGet();
         }
     }
@@ -52,8 +51,7 @@ public class WeatherListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_weather_list, container, false);
+
         binding = FragmentWeatherListBinding.inflate(inflater);
         return binding.getRoot();
     }
@@ -65,7 +63,6 @@ public class WeatherListFragment extends Fragment {
 
         mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
-                //Using dummy data
 
                 hourList = weatherList.subList(1, 25);
                 dayList = weatherList.subList(25, 30);
