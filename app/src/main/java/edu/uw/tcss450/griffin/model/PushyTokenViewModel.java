@@ -27,12 +27,30 @@ import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
 import me.pushy.sdk.Pushy;
 
+/**
+ * @author Charles Bryan
+ * @version May 2020
+ */
+/**
+ * Pushy token View model used to observe
+ * and manipulate data from all fragments
+ * that utilize its functions.
+ */
 public class PushyTokenViewModel extends AndroidViewModel {
 
 
+    /**
+     * Stores mutable live data string value.
+     */
     private final MutableLiveData<String> mPushyToken;
+    /**
+     * Stores mutable live data JSONobject value.
+     */
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Pushy view model constructor
+     */
     public PushyTokenViewModel(@NonNull Application application) {
         super(application);
         mPushyToken = new MutableLiveData<>();
@@ -52,11 +70,20 @@ public class PushyTokenViewModel extends AndroidViewModel {
         mPushyToken.observe(owner, observer);
     }
 
+    /**
+     * Register as an observer to listen for the response.
+     *
+     * @param owner    the fragments lifecycle owner
+     * @param observer the observer
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Retrieves Pushy token.
+     */
     public void retrieveToken() {
         if (!Pushy.isRegistered(getApplication().getApplicationContext())) {
 
@@ -147,6 +174,11 @@ public class PushyTokenViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
+    /**
+     * Server credential authentication error handling.
+     *
+     * @param error message
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
