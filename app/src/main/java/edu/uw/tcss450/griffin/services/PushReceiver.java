@@ -20,9 +20,23 @@ import me.pushy.sdk.Pushy;
 import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND;
 import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE;
 
+/**
+ * @author Charles Bryan
+ * @version May 2020
+ */
+/**
+ * Push functionality to retrieve and send messages
+ * from the web server to client application.
+ */
 public class PushReceiver extends BroadcastReceiver {
+    /**
+     * Stores string value.
+     */
     public static final String RECEIVED_NEW_MESSAGE = "new message from pushy";
 
+    /**
+     * Stores string value.
+     */
     private static final String CHANNEL_ID = "1";
 
     @Override
