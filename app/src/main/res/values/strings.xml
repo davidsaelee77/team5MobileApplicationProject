@@ -26,6 +26,7 @@
     <string name="login_button_forgotPassword">FORGOT PASSWORD</string>
 
     <!-- Change Theme Fragment -->
+    <string name="theme_text_title">Change Theme</string>
     <string name="bluegrey_theme_text">Blue and Grey Theme</string>
     <string name="sonics_theme_text">Sonics Theme</string>
     <string name="UW_theme_text">UW Theme</string>
