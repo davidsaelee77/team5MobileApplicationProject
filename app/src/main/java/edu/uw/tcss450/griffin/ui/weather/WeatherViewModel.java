@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,15 +38,7 @@ public class WeatherViewModel extends AndroidViewModel {
 
     public WeatherViewModel(@NonNull Application application) {
         super(application);
-//        list = new ArrayList<>();
-
         mWeatherData = new MutableLiveData<>();
-
-//        for (int i = 0; i < 10; i++) {
-//            list.add(new WeatherData("Sunny", "Wednesday", 56 + i + "", 70 + i + ""));
-//        }
-//
-//        mWeatherData.setValue((list));
     }
 
     public void addWeatherObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<WeatherData>> observer) {
@@ -61,46 +54,42 @@ public class WeatherViewModel extends AndroidViewModel {
 
     private void handleResult(final JSONObject result) {
 
-//        if (!result.has("current")) {
-//            throw new IllegalStateException("Unexpected response in WeatherViewModel: " + result);
-//        }
+        if (!result.has("current")) {
+            throw new IllegalStateException("Unexpected response in WeatherViewModel: " + result);
+        }
         try {
-
-
-            Log.d("TEST", result.toString());
-            Log.d("TEST2", result + "");
-
 
             ArrayList<JSONObject> list = new ArrayList<>();
 
-//            JSONObject currentTemp = result.getJSONObject("current");
-//
-//            list.add(currentTemp);
+            JSONObject currentData = result.getJSONObject("current");
 
             JSONObject hour = result.getJSONObject("hourly");
+            JSONArray hourArray = hour.getJSONArray("data");
 
-            list.add(hour);
+            JSONObject daily = result.getJSONObject("daily");
+            JSONArray dailyArray = daily.getJSONArray("data");
 
-            Log.d("TESTER", list.toString());
+            ArrayList<WeatherData> weatherDataList = new ArrayList<WeatherData>();
 
-            ArrayList<WeatherData> weatherData = new ArrayList<>();
-           // JSONObject currentTemp = result.getJSONObject("current");
-            //  String currentWeather = result.getString("weather");
-            //JSONArray hourly = result.getJSONArray("hourly");
-//            for (int i = 0; i < hourly.length(); i++) {
-//                JSONObject hwd = hourly.getJSONObject(i);
-//
-//                WeatherData wd = new WeatherData(hwd);
-//            JSONArray daily = result.getJSONArray("daily");
+            weatherDataList.add(new WeatherData("current", 0,
+                    currentData.getDouble("temp"), currentData.getString("weather")));
 
-            //  for (int i = 0; i < hourly.length(); i++) {
-            //  for (int j = 0; j < daily.length(); j++) {
-            //   JSONObject hwd = hourly.getJSONObject(i);
-            //  JSONObject dwd = daily.getJSONObject(j);
+            for (int i = 0; i < hourArray.length(); i++) {
+                WeatherData someHour = new WeatherData(
+                        "hourly", i, hourArray.getJSONObject(i).getDouble("temp"),
+                        hourArray.getJSONObject(i).getString("weather"));
+                weatherDataList.add(someHour);
+            }
 
-            //WeatherData wd = new WeatherData(currentTemp, hwd, dwd);
-            //weatherData.add(wd);
-            mWeatherData.setValue(weatherData);
+            for (int i = 0; i < dailyArray.length(); i++) {
+                WeatherData someDay = new WeatherData(
+                        i, dailyArray.getJSONObject(i).getDouble("tempMin"),
+                        dailyArray.getJSONObject(i).getDouble("tempMax"),
+                        dailyArray.getJSONObject(i).getString("weather"));
+                weatherDataList.add(someDay);
+            }
+
+            mWeatherData.setValue(weatherDataList);
 
         } catch (JSONException e) {
             e.printStackTrace();

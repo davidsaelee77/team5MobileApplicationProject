@@ -1,6 +1,7 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
 
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
+        Log.d("HUH?", String.valueOf(position));
         holder.setWeather(mData.get(position));
 
     }
@@ -52,14 +54,23 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
         }
 
         void setWeather(final WeatherData data) {
+            binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
+            binding.weatherTypeText.setText(data.getWeather());
+            if (data.getTemp() == -1) {
+                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
+                binding.weatherHighText.setText(String.valueOf(data.getTempMax()));
+            } else {
+                binding.weatherHighText.setText(String.valueOf(data.getTemp()));
+            }
+
 //            binding.weatherTypeText.setText(data.getmWeather());
 ////            binding.weatherTimeText.setText(data.getmTime());
 ////            binding.weatherLowText.setText(data.getmLowTemp());
 ////            binding.weatherHighText.setText(data.getmHighTemp());
-            binding.weatherTypeText.setText(data.getCurrentWeather());
-            binding.weatherTimeText.setText(data.getDailyTempMin() + "");
-            binding.weatherLowText.setText(data.getHourlyTempMin() + "");
-            binding.weatherHighText.setText(data.getDailyTempMax() +"");
+//            binding.weatherTypeText.setText(data.getCurrentWeather());
+//            binding.weatherTimeText.setText(data.getDailyTempMin() + "");
+//            binding.weatherLowText.setText(data.getHourlyTempMin() + "");
+//            binding.weatherHighText.setText(data.getDailyTempMax() +"");
         }
     }
 }

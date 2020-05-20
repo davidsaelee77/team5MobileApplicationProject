@@ -1,10 +1,6 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Gordon Tran
@@ -12,151 +8,70 @@ import java.util.List;
  */
 public class WeatherData implements Serializable {
 
+    // Daily, current, or hour
+    private String type;
+
+    // Increments past 0; defaults to 0
+    private int increment;
+
+    private double tempMin;
+    private double tempMax;
+    private double temp;
+    private String weather;
+
+
+    public WeatherData(String theType, int theIncrement, double tempMin, double tempMax, double temp, String theWeather) {
+        this.type = theType;
+        this.increment = theIncrement;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
+        this.temp = temp;
+        this.weather = theWeather;
+    }
+
     /**
-     * Current weather status. (Sunny, Rainy, etc.)
+     * Daily weather constructor
+     * @param theIncrement
+     * @param temp
+     * @param theWeather
      */
-//    private final String mWeather;
-
-    /**
-     * Hour or day of the week. (Tuesday, 12:00, etc.)
-     */
-//    private final String mTime;
-//
-//    /**
-//     * Low temperature.
-//     */
-//    private final String mLowTemp;
-//
-//    /**
-//     * High temperature
-//     */
-//    private final String mHighTemp;
-
-//    private final int mZipCode;
-
-
-//    private List<Double> currentTime;
-
-
-
-    /**
-//     * Constructor for weather data class.
-//     *
-//     * @param weather String of weather status.
-//     * @param time    String of hour or day of the week.
-//     * @param low     Int of low temperature.
-//     * @param high    Int of high temperature.
-     */
-//    public WeatherData(String weather, String time, String low, String high) {
-//        this.mWeather = weather;
-//        this.mTime = time;
-//        this.mLowTemp = low;
-//        this.mHighTemp = high;
-////        mZipCode = zip;
-//    }
-
-    private double currentTemp;
-    private String currentWeather;
-    private double hourlyTempMin;
-    private String hourlyWeather;
-    private double dailyTempMin;
-    private double dailyTempMax;
-    private String dailyWeather;
-
-    public WeatherData(JSONObject jsonCurrent, JSONObject jsonHourly, JSONObject jsonDaily) throws Exception {
-
-        currentTemp = jsonCurrent.getDouble("temp");
-        currentWeather = jsonCurrent.getString("weather");
-       hourlyTempMin = jsonHourly.getDouble("tempMin");
-       hourlyWeather = jsonHourly.getString("weather");
-       dailyTempMin = jsonDaily.getDouble("tempMin");
-       dailyTempMax = jsonDaily.getDouble("tempMax");
-       dailyWeather = jsonDaily.getString("weather");
-
-    }
-//
-//    /**
-//     * Pulls data from JSON object.
-//     * @param cmAsJson JSON string
-//     * @return WeatherData object based on the JSON.
-//     * @throws JSONException
-//     */
-//    public static WeatherData createFromJsonString(final String cmAsJson) throws JSONException {
-//        final JSONObject msg = new JSONObject(cmAsJson);
-//        return new WeatherData(msg.getString("weather"),msg.getString("time"),msg.getInt("low"),msg.getInt("high"));//,msg.getInt("zip"));
-//    }
-
-
-    public double getCurrentTemp() {
-        return currentTemp;
-    }
-
-    public String getCurrentWeather() {
-        return currentWeather;
-    }
-
-    public double getHourlyTempMin() {
-        return hourlyTempMin;
-    }
-
-    public String getHourlyWeather() {
-        return hourlyWeather;
-    }
-
-    public double getDailyTempMin() {
-        return dailyTempMin;
-    }
-
-    public double getDailyTempMax() {
-        return dailyTempMax;
-    }
-
-    public String getDailyWeather() {
-        return dailyWeather;
+    public WeatherData(String theType, int theIncrement, double temp, String theWeather) {
+        this(theType, theIncrement, -1, -1, temp, theWeather);
     }
 
     /**
-     * Gets the weather status.
      *
-     * @return String of weather status.
+     * @param theIncrement
+     * @param tempMin
+     * @param tempMax
+     * @param theWeather
      */
-//    public String getmWeather() {
-//        return mWeather;
-//    }
-//
-//    /**
-//     * Gets the time specified.
-//     *
-//     * @return String of time.
-//     */
-//    public String getmTime() {
-//        return mTime;
-//    }
-//
-//    /**
-//     * Gets the low temperature.
-//     *
-//     * @return Int of the low temperature.
-//     */
-//    public String getmLowTemp() {
-//        return mLowTemp;
-//    }
-//
-//    /**
-//     * Gets the high temperature.
-//     *
-//     * @return Int of the high temperature.
-//     */
-//    public String getmHighTemp() {
-//        return mHighTemp;
-//    }
+    public WeatherData(int theIncrement, double tempMin, double tempMax, String theWeather) {
+        this("daily", theIncrement, tempMin, tempMax, -1, theWeather);
+    }
 
-//    public int getmZipCode() {
-//        return mZipCode;
-//    }
+    public String getType() {
+        return type;
+    }
 
+    public int getIncrement() {
+        return increment;
+    }
 
+    public double getTempMin() {
+        return tempMin;
+    }
 
+    public double getTempMax() {
+        return tempMax;
+    }
 
+    public double getTemp() {
+        return temp;
+    }
+
+    public String getWeather() {
+        return weather;
+    }
 
 }

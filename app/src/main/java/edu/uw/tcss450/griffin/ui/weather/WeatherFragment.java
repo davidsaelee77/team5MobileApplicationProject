@@ -48,10 +48,10 @@ public class WeatherFragment extends Fragment {
 //        binding.lowTempTextView.setText(args.getWeatherData().getmLowTemp());
 //        binding.highTempTextView.setText(args.getWeatherData().getmHighTemp());
 
-        binding.weatherTextView.setText(args.getWeatherData().getCurrentWeather());
-        binding.timeTextView.setText(args.getWeatherData().getCurrentTemp() + "");
-        binding.lowTempTextView.setText(args.getWeatherData().getDailyTempMin() + "");
-        binding.highTempTextView.setText(args.getWeatherData().getDailyTempMax() + "");
+//        binding.weatherTextView.setText(args.getWeatherData().getCurrentWeather());
+//        binding.timeTextView.setText(args.getWeatherData().getCurrentTemp() + "");
+//        binding.lowTempTextView.setText(args.getWeatherData().getDailyTempMin() + "");
+//        binding.highTempTextView.setText(args.getWeatherData().getDailyTempMax() + "");
 
 //Testing dummy data
 //        dummyData.add(new WeatherData("Sunny", "Tuesday", 56, 70));
