@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/changeThemeFragment"
         android:name="edu.uw.tcss450.griffin.ui.settings.ChangeThemeFragment"
-        android:label="fragment_change_theme"
+        android:label="@string/theme_text_title"
         tools:layout="@layout/fragment_change_theme" />
     <fragment
         android:id="@+id/contactListFragment"
@@ -53,11 +53,11 @@
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="edu.uw.tcss450.griffin.ui.settings.ChangePasswordFragment"
-        android:label="ChangePasswordFragment" >
+        android:label="@string/changePassword_title_fragment">
         <argument
             android:name="email"
-            app:argType="string"
-            android:defaultValue="default" />
+            android:defaultValue="default"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/weatherListFragment"

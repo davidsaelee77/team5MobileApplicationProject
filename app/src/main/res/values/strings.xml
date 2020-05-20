@@ -32,6 +32,7 @@
     <string name="UW_theme_text">UW Theme</string>
 
     <!-- Change Password Fragment -->
+    <string name="changePassword_title_fragment">Change Password</string>
     <string name="changePassword_text_title">Do you want to change your password?</string>
     <string name="changePassword_text_message">If you accept, an email will be sent containing
         further instructions for changing your password</string>
