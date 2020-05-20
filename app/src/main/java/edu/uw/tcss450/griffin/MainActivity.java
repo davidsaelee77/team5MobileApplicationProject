@@ -187,6 +187,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Creates a popou dialog box that prompts users to change their password. 
+     */
     private void createChangePasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.changePassword_text_title);
@@ -202,7 +205,9 @@ public class MainActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
-
+    /**
+     * Method that connects to a webservice that sends a email to change password.
+     */
     private void connectChangePassword() {
         String url = "https://team5-tcss450-server.herokuapp.com/changePassword";
         String email = mArgs.getEmail();
@@ -288,6 +293,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns UserInfoViewModel. 
+     */
     public UserInfoViewModel getUserInfoViewModel() {
         return userInfoViewModel;
     }

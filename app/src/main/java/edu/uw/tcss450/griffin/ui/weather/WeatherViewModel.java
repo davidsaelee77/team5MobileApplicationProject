@@ -27,7 +27,10 @@ import java.util.Map;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 
-
+/**
+ * @author Gordon Tran & Patrick Moy
+ * @version May 2020
+ */
 public class WeatherViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<WeatherData>> mWeatherData;
