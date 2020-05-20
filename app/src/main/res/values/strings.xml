@@ -71,6 +71,7 @@
     <string name="forgotPassword_dialog_acknowledge">Acknowledge</string>
 
     <!-- Chat -->
+    <string name="chatList_title_fragment">Conversations</string>
     <string name="newmessage_text_title">New Message</string>
     <string name="conversation_text_title">Conversation</string>
     <string name="conversation_message_text">Message</string>

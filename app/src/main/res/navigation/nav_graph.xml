@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/chatListFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.ChatListFragment"
-        android:label="ChatListFragment" >
+        android:label="@string/chatList_title_fragment">
         <action
             android:id="@+id/action_chatListFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
