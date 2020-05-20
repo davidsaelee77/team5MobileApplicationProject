@@ -72,27 +72,46 @@ public class WeatherData implements Serializable {
     public WeatherData(int theIncrement, double tempMin, double tempMax, String theWeather) {
         this("daily", theIncrement, tempMin, tempMax, -1, theWeather);
     }
-    
+    /**
+     * Returns type.
+     * @return String of type. 
+     */
     public String getType() {
         return type;
     }
-
+    /**
+     * Returns increment counter. 
+     */
     public int getIncrement() {
         return increment;
     }
 
+    /**
+     * Returns minimum temperature. 
+     */
     public double getTempMin() {
         return tempMin;
     }
 
+    /**
+     * Returns maximum temperature. 
+     */
     public double getTempMax() {
         return tempMax;
     }
 
+    /**
+     * Returns current temperature. 
+     * @return double of temperature. 
+     */
     public double getTemp() {
         return temp;
     }
 
+    /**
+     * Returns weather status. 
+     * @return String of weather. 
+     */
     public String getWeather() {
         return weather;
     }

@@ -23,15 +23,26 @@ import edu.uw.tcss450.griffin.databinding.FragmentWeatherListBinding;
  * A simple {@link Fragment} subclass.
  */
 public class WeatherListFragment extends Fragment {
-
+    /**
+     * WeatherViewModel object. 
+     */
     private WeatherViewModel mModel;
-
+    /**
+     * FragmentWeatherListBinding object. 
+     */
     private FragmentWeatherListBinding binding;
-
+    /**
+     * List of Weather data for hourly weather.
+     */
     private List<WeatherData> hourList;
+    /**
+     * List of Weather data for daily weather.
+     */
     private List<WeatherData> dayList;
    // private List<String> days = Arrays.asList("Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday", "Saturday");
-
+    /**
+     * Empty public constructor. 
+     */
     public WeatherListFragment() {
 
     }

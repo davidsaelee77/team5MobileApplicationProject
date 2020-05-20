@@ -13,11 +13,19 @@ import java.util.List;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentWeatherCardBinding;
 
-
+/**
+ * @author David Salee
+ * @version May 2020
+ */
 public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecyclerViewAdapter.WeatherViewHolder> {
-
+    /**
+     * List of type WeatherData.
+     */
     List<WeatherData> mData;
-
+    /**
+     * Constructor that instantiates fields. 
+     * @param data
+     */
     public WeatherRecyclerViewAdapter(List<WeatherData> data) {
         this.mData = data;
 
@@ -42,16 +50,30 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
         return mData.size();
     }
 
+    /**
+     * Helper class that creates view holder. 
+     */
     class WeatherViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * View object. 
+         */
         private final View mView;
+        /**
+         * FragmentWeatherCardBinding object. 
+         */
         private FragmentWeatherCardBinding binding;
-
+         /**
+          * Constructor that instantiantes fields. 
+          * @param view 
+          */
         public WeatherViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             binding = FragmentWeatherCardBinding.bind(view);
         }
-
+         /**
+          * Method that sets weather data.
+          */
         void setWeather(final WeatherData data) {
             binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
             binding.weatherTypeText.setText(data.getWeather());

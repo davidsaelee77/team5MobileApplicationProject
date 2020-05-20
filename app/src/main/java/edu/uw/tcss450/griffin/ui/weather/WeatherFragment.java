@@ -24,7 +24,9 @@ import edu.uw.tcss450.griffin.databinding.FragmentWeatherBinding;
  */
 public class WeatherFragment extends Fragment {
     private WeatherViewModel mWeatherModel;
-
+    /**
+     * Empty public constructor. 
+     */
     public WeatherFragment() {
         // Required empty public constructor
     }
