@@ -227,9 +227,15 @@ public class RegisterFragment extends Fragment {
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
-                    binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
+                    //binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
+                    JSONObject jObject = new JSONObject(response.getString("data"));
+                    String message = jObject.getString("message");
+                    binding.emailText.setError("Error Authenticating: " + message);
+                    binding.emailText.requestFocus();
                 } catch (JSONException e) {
-                    Log.e("JSON Parse Error", e.getMessage());
+                    Log.wtf("JSON Parse Error", e.getMessage());
+                    binding.emailText.requestFocus();
+                    binding.emailText.setError("Contact Developer");
                 }
             } else {
                 navigateToLogin();
