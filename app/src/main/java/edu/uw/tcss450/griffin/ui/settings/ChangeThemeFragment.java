@@ -22,6 +22,9 @@ public class ChangeThemeFragment extends Fragment {
 
     FragmentChangeThemeBinding binding;
 
+    /**
+     * Empty public constructor.
+     */
     public ChangeThemeFragment() {
         // Required empty public constructor
     }
@@ -39,7 +42,7 @@ public class ChangeThemeFragment extends Fragment {
         return binding.getRoot();
     }
 
-
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -49,7 +52,10 @@ public class ChangeThemeFragment extends Fragment {
         binding.sonicsThemeButton.setOnClickListener(button -> changeTheme(R.style.SonicsTheme));
         binding.bluegreyThemeButton.setOnClickListener(button -> changeTheme(R.style.BluegreyTheme));
     }
-
+    /**
+     * Method to change themes.
+     * @param id Integer theme id. 
+     */
     public void changeTheme(int id) {
 
         GriffinApplication.id = id;

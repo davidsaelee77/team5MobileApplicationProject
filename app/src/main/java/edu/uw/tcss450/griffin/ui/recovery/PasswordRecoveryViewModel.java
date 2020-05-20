@@ -21,6 +21,10 @@ import org.json.JSONObject;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
+/**
+ * @author Tyler Lorella
+ * @version May 2020
+ */
 public class PasswordRecoveryViewModel extends AndroidViewModel {
 
     /**
@@ -52,6 +56,10 @@ public class PasswordRecoveryViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Method to handle webservice errors. 
+     * @param error
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -75,6 +83,9 @@ public class PasswordRecoveryViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Method to connect to webservice and send password recovery email.
+     */
     public void connect(final String email) {
         String url = "https://team5-tcss450-server.herokuapp.com/recovery";
         JSONObject body = new JSONObject();

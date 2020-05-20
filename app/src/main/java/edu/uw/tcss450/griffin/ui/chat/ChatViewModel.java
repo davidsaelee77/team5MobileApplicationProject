@@ -27,7 +27,10 @@ import java.util.Objects;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
-
+/**
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
+ */
 public class ChatViewModel extends AndroidViewModel {
 
     /**
@@ -37,6 +40,10 @@ public class ChatViewModel extends AndroidViewModel {
      */
     private Map<Integer, MutableLiveData<List<ChatMessageFragment>>> mMessages;
 
+    /**
+     * Constructor of ChatViewModel.                              
+     * @param Application Application object. 
+     */
     public ChatViewModel(@NonNull Application application) {
         super(application);
         mMessages = new HashMap<>();
@@ -69,7 +76,9 @@ public class ChatViewModel extends AndroidViewModel {
     public List<ChatMessageFragment> getMessageListByChatId(final int chatId) {
         return getOrCreateMapEntry(chatId).getValue();
     }
-
+    /**
+     * Method to create or get a map of the messages from a chat based on if the chat id exists already. 
+     */
     private MutableLiveData<List<ChatMessageFragment>> getOrCreateMapEntry(final int chatId) {
         if (!mMessages.containsKey(chatId)) {
             mMessages.put(chatId, new MutableLiveData<>(new ArrayList<>()));
@@ -179,6 +188,10 @@ public class ChatViewModel extends AndroidViewModel {
         getOrCreateMapEntry(chatId).setValue(list);
     }
 
+    /**
+     * Method that adds messages to the list associated with the chat id. 
+     * @param response
+     */
     private void handelSuccess(final JSONObject response) {
         List<ChatMessageFragment> list;
         if (!response.has("chatId")) {
@@ -214,6 +227,10 @@ public class ChatViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Method taht handles errors. 
+     * @param error
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             Log.e("NETWORK ERROR", error.getMessage());

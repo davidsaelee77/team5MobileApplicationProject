@@ -7,13 +7,36 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
+/**
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
+ */
 public class ChatMessageFragment implements Serializable {
 
+    /**
+     * Integer of message id. 
+     */
     private final int mMessageId;
+    /**
+     * String of message.
+     */
     private final String mMessage;
+    /**
+     * String of sender.
+     */
     private final String mSender;
+    /**
+     * String of timestamp.
+     */
     private final String mTimeStamp;
 
+    /**
+     * Public ChatMessage constructor that instantiates fields. 
+     * @param messageId Integer of message id.
+     * @param message String of message.
+     * @param sender String of sender.
+     * @param timeStamp String of timestamp.    
+     */
     public ChatMessageFragment(int messageId, String message, String sender, String timeStamp) {
         mMessageId = messageId;
         mMessage = message;
@@ -36,19 +59,35 @@ public class ChatMessageFragment implements Serializable {
                 msg.getString("email"),
                 msg.getString("timestamp"));
     }
-
+           
+    /**
+     * Method that returns the message. 
+     * @return Value of mMessage. 
+     */
     public String getMessage() {
         return mMessage;
     }
 
+    /**
+     * Method that returns the sender. 
+     * @return Name of sender. 
+     */
     public String getSender() {
         return mSender;
     }
 
+    /**
+     * Method that returns the timestamp of the method.
+     * @return Value of the message's timestamp.
+     */
     public String getTimeStamp() {
         return mTimeStamp;
     }
 
+    /**
+     * Method that returns the message id.
+     * @return Value of message id.
+     */
     public int getMessageId() {
         return mMessageId;
     }

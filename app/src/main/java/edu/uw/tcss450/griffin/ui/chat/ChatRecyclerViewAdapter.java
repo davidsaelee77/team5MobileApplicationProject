@@ -18,11 +18,25 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentChatMessageBinding;
-
+/**
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
+ */
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerViewAdapter.MessageViewHolder> {
+        /**
+         * List of ChatMessageFragments.
+         */
     private final List<ChatMessageFragment> mMessages;
+    /**
+     * String of email. 
+     */
     private final String mEmail;
 
+    /**
+     * Public constuctor that instantiates fields. 
+     * @param messages List of ChatMessageFragments
+     * @param email String of email
+     */
     public ChatRecyclerViewAdapter(List<ChatMessageFragment> messages, String email) {
         this.mMessages = messages;
         mEmail = email;
@@ -47,16 +61,33 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
         return mMessages.size();
     }
 
+    /**
+     * Helper class that creates a view holder. 
+     */
     class MessageViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * View object.
+         */
         private final View mView;
+        /**
+         * Binding for FragmentChatMessage.
+         */
         private FragmentChatMessageBinding binding;
 
+        /**
+         * Constructor that instantiates fields. 
+         * @param view The given view object. 
+         */
         public MessageViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             binding = FragmentChatMessageBinding.bind(view);
         }
 
+        /**
+         * Method to set the message in the chat. 
+         * @param message ChatMessageFragment object. 
+         */
         void setMessage(final ChatMessageFragment message) {
             final Resources res = mView.getContext().getResources();
             final MaterialCardView card = binding.cardRoot;

@@ -29,11 +29,18 @@ import edu.uw.tcss450.griffin.constants.JSONKeys;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 
 //import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
-
+/**
+ * @author David Salee
+ * @version May 2020
+ */
 public class ContactListViewModel extends AndroidViewModel {
-
+    /**
+     * MutableLiveData object of type List<Contacts>.
+     */
     private MutableLiveData<List<Contacts>> mContactList;
-
+    /**
+     * UserInfoViewModel. 
+     */
     private UserInfoViewModel userInfoViewModel;
     // private MutableLiveData<List<String>> mAlaphabet;
 
@@ -44,7 +51,10 @@ public class ContactListViewModel extends AndroidViewModel {
 //    private MutableLiveData<JSONObject> mResponse;
 
     // private MutableLiveData<List<Contacts>> mResponse;
-
+    /**
+     * Constructor that instantiates fields.   
+     * @param application Application object. 
+     */
     public ContactListViewModel(@NonNull Application application) {
         super(application);
 
@@ -69,18 +79,27 @@ public class ContactListViewModel extends AndroidViewModel {
 
     }
 
-
+    /**
+     * Method to add ContactListObserver. 
+     */
     public void addContactListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Contacts>> observer) {
         mContactList.observe(owner, observer);
     }
 
+    /**
+     * Method that handles errors. 
+     */
     private void handleError(final VolleyError error) {
         if (error != null && error.getMessage() != null) {
             Log.e("CONNECTION ERROR", error.getMessage());
             throw new IllegalStateException(error.getMessage());
         }
     }
-
+    
+    /**
+     * Method that populates list of contacts based on JSON object. 
+     * @param result
+     */
     private void handleResult(final JSONObject result) {
         // IntFunction<String> getString = getApplication().getResources()::getString;
         try {
@@ -113,6 +132,9 @@ public class ContactListViewModel extends AndroidViewModel {
         mContactList.setValue(mContactList.getValue());
     }
 
+    /**
+     * Method to connect to webservice and get contacts from server. 
+     */
     public void connectGet() {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");

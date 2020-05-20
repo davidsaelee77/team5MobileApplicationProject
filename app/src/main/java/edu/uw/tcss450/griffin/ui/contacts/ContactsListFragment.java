@@ -24,12 +24,20 @@ import edu.uw.tcss450.griffin.databinding.FragmentContactListBinding;
  * A simple {@link Fragment} subclass.
  */
 public class ContactsListFragment extends Fragment {
-
+    /**
+     * ContactListViewModel object. 
+     */
     private ContactListViewModel mModel;
+    /**
+     * FragmentContactListBinding object. 
+     */
     private FragmentContactListBinding binding;
     //private List<Contacts> list;
     // private List<String> alphabet;
 
+    /**
+     * Empty public constructor. 
+     */
     public ContactsListFragment() {
         // Required empty public constructor
 
@@ -37,6 +45,7 @@ public class ContactsListFragment extends Fragment {
 //        alphabet = new ArrayList<>();
     }
 
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(ContactListViewModel.class);

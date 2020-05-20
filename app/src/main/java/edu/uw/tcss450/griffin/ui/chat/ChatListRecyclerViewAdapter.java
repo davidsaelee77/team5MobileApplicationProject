@@ -14,12 +14,23 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentChatlistCardBinding;
-
+/**
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
+ */
 public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRecyclerViewAdapter.ChatListViewHolder> {
 
 
+    /**
+     * List of Chat rooms. 
+     */
     List<ChatRoom> mChatRooms;
 
+    /**
+     * Constructor that builds the recycler view adapter from
+     *  a list of Chat rooms.
+     * @param chats List of chat rooms.
+     */
     public ChatListRecyclerViewAdapter(List<ChatRoom> chats) {
         this.mChatRooms = chats;
     }

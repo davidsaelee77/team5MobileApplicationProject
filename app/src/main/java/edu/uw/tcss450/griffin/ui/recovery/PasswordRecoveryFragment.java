@@ -23,7 +23,10 @@ import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkExcludeWhite
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLength;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdSpecialChar;
 
-
+/**
+ * @author Tyler Lorella
+ * @version May 2020
+ */
 public class PasswordRecoveryFragment extends Fragment {
 
     /**
@@ -128,7 +131,9 @@ public class PasswordRecoveryFragment extends Fragment {
             //couldn't connect with the server error
         }
     }
-
+    /**
+     * Creates a dialog box that acknowledges the users input to recover password. 
+     */
     private void createDialogAcknowledge() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.forgotPassword_dialog_message);
@@ -143,7 +148,9 @@ public class PasswordRecoveryFragment extends Fragment {
         builder.create();
         builder.show();
     }
-
+    /**
+     * Navigates the user to login fragment. 
+     */
     private void navigateToLogin() {
         PasswordRecoveryFragmentDirections.ActionPasswordRecoveryFragmentToLoginFragment directions =
                 PasswordRecoveryFragmentDirections.actionPasswordRecoveryFragmentToLoginFragment();
@@ -172,7 +179,9 @@ public class PasswordRecoveryFragment extends Fragment {
                 this::sendRecoveryRequest,
                 result -> binding.emailText.setError("Please enter a valid Email address."));
     }
-
+    /**
+     * Method to send recovery request. 
+     */
     private void sendRecoveryRequest() {
         //recover the users password
         mPasswordRecoveryModel.connect(binding.emailText.getText().toString());

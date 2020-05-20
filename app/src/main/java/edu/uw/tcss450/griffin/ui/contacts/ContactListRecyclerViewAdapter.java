@@ -13,11 +13,21 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentContactlistCardBinding;
-
+/**
+ * @author David Salee 
+ * @version May 2020
+ */
 public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<ContactListRecyclerViewAdapter.ContactListViewHolder> {
 
+    /**
+     * List of contacts.
+     */
     List<Contacts> mContacts;
 
+    /**
+     * Constructor that instantiates fields. 
+     * @param contacts
+     */
     public ContactListRecyclerViewAdapter(List<Contacts> contacts) {
         this.mContacts = contacts;
     }
@@ -42,13 +52,24 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
         return mContacts.size();
     }
 
+    /**
+     * Helper class that creates a view holder. 
+     */
     public class ContactListViewHolder extends RecyclerView.ViewHolder {
-
+        /**
+         * View object. 
+         */
         public final View mView;
 
+        /**
+         * FragmentConcactListCardBinding object. 
+         */
         public FragmentContactlistCardBinding binding;
 
-
+        /**
+         * Constructor that creates the view holder. 
+         * @param view
+         */
         public ContactListViewHolder(View view) {
             super(view);
             mView = view;
@@ -58,6 +79,10 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
 
         }
 
+        /**
+         * Method that makes a button show more of a card or show less. 
+         * @param button
+         */
         private void handleMoreOrLess(final View button) {
             if (binding.contactPreviewText.getVisibility() == View.GONE) {
                 binding.contactPreviewText.setVisibility(View.VISIBLE);
@@ -68,6 +93,9 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
             }
         }
 
+        /**
+         * Method that sets contacts.
+         */
         void setContact(final Contacts contact) {
 
 

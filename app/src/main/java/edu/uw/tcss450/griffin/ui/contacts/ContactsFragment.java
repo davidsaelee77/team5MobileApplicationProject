@@ -18,7 +18,9 @@ import edu.uw.tcss450.griffin.databinding.FragmentContactsBinding;
  * A simple {@link Fragment} subclass.
  */
 public class ContactsFragment extends Fragment {
-
+    /**
+     * Empty public constructor. 
+     */
     public ContactsFragment() {
         // Required empty public constructor
 

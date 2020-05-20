@@ -22,14 +22,28 @@ import edu.uw.tcss450.griffin.model.UserInfoViewModel;
  */
 public class ChatFragment extends Fragment {
 
+    /**
+     * Chat Send View Model.
+     */
     private ChatSendViewModel mSendModel;
 
-    //The chat ID for "global" chat
+    /**
+     * The chat ID for "global" chat.
+     */
     private static final int HARD_CODED_CHAT_ID = 1;
 
+    /**
+     * Chat View Model.
+     */
     private ChatViewModel mChatModel;
+    /**
+     * User View Model.
+     */
     private UserInfoViewModel mUserModel;
 
+    /**
+     * Empty public constructor.
+     */
     public ChatFragment() {
         // Required empty public constructor
     }

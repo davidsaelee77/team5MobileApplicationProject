@@ -24,23 +24,41 @@ import java.util.Objects;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
-
+/**
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
+ */
 public class ChatSendViewModel extends AndroidViewModel {
 
-
+    /**
+     * MutableLiveData object of type JSONObject.
+     */
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constructor of ChatSendViewModel.
+     * @param Application Application object. 
+     */
     public ChatSendViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Method to add a response observer. 
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Method to send message. 
+     * @param chatId Integer of chat id. 
+     * @param jwt String of jwt. 
+     * @param message String of message. 
+     */
     public void sendMessage(final int chatId, final String jwt, final String message) {
         String url = getApplication().getResources().getString(R.string.base_url) +
                 "messages";

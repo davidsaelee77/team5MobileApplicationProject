@@ -21,7 +21,9 @@ import edu.uw.tcss450.griffin.R;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
-
+    /**
+     * Empty public constructor. 
+     */
     public HomeFragment() {
         // Required empty public constructor
     }

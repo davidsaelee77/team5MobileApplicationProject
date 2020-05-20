@@ -25,7 +25,10 @@ import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLowerCase
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdSpecialChar;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdUpperCase;
 
-
+/**
+ * @author Tyler Lorella
+ * @version May 2020 
+ */
 public class ChangePasswordFragment extends Fragment {
 
     /**

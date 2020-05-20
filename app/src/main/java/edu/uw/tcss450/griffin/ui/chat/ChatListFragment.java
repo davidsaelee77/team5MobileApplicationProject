@@ -16,12 +16,23 @@ import edu.uw.tcss450.griffin.databinding.FragmentChatListBinding;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author David Salee & Tyler Lorella
+ * @version May 2020
  */
 public class ChatListFragment extends Fragment {
 
+    /**
+     * Chat List View Model.
+     */
     private ChatListViewModel mModel;
+    /**
+     * Binding for Chat List.
+     */
     private FragmentChatListBinding binding;
 
+    /**
+     * Empty public constructor.
+     */
     public ChatListFragment() {
         // Required empty public constructor
     }
