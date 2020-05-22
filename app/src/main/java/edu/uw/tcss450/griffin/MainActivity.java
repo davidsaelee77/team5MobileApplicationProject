@@ -299,4 +299,6 @@ public class MainActivity extends AppCompatActivity {
     public UserInfoViewModel getUserInfoViewModel() {
         return userInfoViewModel;
     }
+
+
 }
