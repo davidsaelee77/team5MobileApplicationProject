@@ -79,7 +79,7 @@ public class WeatherListFragment extends Fragment {
                 dayList = weatherList.subList(25, 30);
 
                 binding.weatherTodayList.setAdapter(new WeatherRecyclerViewAdapter(hourList));
-                binding.weatherWeekList.setAdapter(new WeatherRecyclerViewAdapter(dayList));
+                binding.weatherWeekList.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
                 binding.weatherCurrentText.setText(weatherList.get(0).getWeather() +
                         ", " + String.valueOf(weatherList.get(0).getTemp()) + " K");
                 binding.weatherPlaceText.setText("Tacoma, 98402");

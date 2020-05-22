@@ -12,21 +12,22 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentWeatherCardBinding;
+import edu.uw.tcss450.griffin.databinding.FragmentWeatherWeekCardBinding;
 
 /**
  * @author David Salee
  * @version May 2020
  */
-public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecyclerViewAdapter.WeatherViewHolder> {
+public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<WeatherWeekRecyclerViewAdapter.WeatherViewHolder> {
     /**
      * List of type WeatherData.
      */
     List<WeatherData> mData;
     /**
-     * Constructor that instantiates fields. 
+     * Constructor that instantiates fields.
      * @param data
      */
-    public WeatherRecyclerViewAdapter(List<WeatherData> data) {
+    public WeatherWeekRecyclerViewAdapter(List<WeatherData> data) {
         this.mData = data;
 
     }
@@ -35,7 +36,7 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new WeatherViewHolder((LayoutInflater
-                .from(parent.getContext()).inflate(R.layout.fragment_weather_card, parent, false)));
+                .from(parent.getContext()).inflate(R.layout.fragment_weather_week_card, parent, false)));
     }
 
     @Override
@@ -61,7 +62,7 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
         /**
          * FragmentWeatherCardBinding object. 
          */
-        private FragmentWeatherCardBinding binding;
+        private FragmentWeatherWeekCardBinding binding;
          /**
           * Constructor that instantiantes fields. 
           * @param view 
@@ -69,7 +70,7 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
         public WeatherViewHolder(@NonNull View view) {
             super(view);
             mView = view;
-            binding = FragmentWeatherCardBinding.bind(view);
+            binding = FragmentWeatherWeekCardBinding.bind(view);
         }
          /**
           * Method that sets weather data.
@@ -78,7 +79,7 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
             binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
             binding.weatherTypeText.setText(data.getWeather());
             if (data.getTemp() == -1) {
-//                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
+                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
                 binding.weatherHighText.setText(String.valueOf(data.getTempMax()));
             } else {
                 binding.weatherHighText.setText(String.valueOf(data.getTemp()));

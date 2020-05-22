@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_root"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_inner"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/weather_low_text"
         app:layout_constraintTop_toTopOf="@+id/weather_low_text">
 
         <TextView
             android:id="@+id/weather_time_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="290dp"
+            android:layout_height="36dp"
             android:background="@color/colorPrimary_UW"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -32,23 +32,37 @@
             tools:text="hour/week" />
 
         <TextView
-            android:id="@+id/weather_high_text"
-            android:layout_width="165dp"
+            android:id="@+id/weather_low_text"
+            android:layout_width="125dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginStart="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/low"
+            tools:text="Low" />
+
+        <TextView
+            android:id="@+id/weather_high_text"
+            android:layout_width="125dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="28dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_type_text"
+            app:layout_constraintTop_toBottomOf="@+id/high"
             tools:text="High" />
 
         <TextView
             android:id="@+id/weather_type_text"
-            android:layout_width="401dp"
-            android:layout_height="34dp"
+            android:layout_width="290dp"
+            android:layout_height="36dp"
             android:layout_marginStart="3dp"
             android:textColor="@color/colorAccent_UW"
             android:textSize="16sp"
@@ -58,15 +72,26 @@
             tools:text="Type" />
 
         <TextView
-            android:id="@+id/high"
-            android:layout_width="109dp"
-            android:layout_height="31dp"
-            android:layout_marginEnd="8dp"
-            android:text="Temperature"
+            android:id="@+id/low"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:text="Low"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/weather_high_text"
-            tools:text="Temperature" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_type_text"
+            tools:text="Low" />
+
+        <TextView
+            android:id="@+id/high"
+            android:layout_width="34dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="96dp"
+            android:text="High"
+            android:textAlignment="center"
+            app:layout_constraintStart_toEndOf="@+id/low"
+            app:layout_constraintTop_toBottomOf="@+id/weather_type_text"
+            tools:text="High" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
