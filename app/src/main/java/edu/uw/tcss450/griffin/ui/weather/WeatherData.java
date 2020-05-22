@@ -71,6 +71,7 @@ public class WeatherData implements Serializable {
      */
     public WeatherData(int theIncrement, double tempMin, double tempMax, String theWeather) {
         this("daily", theIncrement, tempMin, tempMax, -1, theWeather);
+
     }
     /**
      * Returns type.
@@ -90,14 +91,14 @@ public class WeatherData implements Serializable {
      * Returns minimum temperature. 
      */
     public double getTempMin() {
-        return tempMin;
+        return kelToFehr(tempMin);
     }
 
     /**
      * Returns maximum temperature. 
      */
     public double getTempMax() {
-        return tempMax;
+        return kelToFehr(tempMax);
     }
 
     /**
@@ -105,7 +106,7 @@ public class WeatherData implements Serializable {
      * @return double of temperature. 
      */
     public double getTemp() {
-        return temp;
+        return kelToFehr(temp);
     }
 
     /**
@@ -114,6 +115,13 @@ public class WeatherData implements Serializable {
      */
     public String getWeather() {
         return weather;
+    }
+
+    public double kelToFehr(double kTemp){
+//        if(kTemp == -1){
+//            return -1;
+//        }
+        return ((kTemp - 273) * 9/5 + 32);
     }
 
 }
