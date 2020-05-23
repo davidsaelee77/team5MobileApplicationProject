@@ -17,8 +17,8 @@
 
         <TextView
             android:id="@+id/weather_time_text"
-            android:layout_width="290dp"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
             android:background="@color/colorPrimary_UW"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -63,7 +63,7 @@
             android:id="@+id/weather_type_text"
             android:layout_width="290dp"
             android:layout_height="36dp"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="8dp"
             android:textColor="@color/colorAccent_UW"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
