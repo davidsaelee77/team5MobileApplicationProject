@@ -8,12 +8,12 @@
     <fragment
     android:id="@+id/homeFragment"
     android:name="edu.uw.tcss450.griffin.ui.home.HomeFragment"
-    android:label="@string/home_menu_text"
+    android:label="@string/textview_bottomMenu_home"
     tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/weatherFragment"
         android:name="edu.uw.tcss450.griffin.ui.weather.WeatherFragment"
-        android:label="@string/weather_menu_text"
+        android:label="@string/textview_bottomMenu_weather"
         tools:layout="@layout/fragment_weather" >
         <argument
             android:name="weatherData"
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/chatFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.ChatFragment"
-        android:label="@string/chat_menu_text"
+        android:label="@string/textview_bottomMenu_chat"
         tools:layout="@layout/fragment_chat" >
         <argument
             android:name="chatroom"
@@ -31,12 +31,12 @@
     <fragment
         android:id="@+id/changeThemeFragment"
         android:name="edu.uw.tcss450.griffin.ui.settings.ChangeThemeFragment"
-        android:label="@string/theme_text_title"
+        android:label="@string/title_changeTheme"
         tools:layout="@layout/fragment_change_theme" />
     <fragment
         android:id="@+id/contactListFragment"
         android:name="edu.uw.tcss450.griffin.ui.contacts.ContactsListFragment"
-        android:label="Contact List"
+        android:label="@string/textview_bottomMenu_contacts"
         tools:layout="@layout/fragment_contact_list">
         <action
             android:id="@+id/action_contactListFragment_to_contactsFragment"
@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="edu.uw.tcss450.griffin.ui.settings.ChangePasswordFragment"
-        android:label="@string/changePassword_title_fragment">
+        android:label="@string/title_changePassword">
         <argument
             android:name="email"
             android:defaultValue="default"
@@ -62,7 +62,7 @@
     <fragment
         android:id="@+id/weatherListFragment"
         android:name="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
-        android:label="Weather"
+        android:label="@string/textview_bottomMenu_weather"
         tools:layout="@layout/fragment_weather_list">
         <action
             android:id="@+id/action_weatherListFragment_to_weatherFragment"
@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/chatListFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.ChatListFragment"
-        android:label="@string/chatList_title_fragment">
+        android:label="@string/textview_bottomMenu_chat">
         <action
             android:id="@+id/action_chatListFragment_to_chatFragment"
             app:destination="@id/chatFragment" />

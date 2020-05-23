@@ -259,15 +259,15 @@ public class LoginFragment extends Fragment {
         Log.d("Resend", "Attempting to create resend dialog");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
-        builder.setMessage(R.string.resenddialog_text_description);
-        builder.setTitle(R.string.resenddialog_text_title);
-        builder.setPositiveButton(R.string.resenddialog_button_resend, (dialog, which) -> {
+        builder.setMessage(R.string.textview_resendDialog_description);
+        builder.setTitle(R.string.title_resendDialog);
+        builder.setPositiveButton(R.string.button_resendDialog_resend, (dialog, which) -> {
             //resend verification email
             Log.d("Resend", "Resend button clicked!");
             mSignInModel.connectResendVerification(binding.emailText.getText().toString());
             binding.emailText.setError(null);
         });
-        builder.setNegativeButton(R.string.resenddialog_button_cancel, (dialog, which) -> {
+        builder.setNegativeButton(R.string.button_resendDialog_cancel, (dialog, which) -> {
             //cancel, user doesn't want to resend apparently :c
         });
         builder.create();

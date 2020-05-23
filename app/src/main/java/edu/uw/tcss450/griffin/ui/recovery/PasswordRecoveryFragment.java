@@ -136,9 +136,9 @@ public class PasswordRecoveryFragment extends Fragment {
      */
     private void createDialogAcknowledge() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.forgotPassword_dialog_message);
-        builder.setTitle(R.string.forgotPassword_dialog_title);
-        builder.setPositiveButton(R.string.forgotPassword_dialog_acknowledge, (dialog, which) -> {
+        builder.setMessage(R.string.textview_forgotPassword_dialogMessage);
+        builder.setTitle(R.string.title_forgotPassword_dialog);
+        builder.setPositiveButton(R.string.button_forgotPassword_dialogAcknowledge, (dialog, which) -> {
             Log.d("Recovery", "Acknowledge");
         });
         builder.setOnDismissListener(dialog -> {
