@@ -7,7 +7,6 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="edu.uw.tcss450.griffin.ui.login.LoginFragment"
-        android:label="@string/login_button"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_mainActivity"
@@ -17,12 +16,12 @@
             app:destination="@id/registerFragment" />
         <argument
             android:name="email"
-            app:argType="string"
-            android:defaultValue="default" />
+            android:defaultValue="default"
+            app:argType="string" />
         <argument
             android:name="password"
-            app:argType="string"
-            android:defaultValue="default" />
+            android:defaultValue="default"
+            app:argType="string" />
         <action
             android:id="@+id/action_loginFragment_to_passwordRecoveryFragment"
             app:destination="@id/passwordRecoveryFragment" />
@@ -30,7 +29,6 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="edu.uw.tcss450.griffin.ui.register.RegisterFragment"
-        android:label="@string/register_button"
         tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -53,12 +51,11 @@
     </activity>
     <fragment
         android:id="@+id/passwordRecoveryFragment"
-        android:name="edu.uw.tcss450.griffin.ui.recovery.PasswordRecoveryFragment"
-        android:label="PasswordRecoveryFragment" >
+        android:name="edu.uw.tcss450.griffin.ui.recovery.PasswordRecoveryFragment">
         <argument
             android:name="email"
-            app:argType="string"
-            android:defaultValue="default" />
+            android:defaultValue="default"
+            app:argType="string" />
         <action
             android:id="@+id/action_passwordRecoveryFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

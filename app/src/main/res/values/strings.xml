@@ -1,79 +1,71 @@
 <resources>
+    <!-- Global -->
     <string name="app_name">Griffin</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="email_text">Email</string>
-    <string name="password_text">Password</string>
-    <string name="icon_imageview">Icon</string>
-    <string name="retype_password_text">Retype Password</string>
-    <string name="search_contacts_text">Search Contacts</string>
-    <string name="search_text">Search</string>
-
-    <!-- Bottom Menu -->
-    <string name="home_menu_text">Home</string>
-    <string name="chat_menu_text">Chat</string>
-    <string name="contacts_menu_text">Contacts</string>
-    <string name="weather_menu_text">Weather</string>
-
-    <!-- Register Fragment -->
-    <string name="lastname_text">Last Name</string>
-    <string name="firstname_text">First Name</string>
-    <string name="username_text">Username</string>
-
-    <!-- Login Fragment -->
-    <string name="register_button">REGISTER</string>
-    <string name="login_button">SIGN-IN</string>
-    <string name="login_button_forgotPassword">FORGOT PASSWORD</string>
-
-    <!-- Change Theme Fragment -->
-    <string name="theme_text_title">Change Theme</string>
-    <string name="bluegrey_theme_text">Blue and Grey Theme</string>
-    <string name="sonics_theme_text">Sonics Theme</string>
-    <string name="UW_theme_text">UW Theme</string>
-
-    <!-- Change Password Fragment -->
-    <string name="changePassword_title_fragment">Change Password</string>
-    <string name="changePassword_text_title">Do you want to change your password?</string>
-    <string name="changePassword_text_message">If you accept, an email will be sent containing
-        further instructions for changing your password</string>
-    <string name="changePassword_button_accept">Accept</string>
-    <string name="changePassword_button_cancel">Cancel</string>
-    <string name="changePassword_text_oldPasswordHint">Old password</string>
-    <string name="changePassword_text_newPasswordHint">New password</string>
-    <string name="changePassword_text_newPasswordConfirmHint">Confirm new password</string>
-    <string name="changePassword_button_save">Save Changes!</string>
-
-
-    <!-- URL -->
     <string name="base_url">https://team5-tcss450-server.herokuapp.com/</string>
 
-    <!-- Settings Menu -->
-    <string name="settings_button_theme">Change Theme</string>
-    <string name="settings_button_changePassword">Change Password</string>
+    <string name="email_global_emailHint">Email</string>
+    <string name="password_global_passwordHint">Password</string>
+    <string name="password_global_retypePasswordHint">Retype Password</string>
 
-    <!-- Resend Verification Email Dialog -->
-    <string name="resenddialog_text_title">Unverified Email!</string>
-    <string name="resenddialog_text_description">It appears that the account information you 
-        entered has not been verified, would you like to resend the verification email?</string>
-    <string name="resenddialog_button_resend">Resend Verification!</string>
-    <string name="resenddialog_button_cancel">Cancel</string>
+    <!-- Bottom Menu -->
+    <string name="textview_bottomMenu_home">Home</string>
+    <string name="textview_bottomMenu_chat">Chat</string>
+    <string name="textview_bottomMenu_contacts">Contacts</string>
+    <string name="textview_bottomMenu_weather">Weather</string>
+
+    <!-- Register Fragment -->
+    <string name="textplain_register_lastnameHint">Last Name</string>
+    <string name="textplain_register_firstnameHint">First Name</string>
+    <string name="textplain_register_usernameHint">Username</string>
 
     <!-- Forgot Password Fragment -->
-    <string name="forgotPassword_text_title">Password Recovery</string>
-    <string name="forgotPassword_text_description">Enter the email address associated with the
+    <string name="textview_forgotPassword_textTitle">Password Recovery</string>
+    <string name="textview_forgotPassword_description">Enter the email address associated with the
         account and if it exists, an email with password recovery instructions will be sent!</string>
-    <string name="forgotPassword_text_emailHint">Email</string>
-    <string name="forgotPassword_button_sendRecovery">Send Recovery Link</string>
-    <string name="forgotPassword_button_cancel">Cancel</string>
-    <string name="forgotPassword_snackbar_acknowledge">Recovery Acknowledged!</string>
-    <string name="forgotPassword_dialog_title">Success!</string>
-    <string name="forgotPassword_dialog_message">If the entered email exists as a user, an email has been sent!, </string>
-    <string name="forgotPassword_dialog_acknowledge">Acknowledge</string>
+    <string name="email_forgotPassword_emailHint">Email</string>
+    <string name="button_forgotPassword_sendRecovery">Send Recovery Link</string>
+    <string name="button_forgotPassword_cancel">Cancel</string>
+    <string name="title_forgotPassword_dialog">Success!</string>
+    <string name="textview_forgotPassword_dialogMessage">If the entered email exists as a user, an email has been sent!, </string>
+    <string name="button_forgotPassword_dialogAcknowledge">Acknowledge</string>
+
+    <!-- Login Fragment -->
+    <string name="button_login_register">REGISTER</string>
+    <string name="button_login_signin">SIGN-IN</string>
+    <string name="button_login_forgotPassword">FORGOT PASSWORD</string>
+
+    <!-- Resend Verification Email Dialog -->
+    <string name="title_resendDialog">Unverified Email!</string>
+    <string name="textview_resendDialog_description">It appears that the account information you
+        entered has not been verified, would you like to resend the verification email?</string>
+    <string name="button_resendDialog_resend">Resend Verification!</string>
+    <string name="button_resendDialog_cancel">Cancel</string>
+
+    <!-- Settings Menu -->
+    <string name="button_settings_theme">Change Theme</string>
+    <string name="buttons_setting_changePassword">Change Password</string>
+
+    <!-- Change Theme Fragment -->
+    <string name="title_changeTheme">Change Theme</string>
+    <string name="button_changeTheme_bluegrey">Blue and Grey Theme</string>
+    <string name="button_changeTheme_sonics">Sonics Theme</string>
+    <string name="button_changeTheme_uw">UW Theme</string>
+
+    <!-- Change Password Fragment -->
+    <string name="title_changePassword">Change Password</string>
+    <string name="textview_changePassword_headMessage">Do you want to change your password?</string>
+    <string name="textview_changePassword_description">If you accept, an email will be sent containing
+        further instructions for changing your password</string>
+    <string name="button_changePassword_accept">Accept</string>
+    <string name="button_changePassword_cancel">Cancel</string>
+    <string name="button_changePassword_change">Save Changes!</string>
+    <string name="password_changePassword_oldPasswordHint">Old password</string>
+    <string name="password_changePassword_newPasswordHint">New password</string>
+    <string name="password_changePassword_newPasswordConfirmHint">Confirm new password</string>
 
     <!-- Chat -->
-    <string name="chatList_title_fragment">Conversations</string>
-    <string name="newmessage_text_title">New Message</string>
-    <string name="conversation_text_title">Conversation</string>
+    <string name="title_newMessage">New Message</string>
+    <string name="title_conversation">Conversation</string>
     <string name="conversation_message_text">Message</string>
     <string name="conversation_send_button">Send</string>
     <string name="newmessage_send_button">Send</string>
@@ -82,8 +74,18 @@
     <string name="member_info">Member Info.</string>
     <string name="navigate_to_chatroom">Go To Chat</string>
 
+    <!-- Contacts -->
+    <string name="textplain_contacts_search">Search Contacts</string>
 
-    <!-- Help DEFUNCT-->
+    <!-- Weather -->
+
+
+    <!-- ?? -->
+    <string name="icon_imageview">Icon</string>
+    <string name="search_text">Search</string>
+
+
+    <!-- Help TODO: Remove this!-->
     <string name="help_text_emailHint">Enter Email</string>
     <string name="help_text_welcomeMessage">Welcome to the help page! What is your issue?</string>
     <string name="help_text_resendEmailMessage"> A validation email has been resent for the specified count if it exists</string>

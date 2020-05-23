@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/navigate_button_theme"
-        android:title="@string/settings_button_theme"
+        android:title="@string/button_settings_theme"
         app:showAsAction="never"></item>
     <item
         android:id="@+id/navigate_button_password"
-        android:title="@string/settings_button_changePassword"
+        android:title="@string/buttons_setting_changePassword"
         app:showAsAction="never"></item>
 
 </menu>

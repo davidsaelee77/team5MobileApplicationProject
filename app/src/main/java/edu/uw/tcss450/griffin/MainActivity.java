@@ -192,13 +192,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void createChangePasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.changePassword_text_title);
-        builder.setMessage(R.string.changePassword_text_message);
-        builder.setPositiveButton(R.string.changePassword_button_accept, (dialog, which) -> {
+        builder.setTitle(R.string.textview_changePassword_headMessage);
+        builder.setMessage(R.string.textview_changePassword_description);
+        builder.setPositiveButton(R.string.button_changePassword_accept, (dialog, which) -> {
             Log.d("ChangeP", "User wants to change password");
             connectChangePassword();
         });
-        builder.setNegativeButton(R.string.changePassword_button_cancel, (dialog, which) -> {
+        builder.setNegativeButton(R.string.button_changePassword_cancel, (dialog, which) -> {
             Log.d("changeP", "cancel change");
             //do nothing
         });
