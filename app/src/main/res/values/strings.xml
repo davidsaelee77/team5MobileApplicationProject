@@ -15,8 +15,8 @@
     <string name="textview_bottomMenu_weather">Weather</string>
 
     <!-- Register Fragment -->
-    <string name="textplain_register_lastnameHint">Last Name</string>
-    <string name="textplain_register_firstnameHint">First Name</string>
+    <string name="textplain_register_lastNameHint">Last Name</string>
+    <string name="textplain_register_firstNameHint">First Name</string>
     <string name="textplain_register_usernameHint">Username</string>
 
     <!-- Forgot Password Fragment -->
@@ -32,7 +32,7 @@
 
     <!-- Login Fragment -->
     <string name="button_login_register">REGISTER</string>
-    <string name="button_login_signin">SIGN-IN</string>
+    <string name="button_login_signIn">SIGN-IN</string>
     <string name="button_login_forgotPassword">FORGOT PASSWORD</string>
 
     <!-- Resend Verification Email Dialog -->
@@ -70,15 +70,25 @@
     <string name="text_conversation_message">Message</string>
     <string name="button_conversation_send">Send</string>
     <string name="button_contactList_seeMoreDescription">See More</string>
-    <string name="member_info">Member Info.</string>
-    <string name="navigate_to_chatroom">Go To Chat</string>
     <string name="string_chat_sendDescription">Sends the message</string>
     <string name="string_chat_messageEntryDescription">Message</string>
+
+
+    <string name="member_info">Member Info.</string>
+    <string name="navigate_to_chatroom">Go To Chat</string>
 
     <!-- Contacts -->
     <string name="textplain_contacts_search">Search Contacts</string>
 
     <!-- Weather -->
+    <string name="textview_weatherWeekCard_low">Low</string>
+    <string name="textview_weatherWeekCard_high">High</string>
+    <string name="textview_weatherCard_temperature">Temperature</string>
+    <string name="textview_weatherList_currentForecast">Current Forecast:</string>
+    <string name="textview_weatherList_todayForecast">Today\'s Forecast</string>
+    <string name="textview_weatherList_weeklyForecast">Weekly Forecast</string>
+    <string name="textview_weatherList_location">Location:</string>
+    <string name="textview_weatherList_textDefault">Getting Data...</string>
 
     <!-- ?? -->
     <string name="icon_imageview">Icon</string>

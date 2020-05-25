@@ -78,11 +78,11 @@ public class WeatherListFragment extends Fragment {
                 hourList = weatherList.subList(1, 25);
                 dayList = weatherList.subList(25, 30);
 
-                binding.weatherTodayList.setAdapter(new WeatherRecyclerViewAdapter(hourList));
-                binding.weatherWeekList.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
-                binding.weatherCurrentText.setText(weatherList.get(0).getWeather() +
+                binding.recyclerViewToday.setAdapter(new WeatherRecyclerViewAdapter(hourList));
+                binding.recyclerViewWeekly.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
+                binding.textviewCurrentData.setText(weatherList.get(0).getWeather() +
                         ", " + String.format("%.2f", weatherList.get(0).getTemp()) + " F");
-                binding.weatherPlaceText.setText("Tacoma, 98402");
+                binding.textviewLocationData.setText("Tacoma, 98402");
             }
         });
     }

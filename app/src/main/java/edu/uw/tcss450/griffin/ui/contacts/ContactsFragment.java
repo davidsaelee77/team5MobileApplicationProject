@@ -39,10 +39,10 @@ public class ContactsFragment extends Fragment {
 
         ContactsFragmentArgs args = ContactsFragmentArgs.fromBundle(getArguments());
         FragmentContactsBinding binding = FragmentContactsBinding.bind(getView());
-        binding.memberidTextView.setText(args.getContact().getMemberID());
-        binding.usernameTextView.setText(args.getContact().getUserName());
-        binding.firstnameTextView.setText(args.getContact().getFirstName());
-        binding.lastnameTextView.setText(args.getContact().getLastName());
+        binding.textviewMemberId.setText(args.getContact().getMemberID());
+        binding.textviewUsername.setText(args.getContact().getUserName());
+        binding.textviewFirstName.setText(args.getContact().getFirstName());
+        binding.textviewLastName.setText(args.getContact().getLastName());
 
     }
 }

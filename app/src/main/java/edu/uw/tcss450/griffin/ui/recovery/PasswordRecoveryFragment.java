@@ -100,7 +100,7 @@ public class PasswordRecoveryFragment extends Fragment {
                 Navigation.findNavController(getView()).navigate(
                         PasswordRecoveryFragmentDirections.actionPasswordRecoveryFragmentToLoginFragment()));
 
-        binding.buttonEmail.setOnClickListener(this::attemptRecovery);
+        binding.buttonSendRecovery.setOnClickListener(this::attemptRecovery);
 
         mPasswordRecoveryModel.addResponseObserver(
                 getViewLifecycleOwner(),
@@ -108,7 +108,7 @@ public class PasswordRecoveryFragment extends Fragment {
 
         PasswordRecoveryFragmentArgs args = PasswordRecoveryFragmentArgs.fromBundle(getArguments());
 
-        binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
+        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
     }
 
     /**
@@ -155,7 +155,7 @@ public class PasswordRecoveryFragment extends Fragment {
         PasswordRecoveryFragmentDirections.ActionPasswordRecoveryFragmentToLoginFragment directions =
                 PasswordRecoveryFragmentDirections.actionPasswordRecoveryFragmentToLoginFragment();
 
-        directions.setEmail(binding.emailText.getText().toString());
+        directions.setEmail(binding.emailInput.getText().toString());
         Navigation.findNavController(getView()).navigate(directions);
     }
 
@@ -175,16 +175,16 @@ public class PasswordRecoveryFragment extends Fragment {
      */
     private void validateEmail() {
         mEmailValidator.processResult(
-                mEmailValidator.apply(binding.emailText.getText().toString().trim()),
+                mEmailValidator.apply(binding.emailInput.getText().toString().trim()),
                 this::sendRecoveryRequest,
-                result -> binding.emailText.setError("Please enter a valid Email address."));
+                result -> binding.emailInput.setError("Please enter a valid Email address."));
     }
     /**
      * Method to send recovery request. 
      */
     private void sendRecoveryRequest() {
         //recover the users password
-        mPasswordRecoveryModel.connect(binding.emailText.getText().toString());
+        mPasswordRecoveryModel.connect(binding.emailInput.getText().toString());
     }
 
 }

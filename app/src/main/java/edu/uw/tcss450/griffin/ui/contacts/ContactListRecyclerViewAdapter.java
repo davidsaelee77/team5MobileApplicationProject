@@ -84,11 +84,11 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
          * @param button
          */
         private void handleMoreOrLess(final View button) {
-            if (binding.textPreview.getVisibility() == View.GONE) {
-                binding.textPreview.setVisibility(View.VISIBLE);
+            if (binding.textviewPreview.getVisibility() == View.GONE) {
+                binding.textviewPreview.setVisibility(View.VISIBLE);
                 binding.buttonSeeMore.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_up_black_24dp));
             } else {
-                binding.textPreview.setVisibility(View.GONE);
+                binding.textviewPreview.setVisibility(View.GONE);
                 binding.buttonSeeMore.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_down_black_24dp));
             }
         }
@@ -102,10 +102,10 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
 
             binding.buttonFullPost.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ContactsListFragmentDirections.actionContactListFragmentToContactsFragment(contact)));
 
-            binding.textMemberID.setText(contact.getMemberID());
-            binding.textUsername.setText(contact.getUserName());
-            binding.textFirstName.setText(contact.getFirstName());
-            binding.textLastName.setText(contact.getLastName());
+            binding.textviewMemberID.setText(contact.getMemberID());
+            binding.textviewUsername.setText(contact.getUserName());
+            binding.textviewFirstName.setText(contact.getFirstName());
+            binding.textviewLastName.setText(contact.getLastName());
             // }
         }
     }

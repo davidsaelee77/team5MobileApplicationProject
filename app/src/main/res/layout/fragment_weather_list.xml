@@ -8,20 +8,20 @@
     tools:context=".ui.weather.WeatherListFragment">
 
     <TextView
-        android:id="@+id/weather_forecast_text"
+        android:id="@+id/textview_currentForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Current Forecast:"
+        android:text="@string/textview_weatherList_currentForecast"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/weather_hourly_text"
+        app:layout_constraintBottom_toTopOf="@+id/textview_todayLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_loc_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_location" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weather_today_list"
+        android:id="@+id/recyclerView_today"
         android:layout_width="420dp"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
@@ -31,43 +31,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_hourly_text"
+        app:layout_constraintTop_toBottomOf="@+id/textview_todayLabel"
         tools:context="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         tools:listitem="@layout/fragment_weather_card" />
 
     <TextView
-        android:id="@+id/weather_hourly_text"
+        android:id="@+id/textview_todayLabel"
         android:layout_width="420dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:text="Today's Forecast"
+        android:text="@string/textview_weatherList_todayForecast"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/weather_today_list"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_today"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/weather_weekly_text"
+        android:id="@+id/textview_weeklyLabel"
         android:layout_width="420dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
-        android:text="Weekly Forecast"
+        android:text="@string/textview_weatherList_weeklyForecast"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/weather_week_list"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_weekly"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_today_list" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_today" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weather_week_list"
+        android:id="@+id/recyclerView_weekly"
         android:layout_width="420dp"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
@@ -78,44 +78,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_weekly_text"
+        app:layout_constraintTop_toBottomOf="@+id/textview_weeklyLabel"
         tools:context="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         tools:listitem="@layout/fragment_weather_week_card">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/weather_current_text"
+        android:id="@+id/textview_currentData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/textview_weatherList_textDefault"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/weather_hourly_text"
+        app:layout_constraintBottom_toTopOf="@+id/textview_todayLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toEndOf="@+id/weather_forecast_text"
-        app:layout_constraintTop_toBottomOf="@+id/weather_place_text" />
+        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast"
+        app:layout_constraintTop_toBottomOf="@+id/textview_locationData" />
 
     <TextView
-        android:id="@+id/weather_loc_text"
+        android:id="@+id/textview_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location:"
+        android:text="@string/textview_weatherList_location"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/weather_place_text"
+        app:layout_constraintEnd_toStartOf="@+id/textview_locationData"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/weather_place_text"
+        android:id="@+id/textview_locationData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seattle"
+        android:text="@string/textview_weatherList_textDefault"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/weather_loc_text"
+        app:layout_constraintStart_toEndOf="@+id/textview_location"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

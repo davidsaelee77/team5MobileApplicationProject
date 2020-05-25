@@ -54,7 +54,7 @@ public class ChangePasswordFragment extends Fragment {
      * Method to validate the new password.
      */
     private PasswordValidator mNewPasswordValidator =
-            checkClientPredicate(pwd -> pwd.equals(binding.passwordConfirm.getText().toString()))
+            checkClientPredicate(pwd -> pwd.equals(binding.passwordConfirmPassword.getText().toString()))
                     .and(checkPwdLength(7))
                     .and(checkPwdSpecialChar())
                     .and(checkExcludeWhiteSpace())
