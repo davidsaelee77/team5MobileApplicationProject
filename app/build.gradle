@@ -7,7 +7,7 @@ android {
     viewBinding { enabled = true }
 
     defaultConfig {
-        applicationId "uw.edu.tcss450.griffin"
+        applicationId "edu.uw.tcss450.griffin"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
