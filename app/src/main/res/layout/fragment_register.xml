@@ -28,7 +28,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstname_text" />
+        app:layout_constraintTop_toBottomOf="@+id/firstname_text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/firstname_text"
@@ -41,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/griffin_logo_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_logo"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/email_text"
@@ -54,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+        app:layout_constraintTop_toBottomOf="@+id/username_text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/username_text"
@@ -67,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastname_text" />
+        app:layout_constraintTop_toBottomOf="@+id/lastname_text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/retypepassword_text"
@@ -80,7 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+        app:layout_constraintTop_toBottomOf="@+id/password_text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/password_text"
@@ -93,13 +98,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+        app:layout_constraintTop_toBottomOf="@+id/email_text"
+        android:autofillHints="" />
 
     <ImageView
-        android:id="@+id/griffin_logo_imageView"
+        android:id="@+id/imageView_logo"
         android:layout_width="285dp"
         android:layout_height="184dp"
         android:layout_marginTop="58dp"
+        android:contentDescription="@string/string_global_logoDescription"
         android:src="@drawable/ic_griffin_logo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

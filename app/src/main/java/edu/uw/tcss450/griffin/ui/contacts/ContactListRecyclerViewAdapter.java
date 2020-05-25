@@ -75,7 +75,7 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
             mView = view;
 
             binding = FragmentContactlistCardBinding.bind(view);
-            binding.seeMoreButton.setOnClickListener(this::handleMoreOrLess);
+            binding.buttonSeeMore.setOnClickListener(this::handleMoreOrLess);
 
         }
 
@@ -84,12 +84,12 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
          * @param button
          */
         private void handleMoreOrLess(final View button) {
-            if (binding.contactPreviewText.getVisibility() == View.GONE) {
-                binding.contactPreviewText.setVisibility(View.VISIBLE);
-                binding.seeMoreButton.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_up_black_24dp));
+            if (binding.textPreview.getVisibility() == View.GONE) {
+                binding.textPreview.setVisibility(View.VISIBLE);
+                binding.buttonSeeMore.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_up_black_24dp));
             } else {
-                binding.contactPreviewText.setVisibility(View.GONE);
-                binding.seeMoreButton.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_down_black_24dp));
+                binding.textPreview.setVisibility(View.GONE);
+                binding.buttonSeeMore.setImageIcon(Icon.createWithResource(mView.getContext(), R.drawable.ic_arrow_drop_down_black_24dp));
             }
         }
 
@@ -97,22 +97,15 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
          * Method that sets contacts.
          */
         void setContact(final Contacts contact) {
-
-
             // binding.alphabetLetterText.setText(contact.getAlphabet());
-
             // if (contact.getAlphabet().indexOf(0) == contact.getFirstName().charAt(0)) {
-
 
             binding.buttonFullPost.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ContactsListFragmentDirections.actionContactListFragmentToContactsFragment(contact)));
 
-
-            binding.memberidText.setText(contact.getMemberID());
-            binding.contactUsernameText.setText(contact.getUserName());
-            binding.contactFirstNameText.setText(contact.getFirstName());
-            binding.contactLastNameText.setText(contact.getLastName());
-
-
+            binding.textMemberID.setText(contact.getMemberID());
+            binding.textUsername.setText(contact.getUserName());
+            binding.textFirstName.setText(contact.getFirstName());
+            binding.textLastName.setText(contact.getLastName());
             // }
         }
     }

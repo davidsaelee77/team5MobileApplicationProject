@@ -119,12 +119,12 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.registerButton.setOnClickListener(button ->
+        binding.buttonRegister.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment()));
 
-        binding.signinButton.setOnClickListener(this::attemptSignIn);
+        binding.buttonSignin.setOnClickListener(this::attemptSignIn);
 
-        binding.forgotPButton.setOnClickListener(button ->
+        binding.buttonForgotPassword.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
 
 
@@ -143,7 +143,7 @@ public class LoginFragment extends Fragment {
 
         //don't allow sign in until pushy token retrieved
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(),
-                token -> binding.signinButton.setEnabled(!token.isEmpty()));
+                token -> binding.buttonSignin.setEnabled(!token.isEmpty()));
 
         mPushyTokenViewModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observePushyPutResponse);
