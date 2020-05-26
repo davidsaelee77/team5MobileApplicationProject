@@ -78,34 +78,30 @@ public class ChatListViewModel extends AndroidViewModel {
 
 
     /**
-     * Method to interpret given JSONObject. 
-     * @param result Given JSONObject object. 
+     * Method to interpret given JSONObject.
+     * @param result Given JSONObject object.
      */
     private void handleResult(final JSONObject result) {
-
         if (!result.has("rows")) {
             throw new IllegalStateException("Unexpected response in ChatListViewModel: " + result);
         }
         try {
-
-            ArrayList<ChatRoom> listOfEmails = new ArrayList<>();
+            ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
             JSONArray rows = result.getJSONArray("rows");
-            int rowCount = result.getInt("rowCount");
 
-            for (int i = 0; i < rows.length(); i++) {
-                JSONObject row = rows.getJSONObject(i);
-                ChatRoom cr = new ChatRoom(row, rowCount);
-                listOfEmails.add(cr);
+            for (int counter = 0; counter < rows.length(); counter++) {
+                JSONObject row = rows.getJSONObject(counter);
+                int chatId = row.getInt("chatId");
+                ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatId);
+                listOfChatRooms.add(cr);
             }
-            mChatRoomList.setValue(listOfEmails);
-            Log.d("JSON", "" + listOfEmails.toString());
+            mChatRoomList.setValue(listOfChatRooms);
+            Log.d("JSON", "" + listOfChatRooms.toString());
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
     }
 
 
@@ -145,16 +141,15 @@ public class ChatListViewModel extends AndroidViewModel {
 //    }
 
 /**
- * Method to connect to webservice and get chat data. 
+ * Method to connect to webservice and get chat data. Chats retrieves the .
  */
     public void connectGet() {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-//        String url = getApplication().getResources().getString(R.string.base_url) +
-//                "chats/" + userInfoViewModel.getMemberId();
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "chats/" + "1";
+           String url = getApplication().getResources().getString(R.string.base_url) +
+//                "chats?memberId=" + userInfoViewModel.getMemberId();
+                   "chatData?memberId=" + userInfoViewModel.getMemberId();
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request
@@ -171,6 +166,8 @@ public class ChatListViewModel extends AndroidViewModel {
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
+
+
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {
         userInfoViewModel = vm;

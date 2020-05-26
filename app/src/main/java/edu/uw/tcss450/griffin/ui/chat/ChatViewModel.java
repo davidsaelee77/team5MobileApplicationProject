@@ -99,7 +99,7 @@ public class ChatViewModel extends AndroidViewModel {
      */
     public void getFirstMessages(final int chatId, final String jwt) {
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages/" + chatId;
+                "messages?chatId=" + chatId;
 
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
@@ -143,9 +143,8 @@ public class ChatViewModel extends AndroidViewModel {
      */
     public void getNextMessages(final int chatId, final String jwt) {
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages/" +
-                chatId +
-                "/" + mMessages.get(chatId).getValue().get(0).getMessageId();
+                "messages?chatId=" + chatId +
+                "&messageId=" + mMessages.get(chatId).getValue().get(0).getMessageId();
 
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
