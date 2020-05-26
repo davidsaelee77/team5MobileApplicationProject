@@ -122,6 +122,34 @@ public class WeatherViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
+    /**
+     * Connect to web service with zip as parameter
+     * @param zip Zip code for place specified.
+     */
+    public void connectGet(String zip) {
+        // TODO: 5/26/2020 change this to accept zip codes and replace the list.  
+        if (userInfoViewModel == null) {
+            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+        }
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "weather";
+
+        Request request = new JsonObjectRequest(Request.Method.GET, url, null,
+                //no body for this get request
+                this::handleResult, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
     public void setUserInfoViewModel(UserInfoViewModel vm) {
         userInfoViewModel = vm;
     }

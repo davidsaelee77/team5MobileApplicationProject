@@ -1,13 +1,16 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
@@ -75,8 +78,11 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
          /**
           * Method that sets weather data.
           */
-        void setWeather(final WeatherData data) {
-            binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
+         @RequiresApi(api = Build.VERSION_CODES.O)
+         void setWeather(final WeatherData data) {
+             LocalDate today = LocalDate.now();
+//            binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
+            binding.weatherTimeText.setText(today.plusDays(data.getIncrement()).getDayOfWeek().name());
             binding.weatherTypeText.setText(data.getWeather());
             if (data.getTemp() == -1|| data.getTemp() < -459) {
 //                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
