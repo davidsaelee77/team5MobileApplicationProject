@@ -82,8 +82,8 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
          void setWeather(final WeatherData data) {
              LocalDate today = LocalDate.now();
 //            binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
-            binding.weatherTimeText.setText(today.plusDays(data.getIncrement()).getDayOfWeek().name());
-            binding.weatherTypeText.setText(data.getWeather());
+            binding.textviewTime.setText(today.plusDays(data.getIncrement()).getDayOfWeek().name());
+            binding.textviewType.setText(data.getWeather());
             if (data.getTemp() == -1|| data.getTemp() < -459) {
 //                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
                 binding.textviewLowTemp.setText(String.format("%.2f", data.getTempMin()));

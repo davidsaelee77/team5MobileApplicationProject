@@ -99,6 +99,9 @@ public class WeatherViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Connect to webservice to get default weather data.
+     */
     public void connectGet() {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
@@ -131,8 +134,7 @@ public class WeatherViewModel extends AndroidViewModel {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "weather";
+        String url = "https://team5-tcss450-server.herokuapp.com/weather?zip=" + zip;
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request

@@ -72,7 +72,7 @@ public class WeatherListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentWeatherListBinding binding = FragmentWeatherListBinding.bind(getView());
-        binding.weatherSearchButton.setOnClickListener(this::searchZip);
+        binding.buttonSearch.setOnClickListener(this::searchZip);
 
         mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
@@ -84,27 +84,27 @@ public class WeatherListFragment extends Fragment {
                 binding.recyclerViewWeekly.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
                 binding.textviewCurrentData.setText(weatherList.get(0).getWeather() +
                         ", " + String.format("%.2f", weatherList.get(0).getTemp()) + " F");
-                binding.weatherPlaceText.setText("Tacoma, 98402");
+                binding.textviewLocationData.setText("Tacoma, 98402");
                 if (weatherList.get(0).getWeather().equals("Thunderstorm")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_thunder_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_thunder_art);
                 } else if (weatherList.get(0).getWeather().equals("Drizzle")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_drizzle_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_drizzle_art);
                 } else if (weatherList.get(0).getWeather().equals("Rain")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_rain_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_rain_art);
                 }else if (weatherList.get(0).getWeather().equals("Snow")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_snow_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_snow_art);
                 } else if (weatherList.get(0).getWeather().equals("Mist")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_mist_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_mist_art);
                 } else if (weatherList.get(0).getWeather().equals("Clear")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_clear_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_clear_art);
                 } else if (weatherList.get(0).getWeather().equals("Clouds")){
-                    binding.weatherIconImage.setImageResource(R.drawable.weather_clouds_art);
+                    binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_clouds_art);
                 }
             }
         });
     }
 
     private void searchZip(View view) {
-        mModel.connectGet(binding.weatherPlaceText.getText().toString());
+        mModel.connectGet(binding.textviewLocationData.getText().toString());
     }
 }

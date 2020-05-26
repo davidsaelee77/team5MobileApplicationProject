@@ -12,13 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:text="@string/textview_weatherList_currentForecast"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textview_todayLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_location" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_locationData" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_today"
@@ -40,6 +39,7 @@
         android:layout_width="420dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
         android:text="@string/textview_weatherList_todayForecast"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_forecast_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_currentForecast" />
 
     <TextView
         android:id="@+id/textview_weeklyLabel"
@@ -69,8 +69,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_weekly"
-        android:layout_width="420dp"
-        android:layout_height="200dp"
+        android:layout_width="414dp"
+        android:layout_height="146dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
@@ -85,6 +85,38 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
+        android:id="@+id/textview_weatherList_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/textview_weatherList_location"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/textview_locationData"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textview_locationData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_weatherList_textDefault"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintStart_toEndOf="@+id/textview_weatherList_location"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageicon_weatherIcon"
+        android:layout_width="54dp"
+        android:layout_height="44dp"
+        android:src="@drawable/weather_clear_art"
+        app:layout_constraintBottom_toTopOf="@+id/textview_currentData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast" />
+
+    <TextView
         android:id="@+id/textview_currentData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,62 +125,18 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textview_todayLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast"
-        app:layout_constraintTop_toBottomOf="@+id/textview_locationData" />
-
-    <TextView
-        android:id="@+id/textview_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview_weatherList_location"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/textview_locationData"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textview_locationData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview_weatherList_textDefault"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textview_location"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/weather_icon_image"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:src="@drawable/weather_clear_art"
-        app:layout_constraintBottom_toTopOf="@+id/weather_current_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toEndOf="@+id/weather_forecast_text" />
-
-    <TextView
-        android:id="@+id/weather_current_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/weather_hourly_text"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.369"
-        app:layout_constraintStart_toEndOf="@+id/weather_forecast_text"
-        app:layout_constraintTop_toBottomOf="@+id/weather_place_text"
+        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast"
+        app:layout_constraintTop_toBottomOf="@+id/textview_locationData"
         app:layout_constraintVertical_bias="0.578" />
 
     <ImageButton
-        android:id="@+id/weather_search_button"
+        android:id="@+id/button_search"
         android:layout_width="49dp"
         android:layout_height="54dp"
         android:src="@android:drawable/ic_search_category_default"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/weather_place_text"
+        app:layout_constraintStart_toEndOf="@+id/textview_locationData"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_search_black_24dp" />
 
