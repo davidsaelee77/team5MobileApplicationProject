@@ -119,12 +119,12 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.registerButton.setOnClickListener(button ->
+        binding.buttonRegister.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment()));
 
-        binding.signinButton.setOnClickListener(this::attemptSignIn);
+        binding.buttonSignin.setOnClickListener(this::attemptSignIn);
 
-        binding.forgotPButton.setOnClickListener(button ->
+        binding.buttonForgotPassword.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
 
 
@@ -135,15 +135,15 @@ public class LoginFragment extends Fragment {
 
         LoginFragmentArgs args = LoginFragmentArgs.fromBundle(getArguments());
 
-        binding.emailText.setText(args.getEmail().equals("default") ? "" : args.getEmail());
-        binding.passwordText.setText(args.getPassword().equals("default") ? "" : args.getPassword());
+        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
+        binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
 
 //        binding.emailText.setText("dsael1@uw.edu");
 //        binding.passwordText.setText("A1234567!");
 
         //don't allow sign in until pushy token retrieved
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(),
-                token -> binding.signinButton.setEnabled(!token.isEmpty()));
+                token -> binding.buttonSignin.setEnabled(!token.isEmpty()));
 
         mPushyTokenViewModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observePushyPutResponse);
@@ -164,9 +164,9 @@ public class LoginFragment extends Fragment {
      */
     private void validateEmail() {
         mEmailValidator.processResult(
-                mEmailValidator.apply(binding.emailText.getText().toString().trim()),
+                mEmailValidator.apply(binding.emailInput.getText().toString().trim()),
                 this::validatePassword,
-                result -> binding.emailText.setError("Please enter a valid Email address."));
+                result -> binding.emailInput.setError("Please enter a valid Email address."));
     }
 
     /**
@@ -175,9 +175,9 @@ public class LoginFragment extends Fragment {
      */
     private void validatePassword() {
         mPassWordValidator.processResult(
-                mPassWordValidator.apply(binding.passwordText.getText().toString()),
+                mPassWordValidator.apply(binding.passwordPassword.getText().toString()),
                 this::verifyAuthWithServer,
-                result -> binding.passwordText.setError("Please enter a valid Password."));
+                result -> binding.passwordPassword.setError("Please enter a valid Password."));
     }
 
     /**
@@ -185,8 +185,8 @@ public class LoginFragment extends Fragment {
      */
     private void verifyAuthWithServer() {
 
-        mSignInModel.connect(binding.emailText.getText().toString(),
-                binding.passwordText.getText().toString());
+        mSignInModel.connect(binding.emailInput.getText().toString(),
+                binding.passwordPassword.getText().toString());
 
     }
 
@@ -217,27 +217,27 @@ public class LoginFragment extends Fragment {
                     if (message.contains("verified")) {
                         createDialogResendVerification();
                     }
-                    binding.emailText.setError("Error Authenticating: " + message);
-                    binding.emailText.requestFocus();
+                    binding.emailInput.setError("Error Authenticating: " + message);
+                    binding.emailInput.requestFocus();
                 } catch (JSONException e) {
                     Log.wtf("JSON Parse Error", e.getMessage());
-                    binding.emailText.requestFocus();
-                    binding.emailText.setError("Contact Developer");
+                    binding.emailInput.requestFocus();
+                    binding.emailInput.setError("Contact Developer");
                 }
             } else {
                 try {
                     mUserViewModel = new ViewModelProvider(getActivity(), new UserInfoViewModel.UserInfoViewModelFactory(
-                            binding.emailText.getText().toString(),
+                            binding.emailInput.getText().toString(),
                             response.getString("token"),
                             response.getInt("memberid")
                     )).get(UserInfoViewModel.class);
 //                    sendPushyToken();
 
-                    navigateToSuccess(binding.emailText.getText().toString(), response.getString("token"), response.getInt("memberid"));
+                    navigateToSuccess(binding.emailInput.getText().toString(), response.getString("token"), response.getInt("memberid"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
-                    binding.emailText.requestFocus();
-                    binding.emailText.setError("Invalid credentials");
+                    binding.emailInput.requestFocus();
+                    binding.emailInput.setError("Invalid credentials");
                 }
             }
         } else {
@@ -264,8 +264,8 @@ public class LoginFragment extends Fragment {
         builder.setPositiveButton(R.string.button_resendDialog_resend, (dialog, which) -> {
             //resend verification email
             Log.d("Resend", "Resend button clicked!");
-            mSignInModel.connectResendVerification(binding.emailText.getText().toString());
-            binding.emailText.setError(null);
+            mSignInModel.connectResendVerification(binding.emailInput.getText().toString());
+            binding.emailInput.setError(null);
         });
         builder.setNegativeButton(R.string.button_resendDialog_cancel, (dialog, which) -> {
             //cancel, user doesn't want to resend apparently :c
@@ -284,9 +284,9 @@ public class LoginFragment extends Fragment {
         if (response.length() > 0) {
             if (response.has("code")) {
                 //this error cannot be fixed by the user changing credentials...
-                binding.emailText.setError("Error Authenticating on Push Token. Please contact support");
+                binding.emailInput.setError("Error Authenticating on Push Token. Please contact support");
             } else {
-                navigateToSuccess(binding.emailText.getText().toString(), mUserViewModel.getJwt(), mUserViewModel.getMemberId());
+                navigateToSuccess(binding.emailInput.getText().toString(), mUserViewModel.getJwt(), mUserViewModel.getMemberId());
             }
         }
     }

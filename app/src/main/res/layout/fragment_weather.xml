@@ -15,46 +15,46 @@
         tools:context=".ui.ContactsFragment">
 
         <TextView
-            android:id="@+id/weather_textView"
+            android:id="@+id/textview_weather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary_UW"
             android:padding="8dp"
             android:textColor="@color/colorPrimaryText"
-            app:layout_constraintBottom_toTopOf="@+id/time_textView"
+            app:layout_constraintBottom_toTopOf="@+id/textview_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/time_textView"
+            android:id="@+id/textview_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary_UW"
             android:padding="8dp"
             android:textColor="@color/colorPrimaryText"
-            app:layout_constraintBottom_toTopOf="@+id/low_temp_textView"
+            app:layout_constraintBottom_toTopOf="@+id/textview_lowTemp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_weather" />
 
         <TextView
-            android:id="@+id/low_temp_textView"
+            android:id="@+id/textview_lowTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary_UW"
             android:padding="8dp"
             android:textColor="@color/colorPrimaryText"
-            app:layout_constraintBottom_toTopOf="@+id/high_temp_textView"
+            app:layout_constraintBottom_toTopOf="@+id/textview_highTemp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_time" />
 
         <TextView
-            android:id="@+id/high_temp_textView"
+            android:id="@+id/textview_highTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary_UW"
@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/low_temp_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_lowTemp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

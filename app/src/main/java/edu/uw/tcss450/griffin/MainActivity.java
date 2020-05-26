@@ -90,7 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //setContentView(R.layout.activity_main);
+
+        mArgs = MainActivityArgs.fromBundle(getIntent().getExtras());
+
+        userInfoViewModel = new ViewModelProvider(this,
+                new UserInfoViewModel.UserInfoViewModelFactory(mArgs.getEmail(), mArgs.getJwt(), mArgs.getMemberid())
+        ).get(UserInfoViewModel.class);
+
 
         BottomNavigationView navView = findViewById(R.id.bottom_menu_bar);
 
@@ -99,28 +105,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
-
-        userInfoViewModel = new ViewModelProvider(this,
-                new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt(), args.getMemberid())
-        ).get(UserInfoViewModel.class);
-
-
-        //MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
-        mArgs = MainActivityArgs.fromBundle(getIntent().getExtras());
-
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
-
-        new ViewModelProvider(this,
-                //new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt())
-                new UserInfoViewModel.UserInfoViewModelFactory(mArgs.getEmail(), mArgs.getJwt(), mArgs.getMemberid())
-        ).get(UserInfoViewModel.class);
 
         mNewMessageModel = new ViewModelProvider(this).get(NewMessageCountViewModel.class);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.chatFragment) {
+            if (destination.getId() == R.id.chatListFragment) {
                 //When the user navigates to the chats page, reset the new message count.
                 // This will need some extra logic for your project as it should have
                 // multiple chat rooms.
@@ -129,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mNewMessageModel.addMessageCountObserver(this, count -> {
 
-            BadgeDrawable badge = binding.bottomMenuBar.getOrCreateBadge(R.id.chatFragment); //THIS WAS NAV_CHAT BEFORE I CHANGED IT
+            BadgeDrawable badge = binding.bottomMenuBar.getOrCreateBadge(R.id.chatListFragment); //THIS WAS NAV_CHAT BEFORE I CHANGED IT
             badge.setMaxCharacterCount(2);
             if (count > 0) {
                 //new messages! update and show the notification badge.
@@ -188,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a popou dialog box that prompts users to change their password. 
+     * Creates a popou dialog box that prompts users to change their password.
      */
     private void createChangePasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -205,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
+
     /**
      * Method that connects to a webservice that sends a email to change password.
      */
@@ -266,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 //If the user is not on the chat screen, update the
                 // NewMessageCountView Model
                 if (nd.getId() != R.id.chatFragment) {
+
                     mNewMessageModel.increment();
                 }
                 //Inform the view model holding chatroom messages of the new
@@ -294,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Returns UserInfoViewModel. 
+     * Returns UserInfoViewModel.
      */
     public UserInfoViewModel getUserInfoViewModel() {
         return userInfoViewModel;

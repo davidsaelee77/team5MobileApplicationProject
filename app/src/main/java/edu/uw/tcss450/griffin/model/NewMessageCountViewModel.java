@@ -1,5 +1,7 @@
 package edu.uw.tcss450.griffin.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
@@ -45,6 +47,7 @@ public class NewMessageCountViewModel extends ViewModel {
      */
     public void increment() {
         mNewMessageCount.setValue(mNewMessageCount.getValue() + 1);
+        Log.d("INCREMENT", mNewMessageCount + "");
     }
 
     /**

@@ -3,6 +3,7 @@
     <string name="app_name">Griffin</string>
     <string name="base_url">https://team5-tcss450-server.herokuapp.com/</string>
 
+    <string name="string_global_logoDescription">Griffin Logo</string>
     <string name="email_global_emailHint">Email</string>
     <string name="password_global_passwordHint">Password</string>
     <string name="password_global_retypePasswordHint">Retype Password</string>
@@ -14,8 +15,8 @@
     <string name="textview_bottomMenu_weather">Weather</string>
 
     <!-- Register Fragment -->
-    <string name="textplain_register_lastnameHint">Last Name</string>
-    <string name="textplain_register_firstnameHint">First Name</string>
+    <string name="textplain_register_lastNameHint">Last Name</string>
+    <string name="textplain_register_firstNameHint">First Name</string>
     <string name="textplain_register_usernameHint">Username</string>
 
     <!-- Forgot Password Fragment -->
@@ -31,7 +32,7 @@
 
     <!-- Login Fragment -->
     <string name="button_login_register">REGISTER</string>
-    <string name="button_login_signin">SIGN-IN</string>
+    <string name="button_login_signIn">SIGN-IN</string>
     <string name="button_login_forgotPassword">FORGOT PASSWORD</string>
 
     <!-- Resend Verification Email Dialog -->
@@ -66,11 +67,13 @@
     <!-- Chat -->
     <string name="title_newMessage">New Message</string>
     <string name="title_conversation">Conversation</string>
-    <string name="conversation_message_text">Message</string>
-    <string name="conversation_send_button">Send</string>
-    <string name="newmessage_send_button">Send</string>
-    <string name="newmessage_contact_text">Enter Contact</string>
-    <string name="see_more">See More</string>
+    <string name="text_conversation_message">Message</string>
+    <string name="button_conversation_send">Send</string>
+    <string name="button_contactList_seeMoreDescription">See More</string>
+    <string name="string_chat_sendDescription">Sends the message</string>
+    <string name="string_chat_messageEntryDescription">Message</string>
+
+
     <string name="member_info">Member Info.</string>
     <string name="navigate_to_chatroom">Go To Chat</string>
 
@@ -78,17 +81,16 @@
     <string name="textplain_contacts_search">Search Contacts</string>
 
     <!-- Weather -->
-
+    <string name="textview_weatherWeekCard_low">Low</string>
+    <string name="textview_weatherWeekCard_high">High</string>
+    <string name="textview_weatherCard_temperature">Temperature</string>
+    <string name="textview_weatherList_currentForecast">Current Forecast:</string>
+    <string name="textview_weatherList_todayForecast">Today\'s Forecast</string>
+    <string name="textview_weatherList_weeklyForecast">Weekly Forecast</string>
+    <string name="textview_weatherList_location">Location:</string>
+    <string name="textview_weatherList_textDefault">Getting Data...</string>
 
     <!-- ?? -->
     <string name="icon_imageview">Icon</string>
     <string name="search_text">Search</string>
-
-
-    <!-- Help TODO: Remove this!-->
-    <string name="help_text_emailHint">Enter Email</string>
-    <string name="help_text_welcomeMessage">Welcome to the help page! What is your issue?</string>
-    <string name="help_text_resendEmailMessage"> A validation email has been resent for the specified count if it exists</string>
-    <string name="help_button_resend">Resend Email Validation</string>
-
 </resources>

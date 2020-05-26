@@ -8,7 +8,7 @@
     tools:context=".ui.register.RegisterFragment">
 
     <Button
-        android:id="@+id/register_acct_button"
+        android:id="@+id/button_register_acct"
         android:layout_width="137dp"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -16,35 +16,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/retypepassword_text" />
+        app:layout_constraintTop_toBottomOf="@+id/password_confirmPassword" />
 
     <EditText
-        android:id="@+id/lastname_text"
+        android:id="@+id/textplain_lastName"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/textplain_register_lastnameHint"
+        android:hint="@string/textplain_register_lastNameHint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstname_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textplain_firstName"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/firstname_text"
+        android:id="@+id/textplain_firstName"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="31dp"
         android:ems="10"
-        android:hint="@string/textplain_register_firstnameHint"
+        android:hint="@string/textplain_register_firstNameHint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/griffin_logo_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_logo"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/email_text"
+        android:id="@+id/email_input"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -54,10 +56,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_username"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/username_text"
+        android:id="@+id/textview_username"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -67,10 +70,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastname_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textplain_lastName"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/retypepassword_text"
+        android:id="@+id/password_confirmPassword"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -80,10 +84,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_text" />
+        app:layout_constraintTop_toBottomOf="@+id/password_password"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/password_text"
+        android:id="@+id/password_password"
         android:layout_width="335dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -93,13 +98,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+        app:layout_constraintTop_toBottomOf="@+id/email_input"
+        android:autofillHints="" />
 
     <ImageView
-        android:id="@+id/griffin_logo_imageView"
+        android:id="@+id/imageView_logo"
         android:layout_width="285dp"
         android:layout_height="184dp"
         android:layout_marginTop="58dp"
+        android:contentDescription="@string/string_global_logoDescription"
         android:src="@drawable/ic_griffin_logo_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

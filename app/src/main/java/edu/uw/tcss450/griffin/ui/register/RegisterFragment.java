@@ -59,7 +59,7 @@ public class RegisterFragment extends Fragment {
      * Method to validate password.
      */
     private PasswordValidator mPassWordValidator =
-            checkClientPredicate(pwd -> pwd.equals(binding.retypepasswordText.getText().toString()))
+            checkClientPredicate(pwd -> pwd.equals(binding.passwordConfirmPassword.getText().toString()))
                     .and(checkPwdLength(7))
                     .and(checkPwdSpecialChar())
                     .and(checkExcludeWhiteSpace())
@@ -117,7 +117,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.registerAcctButton.setOnClickListener(this::attemptRegister);
+        binding.buttonRegisterAcct.setOnClickListener(this::attemptRegister);
         mRegisterModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observeResponse);
 
@@ -138,9 +138,9 @@ public class RegisterFragment extends Fragment {
      */
     private void validateFirst() {
         mNameValidator.processResult(
-                mNameValidator.apply(binding.firstnameText.getText().toString().trim()),
+                mNameValidator.apply(binding.textplainFirstName.getText().toString().trim()),
                 this::validateLast,
-                result -> binding.firstnameText.setError("Please enter a valid first name."));
+                result -> binding.textplainFirstName.setError("Please enter a valid first name."));
     }
 
     /**
@@ -149,9 +149,9 @@ public class RegisterFragment extends Fragment {
      */
     private void validateLast() {
         mNameValidator.processResult(
-                mNameValidator.apply(binding.lastnameText.getText().toString().trim()),
+                mNameValidator.apply(binding.textplainLastName.getText().toString().trim()),
                 this::validateUsername,
-                result -> binding.lastnameText.setError("Please enter a valid last name."));
+                result -> binding.textplainLastName.setError("Please enter a valid last name."));
     }
 
     /**
@@ -160,9 +160,9 @@ public class RegisterFragment extends Fragment {
      */
     private void validateUsername() {
         mNameValidator.processResult(
-                mNameValidator.apply(binding.usernameText.getText().toString().trim()),
+                mNameValidator.apply(binding.textviewUsername.getText().toString().trim()),
                 this::validateEmail,
-                result -> binding.usernameText.setError("Please enter a valid user name."));
+                result -> binding.textviewUsername.setError("Please enter a valid user name."));
     }
 
     /**
@@ -171,9 +171,9 @@ public class RegisterFragment extends Fragment {
      */
     private void validateEmail() {
         mEmailValidator.processResult(
-                mEmailValidator.apply(binding.emailText.getText().toString().trim()),
+                mEmailValidator.apply(binding.emailInput.getText().toString().trim()),
                 this::validatePassword,
-                result -> binding.emailText.setError("Please enter a valid Email address."));
+                result -> binding.emailInput.setError("Please enter a valid Email address."));
     }
 
     /**
@@ -182,9 +182,9 @@ public class RegisterFragment extends Fragment {
      */
     private void validatePassword() {
         mPassWordValidator.processResult(
-                mPassWordValidator.apply(binding.passwordText.getText().toString()),
+                mPassWordValidator.apply(binding.passwordPassword.getText().toString()),
                 this::verifyAuthWithServer,
-                result -> binding.passwordText.setError("Please enter a valid Password."));
+                result -> binding.passwordPassword.setError("Please enter a valid Password."));
     }
 
     /**
@@ -193,11 +193,11 @@ public class RegisterFragment extends Fragment {
     private void verifyAuthWithServer() {
 
         mRegisterModel.connect(
-                binding.firstnameText.getText().toString(),
-                binding.lastnameText.getText().toString(),
-                binding.usernameText.getText().toString(),
-                binding.emailText.getText().toString(),
-                binding.passwordText.getText().toString());
+                binding.textplainFirstName.getText().toString(),
+                binding.textplainLastName.getText().toString(),
+                binding.textviewUsername.getText().toString(),
+                binding.emailInput.getText().toString(),
+                binding.passwordPassword.getText().toString());
 
     }
 
@@ -209,8 +209,8 @@ public class RegisterFragment extends Fragment {
         RegisterFragmentDirections.ActionRegisterFragmentToLoginFragment directions =
                 RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
 
-         directions.setEmail(binding.emailText.getText().toString());
-         directions.setPassword(binding.passwordText.getText().toString());
+         directions.setEmail(binding.emailInput.getText().toString());
+         directions.setPassword(binding.passwordPassword.getText().toString());
 
         Navigation.findNavController(getView()).navigate(directions);
 
@@ -230,12 +230,12 @@ public class RegisterFragment extends Fragment {
                     //binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
                     JSONObject jObject = new JSONObject(response.getString("data"));
                     String message = jObject.getString("message");
-                    binding.emailText.setError("Error Authenticating: " + message);
-                    binding.emailText.requestFocus();
+                    binding.emailInput.setError("Error Authenticating: " + message);
+                    binding.emailInput.requestFocus();
                 } catch (JSONException e) {
                     Log.wtf("JSON Parse Error", e.getMessage());
-                    binding.emailText.requestFocus();
-                    binding.emailText.setError("Contact Developer");
+                    binding.emailInput.requestFocus();
+                    binding.emailInput.setError("Contact Developer");
                 }
             } else {
                 navigateToLogin();

@@ -86,12 +86,12 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
             binding.weatherTypeText.setText(data.getWeather());
             if (data.getTemp() == -1|| data.getTemp() < -459) {
 //                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
-                binding.weatherLowText.setText(String.format("%.2f", data.getTempMin()));
+                binding.textviewLowTemp.setText(String.format("%.2f", data.getTempMin()));
 //                binding.weatherHighText.setText(String.valueOf(data.getTempMax()));
-                binding.weatherHighText.setText(String.format("%.2f", data.getTempMax()));
+                binding.textviewHighTemp.setText(String.format("%.2f", data.getTempMax()));
             } else {
 //                binding.weatherHighText.setText(String.valueOf(data.getTemp()));
-                binding.weatherHighText.setText(String.format("%.2f", data.getTemp()));
+                binding.textviewHighTemp.setText(String.format("%.2f", data.getTemp()));
             }
         }
     }
