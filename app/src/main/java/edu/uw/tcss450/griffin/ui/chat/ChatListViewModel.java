@@ -91,54 +91,18 @@ public class ChatListViewModel extends AndroidViewModel {
 
             for (int counter = 0; counter < rows.length(); counter++) {
                 JSONObject row = rows.getJSONObject(counter);
-                int chatId = row.getInt("chatId");
+                int chatId = row.getInt("chatid");
+                Log.d("ChatListViewModel", ("found chatId: " + chatId));
                 ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatId);
                 listOfChatRooms.add(cr);
             }
             mChatRoomList.setValue(listOfChatRooms);
-            Log.d("JSON", "" + listOfChatRooms.toString());
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
-
-//    private void handleResult(final JSONObject result) {
-//        // IntFunction<String> getString = getApplication().getResources()::getString;
-//        try {
-//            JSONObject root = result;
-//
-//            Log.d("TEST", "" + root.toString());
-//            if (root.has(JSONKeys.success)) {
-//                boolean isSuccess = root.getBoolean(JSONKeys.success);
-//                if (!isSuccess) {
-//                    return;
-//                }
-//                JSONArray chats = root.getJSONArray(JSONKeys.message);
-//                ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
-//                for (int i = 0; i < chats.length(); i++) {
-//                    JSONObject jsonChatRoom = chats.getJSONObject(i);
-//                    try {
-//                        ChatRoom chatRoom = new ChatRoom(jsonChatRoom);
-//                        listOfChatRooms.add(chatRoom);
-//                    } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
-//                }
-//                mChatRoomList.setValue(listOfChatRooms);
-//            } else {
-//                Log.e("ERROR!", "No response");
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            Log.e("ERROR!", e.getMessage());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        mChatRoomList.setValue(mChatRoomList.getValue());
-//    }
 
 /**
  * Method to connect to webservice and get chat data. Chats retrieves the .
@@ -147,8 +111,9 @@ public class ChatListViewModel extends AndroidViewModel {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-           String url = getApplication().getResources().getString(R.string.base_url) +
-//                "chats?memberId=" + userInfoViewModel.getMemberId();
+        Log.d("ChatListViewModel", "calling connectGet to chatData");
+
+        String url = getApplication().getResources().getString(R.string.base_url) +
                    "chatData?memberId=" + userInfoViewModel.getMemberId();
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,

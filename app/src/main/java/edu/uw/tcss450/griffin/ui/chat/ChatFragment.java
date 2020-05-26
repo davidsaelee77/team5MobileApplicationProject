@@ -36,6 +36,7 @@ public class ChatFragment extends Fragment {
      * Chat View Model.
      */
     private ChatViewModel mChatModel;
+
     /**
      * User View Model.
      */

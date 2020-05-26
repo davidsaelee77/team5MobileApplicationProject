@@ -63,6 +63,7 @@ public class ChatRoom implements Serializable {
     }
 
     private void connectGetEmails() {
+        Log.d("ChatRoom", "calling chatroom connect");
         String url = mContext.getResources().getString(R.string.base_url)
                 + "chats?chatId=" + mChatId;
 
@@ -103,11 +104,10 @@ public class ChatRoom implements Serializable {
             for (int counter = 0; counter < rows.length(); counter++) {
                 JSONObject row = rows.getJSONObject(counter);
                 String email = row.getString("email");
-                Log.d("ChatRoom, found email: ", email);
                 listOfEmails.add(email);
             }
             mEmailList.setValue(listOfEmails);
-            Log.d("JSON", "" + listOfEmails.toString());
+            Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
