@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -41,6 +42,7 @@ import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.services.PushReceiver;
 import edu.uw.tcss450.griffin.ui.chat.ChatMessageFragment;
 import edu.uw.tcss450.griffin.ui.chat.ChatViewModel;
+import edu.uw.tcss450.griffin.util.Utils;
 
 
 /**
@@ -84,9 +86,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (GriffinApplication.id != -1) {
-            getTheme().applyStyle(GriffinApplication.id, true);
-        }
+//        if (GriffinApplication.id != -1) {
+//            getTheme().applyStyle(GriffinApplication.id, true);
+//        }
+
+        Utils.onActivityCreateSetTheme(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -292,6 +296,5 @@ public class MainActivity extends AppCompatActivity {
     public UserInfoViewModel getUserInfoViewModel() {
         return userInfoViewModel;
     }
-
 
 }
