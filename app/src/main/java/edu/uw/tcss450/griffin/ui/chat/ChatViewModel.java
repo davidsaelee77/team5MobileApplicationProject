@@ -27,6 +27,7 @@ import java.util.Objects;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
+
 /**
  * @author David Salee & Tyler Lorella
  * @version May 2020
@@ -38,11 +39,12 @@ public class ChatViewModel extends AndroidViewModel {
      * The Key represents the Chat ID
      * The value represents the List of (known) messages for that that room.
      */
-    private Map<Integer, MutableLiveData<List<ChatMessageFragment>>> mMessages;
+    private static Map<Integer, MutableLiveData<List<ChatMessageFragment>>> mMessages;
 
     /**
-     * Constructor of ChatViewModel.                              
-     * @param Application Application object. 
+     * Constructor of ChatViewModel.
+     *
+     * @param application Application object.
      */
     public ChatViewModel(@NonNull Application application) {
         super(application);
@@ -76,8 +78,9 @@ public class ChatViewModel extends AndroidViewModel {
     public List<ChatMessageFragment> getMessageListByChatId(final int chatId) {
         return getOrCreateMapEntry(chatId).getValue();
     }
+
     /**
-     * Method to create or get a map of the messages from a chat based on if the chat id exists already. 
+     * Method to create or get a map of the messages from a chat based on if the chat id exists already.
      */
     private MutableLiveData<List<ChatMessageFragment>> getOrCreateMapEntry(final int chatId) {
         if (!mMessages.containsKey(chatId)) {
@@ -99,7 +102,7 @@ public class ChatViewModel extends AndroidViewModel {
      */
     public void getFirstMessages(final int chatId, final String jwt) {
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages/" + chatId;
+                "messages?chatId=" + chatId;
 
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
@@ -112,7 +115,7 @@ public class ChatViewModel extends AndroidViewModel {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
-               // headers.put("Authorization", "Bearer " + jwt);
+                // headers.put("Authorization", "Bearer " + jwt);
                 headers.put("Authorization", jwt);
                 return headers;
             }
@@ -143,9 +146,8 @@ public class ChatViewModel extends AndroidViewModel {
      */
     public void getNextMessages(final int chatId, final String jwt) {
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "messages/" +
-                chatId +
-                "/" + mMessages.get(chatId).getValue().get(0).getMessageId();
+                "messages?chatId=" + chatId +
+                "&messageId=" + mMessages.get(chatId).getValue().get(0).getMessageId();
 
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
@@ -184,12 +186,22 @@ public class ChatViewModel extends AndroidViewModel {
      */
     public void addMessage(final int chatId, final ChatMessageFragment message) {
         List<ChatMessageFragment> list = getMessageListByChatId(chatId);
-        list.add(message);
+        int i = 0;
+        for(i = 0; i < list.size(); i++){
+            if(list.get(i).getMessageId() == message.getMessageId()){
+                list.set(i, message);
+                break;
+            }
+        }
+        if (i >= list.size()){
+            list.add(message);
+        }
         getOrCreateMapEntry(chatId).setValue(list);
     }
 
     /**
-     * Method that adds messages to the list associated with the chat id. 
+     * Method that adds messages to the list associated with the chat id.
+     *
      * @param response
      */
     private void handelSuccess(final JSONObject response) {
@@ -228,7 +240,8 @@ public class ChatViewModel extends AndroidViewModel {
     }
 
     /**
-     * Method taht handles errors. 
+     * Method taht handles errors.
+     *
      * @param error
      */
     private void handleError(final VolleyError error) {
@@ -242,5 +255,6 @@ public class ChatViewModel extends AndroidViewModel {
                             data);
         }
     }
+
 }
 
