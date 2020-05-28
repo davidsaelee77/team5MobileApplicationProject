@@ -86,10 +86,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        if (GriffinApplication.id != -1) {
-//            getTheme().applyStyle(GriffinApplication.id, true);
-//        }
-
         Utils.onActivityCreateSetTheme(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
