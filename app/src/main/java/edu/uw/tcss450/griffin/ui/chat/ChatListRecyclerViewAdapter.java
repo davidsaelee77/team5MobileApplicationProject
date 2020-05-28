@@ -80,7 +80,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
             // binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
 
             //for (int i = 0; i < chatRoom.getRowCount(); i++) {
-            binding.chatRoomTextView.setText(("Chat Room: #: " + chatRoom.getmChatId()));
+            binding.chatRoomTextView.setText(("Chat Room: #: " + chatRoom.getChatId()));
             //}
         }
     }

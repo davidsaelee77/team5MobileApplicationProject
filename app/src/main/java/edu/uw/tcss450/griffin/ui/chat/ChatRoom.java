@@ -57,13 +57,16 @@ public class ChatRoom implements Serializable {
         mChatId = chatId;
 
         mEmailList = new MutableLiveData<>();
-        mEmailList.setValue(new ArrayList<>());
 
         connectGetEmails();
+
+        mEmailList.setValue(new ArrayList<>());
+
+
     }
 
     private void connectGetEmails() {
-        Log.d("ChatRoom", "calling chatroom connect");
+       // Log.d("ChatRoom", "calling chatroom connect");
         String url = mContext.getResources().getString(R.string.base_url)
                 + "chats?chatId=" + mChatId;
 
@@ -107,7 +110,7 @@ public class ChatRoom implements Serializable {
                 listOfEmails.add(email);
             }
             mEmailList.setValue(listOfEmails);
-            Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
+           // Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
@@ -115,7 +118,7 @@ public class ChatRoom implements Serializable {
         }
     }
 
-    public int getmChatId() {
+    public int getChatId() {
         return mChatId;
     }
 

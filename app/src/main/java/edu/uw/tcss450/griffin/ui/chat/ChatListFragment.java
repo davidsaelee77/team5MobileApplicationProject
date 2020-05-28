@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.badge.BadgeDrawable;
+
 import edu.uw.tcss450.griffin.MainActivity;
+import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentChatListBinding;
 
 /**
@@ -47,6 +50,8 @@ public class ChatListFragment extends Fragment {
         }
   //      mModel.connectGetDummy();
         mModel.connectGet();
+
+
     }
 
     @Override

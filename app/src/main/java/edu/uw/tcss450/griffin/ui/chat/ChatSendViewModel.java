@@ -37,7 +37,7 @@ public class ChatSendViewModel extends AndroidViewModel {
 
     /**
      * Constructor of ChatSendViewModel.
-     * @param Application Application object. 
+     * @param application Application object.
      */
     public ChatSendViewModel(@NonNull Application application) {
         super(application);

@@ -135,11 +135,11 @@ public class LoginFragment extends Fragment {
 
         LoginFragmentArgs args = LoginFragmentArgs.fromBundle(getArguments());
 
-        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
-        binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
+//        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
+//        binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
 
-//        binding.emailText.setText("dsael1@uw.edu");
-//        binding.passwordText.setText("A1234567!");
+        binding.emailInput.setText("test1@test.com");
+        binding.passwordPassword.setText("test12345");
 
         //don't allow sign in until pushy token retrieved
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(),
@@ -231,7 +231,7 @@ public class LoginFragment extends Fragment {
                             response.getString("token"),
                             response.getInt("memberid")
                     )).get(UserInfoViewModel.class);
-//                    sendPushyToken();
+                    sendPushyToken();
 
                     navigateToSuccess(binding.emailInput.getText().toString(), response.getString("token"), response.getInt("memberid"));
                 } catch (JSONException e) {

@@ -27,6 +27,7 @@ import java.util.Map;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.constants.JSONKeys;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
+
 /**
  * @author David Salee & Tyler Lorella
  * @version May 2020
@@ -45,6 +46,7 @@ public class ChatListViewModel extends AndroidViewModel {
 
     /**
      * ChatListViewModel constuctor that accepts an application object.
+     *
      * @param application Application object.
      */
     public ChatListViewModel(@NonNull Application application) {
@@ -53,21 +55,22 @@ public class ChatListViewModel extends AndroidViewModel {
         mChatRoomList = new MutableLiveData<>();
         mChatRoomList.setValue(new ArrayList<>());
 
-
     }
 
     /**
      * An observer on the HTTP Response from the web server.
-     * @param owner LifecycleOwner object. 
-     * @param observer Observer object of type List<ChatRoom>. 
+     *
+     * @param owner    LifecycleOwner object.
+     * @param observer Observer object of type List<ChatRoom>.
      */
     public void addChatListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<ChatRoom>> observer) {
         mChatRoomList.observe(owner, observer);
     }
 
     /**
-     * Method to handle volley errors. 
-     * @param error VolleyError object. 
+     * Method to handle volley errors.
+     *
+     * @param error VolleyError object.
      */
     private void handleError(final VolleyError error) {
         if (error != null && error.getMessage() != null) {
@@ -79,6 +82,7 @@ public class ChatListViewModel extends AndroidViewModel {
 
     /**
      * Method to interpret given JSONObject.
+     *
      * @param result Given JSONObject object.
      */
     private void handleResult(final JSONObject result) {
@@ -89,12 +93,14 @@ public class ChatListViewModel extends AndroidViewModel {
             ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
             JSONArray rows = result.getJSONArray("rows");
 
-            for (int counter = 0; counter < rows.length(); counter++) {
-                JSONObject row = rows.getJSONObject(counter);
+            for (int i = 0; i < rows.length(); i++) {
+                JSONObject row = rows.getJSONObject(i);
                 int chatId = row.getInt("chatid");
-                Log.d("ChatListViewModel", ("found chatId: " + chatId));
+
+                //Log.d("ChatListViewModel", ("found chatId: " + chatId));
                 ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatId);
                 listOfChatRooms.add(cr);
+
             }
             mChatRoomList.setValue(listOfChatRooms);
         } catch (JSONException ex) {
@@ -104,17 +110,17 @@ public class ChatListViewModel extends AndroidViewModel {
         }
     }
 
-/**
- * Method to connect to webservice and get chat data. Chats retrieves the .
- */
+    /**
+     * Method to connect to webservice and get chat data. Chats retrieves the .
+     */
     public void connectGet() {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-        Log.d("ChatListViewModel", "calling connectGet to chatData");
+        // Log.d("ChatListViewModel", "calling connectGet to chatData");
 
         String url = getApplication().getResources().getString(R.string.base_url) +
-                   "chatData?memberId=" + userInfoViewModel.getMemberId();
+                "chatData?memberId=" + userInfoViewModel.getMemberId();
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request
@@ -126,12 +132,11 @@ public class ChatListViewModel extends AndroidViewModel {
                 headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
                 return headers;
             }
-        };                                   
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
-
 
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {
