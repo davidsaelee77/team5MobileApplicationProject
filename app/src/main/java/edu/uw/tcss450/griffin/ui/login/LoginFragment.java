@@ -233,7 +233,7 @@ public class LoginFragment extends Fragment {
                     )).get(UserInfoViewModel.class);
                     sendPushyToken();
 
-                    navigateToSuccess(binding.emailInput.getText().toString(), response.getString("token"), response.getInt("memberid"));
+                   //navigateToSuccess(binding.emailInput.getText().toString(), response.getString("token"), response.getInt("memberid"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
                     binding.emailInput.requestFocus();

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +30,12 @@ public class ChatFragment extends Fragment {
     /**
      * The chat ID for "global" chat.
      */
-    private int mChatID = 1;
+    private int mChatId = -1;
 
     /**
      * Chat View Model.
      */
-    private ChatViewModel mChatViewModel;
+    private ChatViewModel mChatModel;
 
     /**
      * User View Model.
@@ -55,10 +54,11 @@ public class ChatFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         mUserModel = provider.get(UserInfoViewModel.class);
-        mChatViewModel = provider.get(ChatViewModel.class);
+        mChatModel = provider.get(ChatViewModel.class);
+
+        //mChatModel.getFirstMessages(mChatId, mUserModel.getJwt());
+
         mSendModel = provider.get(ChatSendViewModel.class);
-
-
 
     }
 
@@ -72,13 +72,10 @@ public class ChatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        FragmentChatBinding binding = FragmentChatBinding.bind(getView());
         ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
-        ChatRoom room = args.getChatroom();
-        mChatID = room.getChatId();
-
-
+        mChatId = args.getChatroom().getChatId();
+        FragmentChatBinding binding = FragmentChatBinding.bind(getView());
+        mChatModel.getFirstMessages(mChatId, mUserModel.getJwt());
         //SetRefreshing shows the internal Swiper view progress bar. Show this until messages load
         binding.swipeContainer.setRefreshing(true);
 
@@ -86,17 +83,17 @@ public class ChatFragment extends Fragment {
         //Set the Adapter to hold a reference to the list FOR THIS chat ID that the ViewModel
         //holds.
         rv.setAdapter(new ChatRecyclerViewAdapter(
-                mChatViewModel.getMessageListByChatId(mChatID),
+                mChatModel.getMessageListByChatId(mChatId),
                 mUserModel.getEmail()));
 
 
         //When the user scrolls to the top of the RV, the swiper list will "refresh"
         //The user is out of messages, go out to the service and get more
         binding.swipeContainer.setOnRefreshListener(() -> {
-            mChatViewModel.getNextMessages(mChatID, mUserModel.getJwt());
+            mChatModel.getNextMessages(mChatId, mUserModel.getJwt());
         });
 
-        mChatViewModel.addMessageObserver(mChatID, getViewLifecycleOwner(),
+        mChatModel.addMessageObserver(mChatId, getViewLifecycleOwner(),
                 list -> {
                     /*
                      * This solution needs work on the scroll position. As a group,
@@ -112,7 +109,7 @@ public class ChatFragment extends Fragment {
 
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
-            mSendModel.sendMessage(mChatID, mUserModel.getJwt(), binding.editMessage.getText().toString());
+            mSendModel.sendMessage(mChatId, mUserModel.getJwt(), binding.editMessage.getText().toString());
         });
         //when we get the response back from the server, clear the edittext
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response -> binding.editMessage.setText(""));
