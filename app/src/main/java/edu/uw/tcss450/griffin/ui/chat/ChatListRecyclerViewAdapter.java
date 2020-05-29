@@ -1,5 +1,7 @@
 package edu.uw.tcss450.griffin.ui.chat;
 
+import android.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,10 @@ import edu.uw.tcss450.griffin.databinding.FragmentChatlistCardBinding;
  */
 public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRecyclerViewAdapter.ChatListViewHolder> {
 
+    /**
+     * The fragment that built this recycler view and will contain the delete method.
+     */
+    private final ChatListFragment mParent;
 
     /**
      * List of Chat rooms. 
@@ -31,8 +37,9 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
      *  a list of Chat rooms.
      * @param chats List of chat rooms.
      */
-    public ChatListRecyclerViewAdapter(List<ChatRoom> chats) {
+    public ChatListRecyclerViewAdapter(List<ChatRoom> chats, ChatListFragment parent) {
         this.mChatRooms = chats;
+        this.mParent = parent;
     }
 
     @NonNull
@@ -74,13 +81,28 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
         }
 
         void setChatRoom(final ChatRoom chatRoom) throws JSONException {
-
-            binding.navigateToChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
+            binding.buttonDelete.setOnClickListener(view -> deleteChat(this, chatRoom));
+            binding.buttonGoTo.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
             // binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
 
             //for (int i = 0; i < chatRoom.getRowCount(); i++) {
             binding.chatRoomTextView.setText(("Chat Room: #: " + chatRoom.getChatId()));
             //}
         }
+    }
+
+    private void deleteChat(final ChatListViewHolder view, final ChatRoom chatRoom) {
+        Log.d("ChatListRecycle", "Pop up dialog");
+        AlertDialog.Builder builder = new AlertDialog.Builder(mParent.getActivity());
+        builder.setTitle(R.string.dialog_chatListRecycler_title);
+        builder.setMessage(R.string.dialog_chatListRecycler_message);
+        builder.setPositiveButton(R.string.dialog_chatListRecycler_positive, (dialog, which) -> {
+            mChatRooms.remove(chatRoom);
+            notifyItemRemoved(view.getLayoutPosition());
+            final int chatId = chatRoom.getChatId();
+            mParent.deleteChat(chatId);
+            Log.d("ChatListRecycle", "Removed chatroom with ID: " + chatId);
+        });
+        builder.setNegativeButton(R.string.dialog_chatListRecycler_negative, null);
     }
 }

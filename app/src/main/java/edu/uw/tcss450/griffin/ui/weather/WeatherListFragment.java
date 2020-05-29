@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,6 +74,7 @@ public class WeatherListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FragmentWeatherListBinding binding = FragmentWeatherListBinding.bind(getView());
         binding.buttonSearch.setOnClickListener(this::searchZip);
+        binding.buttonMap.setOnClickListener(this::searchMap);
 
         mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
@@ -107,5 +109,10 @@ public class WeatherListFragment extends Fragment {
 
     private void searchZip(View view) {
         mModel.connectGet(binding.textviewLocationData.getText().toString());
+    }
+
+    private void searchMap(View view) {
+//        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
+        Navigation.findNavController(getView()).navigate(WeatherListFragmentDirections.actionWeatherListFragmentToWeatherMapFragment());
     }
 }

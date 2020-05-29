@@ -7,7 +7,7 @@
     tools:context=".ui.chat.AddChatFragment">
 
     <EditText
-        android:id="@+id/textView_enterChatName"
+        android:id="@+id/editText_enterChatName_addchatfragment"
         android:layout_width="237dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -16,20 +16,20 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_addChat"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_addChat_addchatfragment"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton_addChat"
+        android:id="@+id/imageButton_addChat_addchatfragment"
         android:layout_width="69dp"
         android:layout_height="57dp"
         android:src="@drawable/add_button_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView_enterChatName"
+        app:layout_constraintStart_toEndOf="@+id/editText_enterChatName_addchatfragment"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@
         tools:listitem="@layout/fragment_chatlist_card" />
 
     <TextView
-        android:id="@+id/textView_enterChatName"
+        android:id="@+id/textView_addChat_chatlistfragment"
         style="@style/Base.Widget.MaterialComponents.TextView"
         android:layout_width="258dp"
         android:layout_height="43dp"
@@ -33,14 +33,13 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/chatlist_root"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_addChat"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.888" />
 
     <ImageButton
-        android:id="@+id/imageButton_addChat"
+        android:id="@+id/imageButton_addChat_chatlistfragment"
         style="@android:style/Widget.DeviceDefault.Light.ImageButton"
         android:layout_width="86dp"
         android:layout_height="0dp"
@@ -50,7 +49,6 @@
         app:layout_constraintBottom_toTopOf="@+id/chatlist_root"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView_enterChatName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add_button_black" />

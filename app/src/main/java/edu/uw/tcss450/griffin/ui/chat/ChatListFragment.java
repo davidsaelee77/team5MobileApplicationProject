@@ -1,5 +1,6 @@
 package edu.uw.tcss450.griffin.ui.chat;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -71,13 +72,21 @@ public class ChatListFragment extends Fragment {
         FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
 
         //TODO: Figure out how to implement adding chat name to chat room.
-        binding.imageButtonAddChat.setOnClickListener(button ->
+        binding.imageButtonAddChatChatlistfragment.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(ChatListFragmentDirections.actionChatListFragmentToAddChatFragment()));
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatRoomList -> {
             if (!chatRoomList.isEmpty()) {
-                binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList));
+                binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList, this));
             }
+            //TODO: sorry no chats message if it's empty?
         });
+    }
+
+    public void deleteChat(final int chatId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.dialog_chatListRecycler_title);
+        builder.setMessage(R.string.dialog_chatListRecycler_message);
+        mModel.connectDeleteChat(chatId);
     }
 }
