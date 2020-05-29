@@ -39,6 +39,8 @@ public class ChatListViewModel extends AndroidViewModel {
      */
     private MutableLiveData<List<ChatRoom>> mChatRoomList;
 
+    private MutableLiveData<JSONObject> mResponse;
+
     /**
      * UserInfoViewModel object.
      */
@@ -54,6 +56,9 @@ public class ChatListViewModel extends AndroidViewModel {
 
         mChatRoomList = new MutableLiveData<>();
         mChatRoomList.setValue(new ArrayList<>());
+
+        mResponse = new MutableLiveData<>();
+        mResponse.setValue(new JSONObject());
 
     }
 
@@ -130,6 +135,36 @@ public class ChatListViewModel extends AndroidViewModel {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
                 headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+
+    public void connectAddChat(String nameOfChat) {
+        if (userInfoViewModel == null) {
+            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+        }
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "chats";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("name", nameOfChat);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Request request = new JsonObjectRequest(Request.Method.POST, url, body,
+                mResponse::setValue, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", userInfoViewModel.getJwt());
+
                 return headers;
             }
         };

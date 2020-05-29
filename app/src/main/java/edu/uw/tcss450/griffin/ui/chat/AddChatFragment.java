@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.badge.BadgeDrawable;
-
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
@@ -21,28 +19,17 @@ import edu.uw.tcss450.griffin.databinding.FragmentChatListBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- *
- * @author David Salee & Tyler Lorella
- * @version May 2020
  */
-public class ChatListFragment extends Fragment {
+public class AddChatFragment extends Fragment {
 
-    /**
-     * Chat List View Model.
-     */
     private ChatListViewModel mModel;
-    /**
-     * Binding for Chat List.
-     */
-    private FragmentChatListBinding binding;
 
+    private FragmentAddChatBinding binding;
 
-    /**
-     * Empty public constructor.
-     */
-    public ChatListFragment() {
+    public AddChatFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,14 +39,13 @@ public class ChatListFragment extends Fragment {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
-        mModel.connectGet();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentChatListBinding.inflate(inflater);
+        binding = FragmentAddChatBinding.inflate(inflater);
 
         return binding.getRoot();
     }
@@ -68,16 +54,18 @@ public class ChatListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
 
-        //TODO: Figure out how to implement adding chat name to chat room.
-        binding.imageButtonAddChat.setOnClickListener(button ->
-                Navigation.findNavController(getView()).navigate(ChatListFragmentDirections.actionChatListFragmentToAddChatFragment()));
+        FragmentAddChatBinding binding = FragmentAddChatBinding.bind(getView());
 
-        mModel.addChatListObserver(getViewLifecycleOwner(), chatRoomList -> {
-            if (!chatRoomList.isEmpty()) {
-                binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList));
-            }
-        });
+        //TODO Add observer and response, error handling for edit Text if empty.
+        binding.imageButtonAddChat.setOnClickListener(button -> mModel.connectAddChat(
+                binding.textViewEnterChatName.getText().toString()));
+
+        binding.textViewEnterChatName.setText("");
+
+
+
+
     }
+
 }
