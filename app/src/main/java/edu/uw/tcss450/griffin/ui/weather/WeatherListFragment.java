@@ -108,7 +108,8 @@ public class WeatherListFragment extends Fragment {
     }
 
     private void searchZip(View view) {
-        mModel.connectGet(binding.textviewLocationData.getText().toString());
+//        mModel.connectGet(binding.textviewLocationData.getText().toString());
+        mModel.connectGet(binding.textviewZipData.getText().toString());
     }
 
     private void searchMap(View view) {
