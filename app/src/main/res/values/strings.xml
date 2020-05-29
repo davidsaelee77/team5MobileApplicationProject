@@ -89,8 +89,10 @@
     <string name="textview_weatherList_weeklyForecast">Weekly Forecast</string>
     <string name="textview_weatherList_location">Location:</string>
     <string name="textview_weatherList_textDefault">Getting Data...</string>
+    <string name="label_location">Current location:</string>
 
     <!-- ?? -->
     <string name="icon_imageview">Icon</string>
     <string name="search_text">Search</string>
+
 </resources>
