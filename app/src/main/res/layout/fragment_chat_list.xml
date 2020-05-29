@@ -9,8 +9,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatlist_root"
         android:name="edu.uw.tcss450.team5tcss450client.ui.chat.ChatFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="395dp"
+        android:layout_height="542dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
@@ -18,9 +18,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:context="edu.uw.tcss450.griffin.ui.chat.ChatListFragment"
         tools:listitem="@layout/fragment_chatlist_card" />
+
+    <TextView
+        android:id="@+id/textView_enterChatName"
+        style="@style/Base.Widget.MaterialComponents.TextView"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/textView_addChat"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/chatlist_root"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_addChat"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <ImageButton
+        android:id="@+id/imageButton_addChat"
+        style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+        android:layout_width="86dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="303dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/chatlist_root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView_enterChatName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_button_black" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
