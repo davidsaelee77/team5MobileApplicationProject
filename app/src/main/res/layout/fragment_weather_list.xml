@@ -135,32 +135,32 @@
 
     <ImageButton
         android:id="@+id/button_search"
-        android:layout_width="40dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="2dp"
+        android:layout_width="38dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
         android:background="#00FFFFFF"
         android:src="@android:drawable/ic_search_category_default"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textview_zipData"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_search_black_24dp" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/button_map"
         android:layout_width="39dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="4dp"
         android:background="#00FFFFFF"
         android:src="@android:drawable/ic_dialog_map"
         android:tint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/imageicon_weatherIcon"
-        tools:layout_editor_absoluteX="360dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textview_zipData"
+        app:layout_constraintTop_toBottomOf="@+id/button_search" />
 
     <EditText
         android:id="@+id/textview_zipData"
-        android:layout_width="92dp"
-        android:layout_height="40dp"
+        android:layout_width="118dp"
+        android:layout_height="48dp"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/button_search"
         app:layout_constraintStart_toEndOf="@+id/textview_locationData"

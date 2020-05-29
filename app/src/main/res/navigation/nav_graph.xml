@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_weatherListFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
+        <action
+            android:id="@+id/action_weatherListFragment_to_weatherMapFragment"
+            app:destination="@id/weatherMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatListFragment"
@@ -76,5 +79,10 @@
             android:id="@+id/action_chatListFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/weatherMapFragment"
+        android:name="edu.uw.tcss450.griffin.ui.weather.WeatherMapFragment"
+        android:label="@string/fragment_weather_map"
+        tools:layout="@layout/fragment_weather_map" />
 
 </navigation>
