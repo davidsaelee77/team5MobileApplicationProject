@@ -72,7 +72,7 @@ public class ChatListFragment extends Fragment {
         FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
 
         //TODO: Figure out how to implement adding chat name to chat room.
-        binding.imageButtonAddChat.setOnClickListener(button ->
+        binding.imageButtonAddChatChatlistfragment.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(ChatListFragmentDirections.actionChatListFragmentToAddChatFragment()));
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatRoomList -> {

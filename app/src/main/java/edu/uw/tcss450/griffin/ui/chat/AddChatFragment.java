@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.function.Function;
+import java.util.stream.Stream;
+
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
@@ -58,13 +61,12 @@ public class AddChatFragment extends Fragment {
         FragmentAddChatBinding binding = FragmentAddChatBinding.bind(getView());
 
         //TODO Add observer and response, error handling for edit Text if empty.
-        binding.imageButtonAddChat.setOnClickListener(button -> mModel.connectAddChat(
-                binding.textViewEnterChatName.getText().toString()));
+        binding.imageButtonAddChatAddchatfragment.setOnClickListener(button -> mModel.connectAddChat(
+                binding.editTextEnterChatNameAddchatfragment.getText().toString()));
 
-        binding.textViewEnterChatName.setText("");
+      //  Navigation.findNavController(getView()).navigate(AddChatFragmentDirections.actionAddChatFragmentToChatListFragment());
 
-
-
+        //binding.imageButtonAddChatAddchatfragment.setOnClickListener(button -> binding.editTextEnterChatNameAddchatfragment.getText().clear());
 
     }
 

@@ -84,7 +84,6 @@ public class ChatListViewModel extends AndroidViewModel {
         }
     }
 
-
     /**
      * Method to interpret given JSONObject.
      *
@@ -176,6 +175,27 @@ public class ChatListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
+    private void handleResponse(final JSONObject response) {
+        if (!response.has("success")) {
+            throw new IllegalStateException("Unexpected response in ChatListViewModel: " + response);
+        }
+        try {
+            ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
+//            JSONObject chatID = response.getJSONObject("chatID");
+            int chatID = response.getInt("chatID");
+
+
+            ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatID);
+            listOfChatRooms.add(cr);
+
+
+            mChatRoomList.setValue(listOfChatRooms);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void connectAddChat(String nameOfChat) {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
@@ -190,7 +210,7 @@ public class ChatListViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         Request request = new JsonObjectRequest(Request.Method.POST, url, body,
-                mResponse::setValue, this::handleError) {
+                this::handleResponse, this::handleError) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -200,6 +220,8 @@ public class ChatListViewModel extends AndroidViewModel {
                 return headers;
             }
         };
+
+        Log.d("RESPONSE", mResponse.toString());
         request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
