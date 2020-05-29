@@ -73,8 +73,10 @@
         android:layout_height="146dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="60dp"
         android:orientation="horizontal"
         app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,13 +98,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/textview_locationData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/textview_weatherList_textDefault"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintEnd_toStartOf="@+id/textview_zipData"
         app:layout_constraintStart_toEndOf="@+id/textview_weatherList_location"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,12 +135,35 @@
 
     <ImageButton
         android:id="@+id/button_search"
-        android:layout_width="49dp"
-        android:layout_height="54dp"
+        android:layout_width="40dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="2dp"
+        android:background="#00FFFFFF"
         android:src="@android:drawable/ic_search_category_default"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textview_locationData"
+        app:layout_constraintStart_toEndOf="@+id/textview_zipData"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_search_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="#00FFFFFF"
+        android:src="@android:drawable/ic_dialog_map"
+        android:tint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/imageicon_weatherIcon"
+        tools:layout_editor_absoluteX="360dp" />
+
+    <EditText
+        android:id="@+id/textview_zipData"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintStart_toEndOf="@+id/textview_locationData"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

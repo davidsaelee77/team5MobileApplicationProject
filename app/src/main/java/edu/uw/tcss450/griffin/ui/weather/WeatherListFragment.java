@@ -84,7 +84,8 @@ public class WeatherListFragment extends Fragment {
                 binding.recyclerViewWeekly.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
                 binding.textviewCurrentData.setText(weatherList.get(0).getWeather() +
                         ", " + String.format("%.2f", weatherList.get(0).getTemp()) + " F");
-                binding.textviewLocationData.setText("Tacoma, 98402");
+                binding.textviewLocationData.setText("Tacoma");
+                binding.textviewZipData.setText("98402");
                 if (weatherList.get(0).getWeather().equals("Thunderstorm")){
                     binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_thunder_art);
                 } else if (weatherList.get(0).getWeather().equals("Drizzle")){
