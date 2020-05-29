@@ -40,7 +40,6 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
 
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
-        Log.d("HUH?", String.valueOf(position));
         holder.setWeather(mData.get(position));
 
     }

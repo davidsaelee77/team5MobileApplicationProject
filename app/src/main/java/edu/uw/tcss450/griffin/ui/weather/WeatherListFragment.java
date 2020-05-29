@@ -41,7 +41,7 @@ public class WeatherListFragment extends Fragment {
      * List of Weather data for daily weather.
      */
     private List<WeatherData> dayList;
-   // private List<String> days = Arrays.asList("Sunday", "Monday", "Tuesday", "Wednesday", "Thurdsay", "Friday", "Saturday");
+
     /**
      * Empty public constructor. 
      */
@@ -76,6 +76,15 @@ public class WeatherListFragment extends Fragment {
         binding.buttonSearch.setOnClickListener(this::searchZip);
         binding.buttonMap.setOnClickListener(this::searchMap);
 
+        mModel.addLocationObserver(getViewLifecycleOwner(), location -> {
+            if (!location.isEmpty()) {
+                binding.textviewZipData.setText(location.get("zip"));
+                binding.textviewLocationData.setText(location.get("city"));
+                // TODO: Structure supports displaying longitude/latitude as well.
+                //  It is in locationData
+            }
+        });
+
         mModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
 
@@ -86,8 +95,6 @@ public class WeatherListFragment extends Fragment {
                 binding.recyclerViewWeekly.setAdapter(new WeatherWeekRecyclerViewAdapter(dayList));
                 binding.textviewCurrentData.setText(weatherList.get(0).getWeather() +
                         ", " + String.format("%.2f", weatherList.get(0).getTemp()) + " F");
-                binding.textviewLocationData.setText("Tacoma");
-                binding.textviewZipData.setText("98402");
                 if (weatherList.get(0).getWeather().equals("Thunderstorm")){
                     binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_thunder_art);
                 } else if (weatherList.get(0).getWeather().equals("Drizzle")){
@@ -108,7 +115,7 @@ public class WeatherListFragment extends Fragment {
     }
 
     private void searchZip(View view) {
-        mModel.connectGet(binding.textviewLocationData.getText().toString());
+        mModel.connectGet(binding.textviewZipData.getText().toString());
     }
 
     private void searchMap(View view) {

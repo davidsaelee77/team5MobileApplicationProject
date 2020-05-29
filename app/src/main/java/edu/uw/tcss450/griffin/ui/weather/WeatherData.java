@@ -91,14 +91,14 @@ public class WeatherData implements Serializable {
      * Returns minimum temperature. 
      */
     public double getTempMin() {
-        return kelToFehr(tempMin);
+        return kelvinToFahrenheit(tempMin);
     }
 
     /**
      * Returns maximum temperature. 
      */
     public double getTempMax() {
-        return kelToFehr(tempMax);
+        return kelvinToFahrenheit(tempMax);
     }
 
     /**
@@ -106,7 +106,7 @@ public class WeatherData implements Serializable {
      * @return double of temperature. 
      */
     public double getTemp() {
-        return kelToFehr(temp);
+        return kelvinToFahrenheit(temp);
     }
 
     /**
@@ -117,7 +117,7 @@ public class WeatherData implements Serializable {
         return weather;
     }
 
-    public double kelToFehr(double kTemp){
+    public double kelvinToFahrenheit(double kTemp){
 //        if(kTemp == -1){
 //            return -1;
 //        }

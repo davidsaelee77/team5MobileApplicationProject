@@ -47,7 +47,6 @@ public class NewMessageCountViewModel extends ViewModel {
      */
     public void increment() {
         mNewMessageCount.setValue(mNewMessageCount.getValue() + 1);
-        Log.d("INCREMENT", mNewMessageCount + "");
     }
 
     /**

@@ -35,6 +35,8 @@ public class WeatherViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<WeatherData>> mWeatherData;
 
+    private MutableLiveData<Map<String, String>> mLocationData;
+
     private UserInfoViewModel userInfoViewModel;
     // private List<WeatherData> list;
 
@@ -42,11 +44,17 @@ public class WeatherViewModel extends AndroidViewModel {
     public WeatherViewModel(@NonNull Application application) {
         super(application);
         mWeatherData = new MutableLiveData<>();
+        mLocationData = new MutableLiveData<>();
     }
 
     public void addWeatherObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<WeatherData>> observer) {
         mWeatherData.observe(owner, observer);
     }
+
+    public void addLocationObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super Map<String, String>> observer) {
+        mLocationData.observe(owner, observer);
+    }
+
 
     private void handleError(final VolleyError error) {
         if (error != null && error.getMessage() != null) {
@@ -61,9 +69,14 @@ public class WeatherViewModel extends AndroidViewModel {
             throw new IllegalStateException("Unexpected response in WeatherViewModel: " + result);
         }
         try {
+            Map<String, String> location = new HashMap<String, String>();
+            JSONObject locationData = result.getJSONObject("location");
+            location.put("zip", locationData.getString("zip"));
+            location.put("city", locationData.getString("city"));
+            location.put("Lat", locationData.getString("latitude"));
+            location.put("long", locationData.getString("longitude"));
 
-            ArrayList<JSONObject> list = new ArrayList<>();
-
+            mLocationData.setValue(location);
             JSONObject currentData = result.getJSONObject("current");
 
             JSONObject hour = result.getJSONObject("hourly");
@@ -107,7 +120,7 @@ public class WeatherViewModel extends AndroidViewModel {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "weather";
+                "weather?zip=98402";
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request

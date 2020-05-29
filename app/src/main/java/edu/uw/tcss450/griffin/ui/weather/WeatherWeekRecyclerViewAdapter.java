@@ -42,9 +42,9 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
                 .from(parent.getContext()).inflate(R.layout.fragment_weather_week_card, parent, false)));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
-        Log.d("HUH?", String.valueOf(position));
         holder.setWeather(mData.get(position));
 
     }

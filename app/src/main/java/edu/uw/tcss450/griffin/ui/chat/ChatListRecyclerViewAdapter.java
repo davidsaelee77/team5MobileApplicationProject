@@ -104,5 +104,7 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
             Log.d("ChatListRecycle", "Removed chatroom with ID: " + chatId);
         });
         builder.setNegativeButton(R.string.dialog_chatListRecycler_negative, null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
