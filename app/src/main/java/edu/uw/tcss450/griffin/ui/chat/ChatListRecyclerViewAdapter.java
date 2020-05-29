@@ -55,7 +55,6 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
 
     @Override
     public int getItemCount() {
-
         return mChatRooms.size();
     }
 
@@ -79,9 +78,9 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
             binding.navigateToChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatRoom)));
             // binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
 
-            for (int i = 0; i < chatRoom.getRowCount(); i++) {
-                binding.chatRoomTextView.setText("Chat Room Email: " + chatRoom.getEmail());
-            }
+            //for (int i = 0; i < chatRoom.getRowCount(); i++) {
+            binding.chatRoomTextView.setText(("Chat Room: #: " + chatRoom.getChatId()));
+            //}
         }
     }
 }

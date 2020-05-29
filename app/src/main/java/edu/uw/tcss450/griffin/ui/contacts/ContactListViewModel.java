@@ -140,7 +140,7 @@ public class ContactListViewModel extends AndroidViewModel {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "contact/?memberid=" + userInfoViewModel.getMemberId();
+                "contact?memberid=" + userInfoViewModel.getMemberId();
 
 //        String url = getApplication().getResources().getString(R.string.base_url);
 
