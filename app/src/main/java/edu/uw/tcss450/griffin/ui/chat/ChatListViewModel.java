@@ -116,7 +116,20 @@ public class ChatListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Method to connect to webservice and get chat data. Chats retrieves the .
+     * Method to interpret given JSONObject. for the delete method
+     *
+     * @param result Given JSONObject object.
+     */
+    private void handleDeleteResult(final JSONObject result) {
+        try {
+            Log.d("ChatListViewModel DELETE","Result for delete attempt: " + result.getString("success"));
+        } catch (JSONException e) {
+            throw new IllegalStateException("Unexpected response in ChatListViewModel: " + result);
+        }
+    }
+
+    /**
+     * Method to connect to webservice and get chat data. Retrieves the list of chatIDs the user is a part of.
      */
     public void connectGet() {
         if (userInfoViewModel == null) {
@@ -134,7 +147,7 @@ public class ChatListViewModel extends AndroidViewModel {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
-                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
+                headers.put("Authorization", userInfoViewModel.getJwt());
                 return headers;
             }
         };
@@ -143,6 +156,25 @@ public class ChatListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
+    public void connectDeleteChat(final int chatId) {
+        Log.d("ChatListViewModel DELETE", "Request to delete chat: " + chatId + " for email: " + userInfoViewModel.getEmail());
+        String url = getApplication().getResources().getString(R.string.base_url) + "chats"
+                + "?chatId=" + chatId
+                + "&email=" + userInfoViewModel.getEmail();
+
+        Request request = new JsonObjectRequest(Request.Method.DELETE, url, null,
+                this::handleDeleteResult, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
 
     public void connectAddChat(String nameOfChat) {
         if (userInfoViewModel == null) {
@@ -178,10 +210,4 @@ public class ChatListViewModel extends AndroidViewModel {
         userInfoViewModel = vm;
     }
 
-//    public void connectGetDummy() {
-//        ArrayList<ChatRoom> listOfRooms = new ArrayList<>();
-//        ChatRoom room = new ChatRoom(userInfoViewModel.getMemberId(), "userName", "firstnam", "lastname", 1);
-//        listOfRooms.add(room);
-//        mChatRoomList.setValue(listOfRooms);
-//    }
 }

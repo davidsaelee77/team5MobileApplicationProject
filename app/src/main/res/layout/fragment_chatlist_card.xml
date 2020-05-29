@@ -17,15 +17,31 @@
 
 
         <Button
-            android:id="@+id/navigate_to_chatroom"
+            android:id="@+id/button_goTo"
             style="@android:style/Widget.Material.Light.Button"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="32dp"
-            android:text="@string/navigate_to_chatroom"
+            android:layout_marginEnd="8dp"
+            android:text="@string/button_chat_goTo"
             android:textColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chatRoomTextView"
+            app:layout_constraintVertical_bias="1.0"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_delete"
+            style="@android:style/Widget.Material.Light.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/button_chat_delete"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chatRoomTextView"
             app:layout_constraintVertical_bias="1.0"
             tools:visibility="visible" />
