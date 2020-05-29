@@ -48,10 +48,7 @@ public class ChatListFragment extends Fragment {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
-  //      mModel.connectGetDummy();
         mModel.connectGet();
-
-
     }
 
     @Override
@@ -63,7 +60,6 @@ public class ChatListFragment extends Fragment {
         return binding.getRoot();
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,9 +67,7 @@ public class ChatListFragment extends Fragment {
         FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
 
         mModel.addChatListObserver(getViewLifecycleOwner(), chatRoomList -> {
-
             if (!chatRoomList.isEmpty()) {
-
                 binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList));
             }
         });
