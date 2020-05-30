@@ -36,8 +36,6 @@ public class ChatListFragment extends Fragment {
      * Binding for Chat List.
      */
     private FragmentChatListBinding binding;
-
-
     /**
      * Empty public constructor.
      */
@@ -69,8 +67,6 @@ public class ChatListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentChatListBinding binding = FragmentChatListBinding.bind(getView());
-
         //TODO: Figure out how to implement adding chat name to chat room.
         binding.imageButtonAddChatChatlistfragment.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(ChatListFragmentDirections.actionChatListFragmentToAddChatFragment()));
@@ -81,6 +77,7 @@ public class ChatListFragment extends Fragment {
             }
             //TODO: sorry no chats message if it's empty?
         });
+
     }
 
     public void deleteChat(final int chatId) {

@@ -38,9 +38,8 @@ public class ChatListViewModel extends AndroidViewModel {
      */
     private MutableLiveData<List<ChatRoom>> mChatRoomList;
 
-    private MutableLiveData<JSONObject> mResponse;
-
     private ArrayList<ChatRoom> listOfChatRooms;
+
 
     /**
      * UserInfoViewModel object.
@@ -57,9 +56,6 @@ public class ChatListViewModel extends AndroidViewModel {
 
         mChatRoomList = new MutableLiveData<>();
         mChatRoomList.setValue(new ArrayList<>());
-
-        mResponse = new MutableLiveData<>();
-        mResponse.setValue(new JSONObject());
 
         listOfChatRooms = new ArrayList<>();
 
@@ -88,6 +84,20 @@ public class ChatListViewModel extends AndroidViewModel {
     }
 
     /**
+     * Method to interpret given JSONObject. for the delete method
+     *
+     * @param result Given JSONObject object.
+     */
+    private void handleDeleteResult(final JSONObject result) {
+        try {
+            Log.d("ChatListViewModel DELETE", "Result for delete attempt: " + result.getString("success"));
+        } catch (JSONException e) {
+            throw new IllegalStateException("Unexpected response in ChatListViewModel: " + result);
+        }
+    }
+
+
+    /**
      * Method to interpret given JSONObject.
      *
      * @param result Given JSONObject object.
@@ -98,33 +108,20 @@ public class ChatListViewModel extends AndroidViewModel {
         }
         try {
             JSONArray rows = result.getJSONArray("rows");
-
+            listOfChatRooms = new ArrayList<>();
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject row = rows.getJSONObject(i);
                 int chatId = row.getInt("chatid");
-
                 ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatId);
                 listOfChatRooms.add(cr);
 
             }
             mChatRoomList.setValue(listOfChatRooms);
+
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-    }
-
-    /**
-     * Method to interpret given JSONObject. for the delete method
-     *
-     * @param result Given JSONObject object.
-     */
-    private void handleDeleteResult(final JSONObject result) {
-        try {
-            Log.d("ChatListViewModel DELETE", "Result for delete attempt: " + result.getString("success"));
-        } catch (JSONException e) {
-            throw new IllegalStateException("Unexpected response in ChatListViewModel: " + result);
         }
     }
 
@@ -184,12 +181,10 @@ public class ChatListViewModel extends AndroidViewModel {
 
             ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatID);
             list.add(cr);
-
             listOfChatRooms.addAll(list);
-
             connectAddChatPut(Integer.toString(chatID));
-
             mChatRoomList.setValue(listOfChatRooms);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -241,7 +236,7 @@ public class ChatListViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         Request request = new JsonObjectRequest(Request.Method.PUT, url, body,
-               null, this::handleError) {
+                null, this::handleError) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -256,7 +251,6 @@ public class ChatListViewModel extends AndroidViewModel {
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
-
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {
         userInfoViewModel = vm;
