@@ -10,6 +10,7 @@ package edu.uw.tcss450.griffin.ui.chat;
         import androidx.lifecycle.ViewModelProvider;
         import androidx.navigation.Navigation;
 
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -68,10 +69,16 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         //TODO Add observer and response, error handling for edit Text if empty.
         if (v == binding.imageButtonAddChatAddchatfragment) {
-            mModel.connectAddChat(
-                    binding.editTextEnterChatNameAddchatfragment.getText().toString());
-            Navigation.findNavController(getView()).navigate(AddChatFragmentDirections.actionAddChatFragmentToChatListFragment());
-
+            if (binding.editTextEnterChatNameAddchatfragment.getText().toString().trim().isEmpty()) {
+                binding.editTextEnterChatNameAddchatfragment.setError("Missing chat name!");
+                binding.editTextEnterChatNameAddchatfragment.requestFocus();
+            } else {
+                binding.editTextEnterChatNameAddchatfragment.setError(null);
+                binding.editTextEnterChatNameAddchatfragment.clearFocus();
+                mModel.connectAddChat(
+                        binding.editTextEnterChatNameAddchatfragment.getText().toString());
+                Navigation.findNavController(getView()).navigate(AddChatFragmentDirections.actionAddChatFragmentToChatListFragment());
+            }
             //binding.imageButtonAddChatAddchatfragment.setOnClickListener(button -> binding.editTextEnterChatNameAddchatfragment.getText().clear());
         }
 
