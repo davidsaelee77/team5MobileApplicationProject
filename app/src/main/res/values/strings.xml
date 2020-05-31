@@ -70,6 +70,8 @@
     <string name="text_conversation_message">Message</string>
     <string name="button_conversation_send">Send</string>
     <string name="button_contactList_seeMoreDescription">See More</string>
+    <string name="button_contactRequest_accept">Accept</string>
+    <string name="button_contactRequest_decline">Decline</string>
     <string name="string_chat_sendDescription">Sends the message</string>
     <string name="string_chat_messageEntryDescription">Message</string>
     <string name="button_chat_delete">Delete Chat</string>

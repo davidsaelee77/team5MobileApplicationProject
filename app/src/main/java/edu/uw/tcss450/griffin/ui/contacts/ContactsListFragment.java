@@ -74,22 +74,6 @@ public class ContactsListFragment extends Fragment {
 
         return binding.getRoot();
     }
-//
-//    public void generateRandomData() {
-//
-//        for (int i = 0; i < 26; i++) {
-//
-//            list.add(new Contacts(randomNameGenerator(), randomNameGenerator(), randomNameGenerator(), alphabet.get(i)));
-//        }
-//    }
-
-//    public void generateAlphabet() {
-//
-//        for (int i = 0; i < 26; i++) {
-//
-//            alphabet.add(Character.toString((char) (65 + i)));
-//        }
-//    }
 
     /**
      * Contact fragment view constructor
@@ -106,11 +90,17 @@ public class ContactsListFragment extends Fragment {
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
 
             if (!contactList.isEmpty()) {
-//                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(list));
                 binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(contactList));
-
             }
         });
+
+        mModel.addRequestListObserver(getViewLifecycleOwner(), requestList -> {
+            if (!requestList.isEmpty()) {
+                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList));
+            }
+        });
+
+
     }
 }
 
