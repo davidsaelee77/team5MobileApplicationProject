@@ -81,6 +81,10 @@
     but you will no longer be a part of it.</string>
     <string name="dialog_chatListRecycler_positive">Confirm</string>
     <string name="dialog_chatListRecycler_negative">Cancel</string>
+    <string name="textview_addchatname">CHAT NAME ENTRY:</string>
+    <string name="textview_addusername">USERNAME ENTRY:</string>
+    <string name="editText_addusername">Enter username(s).</string>
+    <string name="textview_userentryinstructions">Please use commas when entering more than one user.</string>
 
 
     <string name="member_info">Member Info.</string>
@@ -104,4 +108,14 @@
     <string name="icon_imageview">Icon</string>
     <string name="search_text">Search</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- Auto Sign in -->
+    <string name="switch_sign_in">Stay Signed in</string>
+    <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
+    <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
+    <string name="keys_prefs_email">Sharded Prefs Email</string>
+    <string name="keys_prefs_memberid">Sharded Prefs MemberID</string>
+    <string name="keys_prefs_theme">Sharded Prefs Theme</string>
+    <string name="action_sign_out">Sign Out</string>
+
 </resources>

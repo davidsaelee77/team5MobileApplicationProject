@@ -91,6 +91,10 @@
         android:id="@+id/addChatFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.AddChatFragment"
         android:label="Add New Chat"
-        tools:layout="@layout/fragment_add_chat"/>
+        tools:layout="@layout/fragment_add_chat">
+        <action
+            android:id="@+id/action_addChatFragment_to_chatListFragment"
+            app:destination="@id/chatListFragment" />
+    </fragment>
 
 </navigation>

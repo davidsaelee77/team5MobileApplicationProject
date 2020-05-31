@@ -16,6 +16,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import edu.uw.tcss450.griffin.application.GriffinApplication;
 import edu.uw.tcss450.griffin.databinding.ActivityMainBinding;
 import edu.uw.tcss450.griffin.model.NewMessageCountViewModel;
+import edu.uw.tcss450.griffin.model.PushyTokenViewModel;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.services.PushReceiver;
 import edu.uw.tcss450.griffin.ui.chat.ChatMessageFragment;
@@ -173,10 +175,14 @@ public class MainActivity extends AppCompatActivity {
                 //navController.navigate(R.id.changePasswordFragment);
                 createChangePasswordDialog();
                 break;
-        }
 
+            case R.id.action_sign_out:
+                signOut();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * Creates a popou dialog box that prompts users to change their password.
@@ -291,6 +297,28 @@ public class MainActivity extends AppCompatActivity {
      */
     public UserInfoViewModel getUserInfoViewModel() {
         return userInfoViewModel;
+    }
+
+
+    private void signOut() {
+        SharedPreferences prefs =
+                getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+        prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
+        //End the app completely
+//        finishAndRemoveTask();
+
+        PushyTokenViewModel model = new ViewModelProvider(this)
+                .get(PushyTokenViewModel.class);
+        //when we hear back from the web service quit
+        model.addResponseObserver(this, result -> finishAndRemoveTask());
+        model.deleteTokenFromWebservice(
+                new ViewModelProvider(this)
+                        .get(UserInfoViewModel.class)
+                        .getJwt()
+        );
+
     }
 
 }

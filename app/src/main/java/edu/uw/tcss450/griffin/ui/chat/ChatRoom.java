@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,6 @@ public class ChatRoom implements Serializable {
     //handleResponse() -> assigns the emails for this chatRoom
 
     /**
-     *
      * @param context
      * @param model
      * @param chatId
@@ -55,18 +55,16 @@ public class ChatRoom implements Serializable {
         mContext = context;
         userInfoViewModel = model;
         mChatId = chatId;
-
         mEmailList = new MutableLiveData<>();
 
         connectGetEmails();
 
         mEmailList.setValue(new ArrayList<>());
 
-
     }
 
     private void connectGetEmails() {
-       // Log.d("ChatRoom", "calling chatroom connect");
+        // Log.d("ChatRoom", "calling chatroom connect");
         String url = mContext.getResources().getString(R.string.base_url)
                 + "chats?chatId=" + mChatId;
 
@@ -87,6 +85,7 @@ public class ChatRoom implements Serializable {
 
     /**
      * Method to handle volley errors.
+     *
      * @param error VolleyError object.
      */
     private void handleError(final VolleyError error) {
@@ -110,7 +109,7 @@ public class ChatRoom implements Serializable {
                 listOfEmails.add(email);
             }
             mEmailList.setValue(listOfEmails);
-           // Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
+            // Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
@@ -121,8 +120,6 @@ public class ChatRoom implements Serializable {
     public int getChatId() {
         return mChatId;
     }
-
-
 
 }
 

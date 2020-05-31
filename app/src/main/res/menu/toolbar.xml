@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigate_button_theme"
@@ -10,5 +10,11 @@
         android:id="@+id/navigate_button_password"
         android:title="@string/buttons_setting_changePassword"
         app:showAsAction="never"></item>
+
+    <item
+        android:id="@+id/action_sign_out"
+        android:orderInCategory="100"
+        android:title="@string/action_sign_out"
+        app:showAsAction="never" />
 
 </menu>
