@@ -165,6 +165,7 @@ public class WeatherViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
+
     public void setUserInfoViewModel(UserInfoViewModel vm) {
         userInfoViewModel = vm;
     }

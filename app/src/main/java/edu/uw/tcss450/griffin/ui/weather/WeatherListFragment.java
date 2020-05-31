@@ -119,7 +119,6 @@ public class WeatherListFragment extends Fragment {
     }
 
     private void searchMap(View view) {
-//        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
         Navigation.findNavController(getView()).navigate(WeatherListFragmentDirections.actionWeatherListFragmentToWeatherMapFragment());
     }
 }

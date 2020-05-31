@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,8 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
 
     private WeatherMapViewModel mModel;
 
+    private WeatherViewModel mModelData;
+
     private GoogleMap mMap;
 
     public WeatherMapFragment() {
@@ -53,12 +56,19 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
                 .get(WeatherMapViewModel.class);
         mModel.addLocationObserver(getViewLifecycleOwner(), location ->
                 binding.textLatLong.setText(location.toString()));
+        binding.buttonSearch.setOnClickListener(this::searchLatLong);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         //add this fragment as the OnMapReadyCallback -> See onMapReady()
         mapFragment.getMapAsync(this);
     }
+
+    private void searchLatLong(View view) {
+        mModelData.connectGet();
+        Navigation.findNavController(getView()).navigate(WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment());
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

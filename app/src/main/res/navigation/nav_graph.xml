@@ -86,7 +86,11 @@
         android:id="@+id/weatherMapFragment"
         android:name="edu.uw.tcss450.griffin.ui.weather.WeatherMapFragment"
         android:label="@string/fragment_weather_map"
-        tools:layout="@layout/fragment_weather_map" />
+        tools:layout="@layout/fragment_weather_map" >
+        <action
+            android:id="@+id/action_weatherMapFragment_to_weatherListFragment"
+            app:destination="@id/weatherListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addChatFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.AddChatFragment"
