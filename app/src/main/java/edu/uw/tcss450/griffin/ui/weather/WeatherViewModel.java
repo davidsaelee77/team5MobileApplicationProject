@@ -164,11 +164,6 @@ public class WeatherViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
-
-    public void setUserInfoViewModel(UserInfoViewModel vm) {
-        userInfoViewModel = vm;
-    }
-
     /**
      * Connect to web service with latitude and longitude as parameters
      * @param lat latitute string
@@ -178,7 +173,7 @@ public class WeatherViewModel extends AndroidViewModel {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
-        String url = "https://team5-tcss450-server.herokuapp.com/weather?latitude=" + lat +"?longitude=" + lng;
+        String url = "https://team5-tcss450-server.herokuapp.com/weather?latitude=" + lat +"&longitude=" + lng;
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request
@@ -194,5 +189,10 @@ public class WeatherViewModel extends AndroidViewModel {
         request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+
+    public void setUserInfoViewModel(UserInfoViewModel vm) {
+        userInfoViewModel = vm;
     }
 }
