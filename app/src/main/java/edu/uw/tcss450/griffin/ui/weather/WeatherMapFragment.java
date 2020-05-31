@@ -36,6 +36,8 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
 
     private GoogleMap mMap;
 
+    private LatLng mLatLng;
+
     public WeatherMapFragment() {
         // Required empty public constructor
     }
@@ -65,13 +67,14 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
     }
 
     private void searchLatLong(View view) {
-        mModelData.connectGet();
+
         Navigation.findNavController(getView()).navigate(WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment());
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        FragmentWeatherMapBinding binding = FragmentWeatherMapBinding.bind(getView());
         WeatherMapViewModel model = new ViewModelProvider(getActivity())
                 .get(WeatherMapViewModel.class);
         model.addLocationObserver(getViewLifecycleOwner(), location -> {
@@ -79,8 +82,10 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 googleMap.setMyLocationEnabled(true);
                 final LatLng c = new LatLng(location.getLatitude(), location.getLongitude());
+                mLatLng = c;
                 //Zoom levels are from 2.0f (zoomed out) to 21.f (zoomed in)
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(c, 15.0f));
+                binding.textLatLong.setText("Latitude:" + Double.toString(c.latitude) + "\nLongitude:" + Double.toString(c.longitude));
             }
         });
         mMap.setOnMapClickListener(this);
@@ -89,6 +94,7 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
 
     @Override
     public void onMapClick(LatLng latLng) {
+        FragmentWeatherMapBinding binding = FragmentWeatherMapBinding.bind(getView());
         Log.d("LAT/LONG", latLng.toString());
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
@@ -96,6 +102,8 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
         mMap.animateCamera(
                 CameraUpdateFactory.newLatLngZoom(
                         latLng, mMap.getCameraPosition().zoom));
+        binding.textLatLong.setText("Latitude:" + Double.toString(latLng.latitude) + "\nLongitude:" + Double.toString(latLng.longitude));
+        mLatLng = latLng;
     }
 
 }
