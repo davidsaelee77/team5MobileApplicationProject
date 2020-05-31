@@ -38,6 +38,9 @@ public class ContactListViewModel extends AndroidViewModel {
      * MutableLiveData object of type List<Contacts>.
      */
     private MutableLiveData<List<Contacts>> mContactList;
+
+    private MutableLiveData<List<Contacts>> mRequestList;
+
     /**
      * UserInfoViewModel. 
      */
@@ -63,19 +66,9 @@ public class ContactListViewModel extends AndroidViewModel {
 //        alphabet = new ArrayList<>();
 
         mContactList = new MutableLiveData<>();
+        mRequestList = new MutableLiveData<>();
         mContactList.setValue(new ArrayList<>());
-        // mResponse.setValue(new JSONObject());
-
-//        for (int i = 0; i < 26; i++) {
-//
-//            alphabet.add(Character.toString((char) (65 + i)));
-//        }
-//
-//        for (int i = 0; i < 26; i++) {
-//            list.add(new Contacts(randomNameGenerator(), randomNameGenerator(), randomNameGenerator(), alphabet.get(i)));
-//        }
-
-        //mContactList.setValue(list);
+        mRequestList.setValue(new ArrayList<>());
 
     }
 
@@ -84,6 +77,10 @@ public class ContactListViewModel extends AndroidViewModel {
      */
     public void addContactListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Contacts>> observer) {
         mContactList.observe(owner, observer);
+    }
+
+    public void addRequestListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Contacts>> observer) {
+        mRequestList.observe(owner, observer);
     }
 
     /**
@@ -109,7 +106,7 @@ public class ContactListViewModel extends AndroidViewModel {
                 if (!isSuccess) {
                     return;
                 }
-                JSONArray contacts = root.getJSONArray(JSONKeys.message);
+                JSONArray contacts = root.getJSONArray(JSONKeys.contacts);
                 ArrayList<Contacts> listOfContacts = new ArrayList<>();
                 for (int i = 0; i < contacts.length(); i++) {
                     JSONObject jsonContacts = contacts.getJSONObject(i);
@@ -122,6 +119,7 @@ public class ContactListViewModel extends AndroidViewModel {
                     }
                 }
                 mContactList.setValue(listOfContacts);
+                mRequestList.setValue(listOfContacts); //TODO: Replace with proper parse/set value
             } else {
                 Log.e("ERROR!", "No response");
             }
@@ -140,7 +138,7 @@ public class ContactListViewModel extends AndroidViewModel {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
         String url = getApplication().getResources().getString(R.string.base_url) +
-                "contact?memberid=" + userInfoViewModel.getMemberId();
+                "contact";
 
 //        String url = getApplication().getResources().getString(R.string.base_url);
 

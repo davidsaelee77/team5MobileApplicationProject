@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="72dp"
         android:text="@string/textview_weatherList_currentForecast"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -27,6 +27,7 @@
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/textview_weeklyLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,8 @@
         android:layout_width="420dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
+        android:background="#C5C5C5"
         android:text="@string/textview_weatherList_todayForecast"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -48,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_currentForecast" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_currentData" />
 
     <TextView
         android:id="@+id/textview_weeklyLabel"
@@ -57,13 +59,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
+        android:background="#C5C5C5"
         android:text="@string/textview_weatherList_weeklyForecast"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_weekly"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_today" />
 
@@ -73,7 +76,7 @@
         android:layout_height="146dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,25 +116,25 @@
         android:id="@+id/imageicon_weatherIcon"
         android:layout_width="54dp"
         android:layout_height="44dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/weather_clear_art"
         app:layout_constraintBottom_toTopOf="@+id/textview_currentData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.403"
-        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast" />
+        app:layout_constraintStart_toEndOf="@+id/textview_currentForecast"
+        app:layout_constraintTop_toBottomOf="@+id/textview_zipData" />
 
     <TextView
         android:id="@+id/textview_currentData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:text="@string/textview_weatherList_textDefault"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textview_todayLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toEndOf="@+id/textview_currentForecast"
-        app:layout_constraintTop_toBottomOf="@+id/textview_locationData"
-        app:layout_constraintVertical_bias="0.578" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_locationData" />
 
     <ImageButton
         android:id="@+id/button_search"

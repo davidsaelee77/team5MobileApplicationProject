@@ -12,9 +12,15 @@ public class JSONKeys {
     /**
      * Stores string value.
      */
-    public static final String message = "message";
+    public static final String contacts = "contacts";
     /**
      * Stores string value.
      */
     public static final String success = "success";
+
+    /**
+     * Stores string value
+     */
+    public static final String pending = "requests";
+
 }

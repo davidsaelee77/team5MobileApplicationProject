@@ -1,5 +1,6 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,7 +56,7 @@ public class WeatherListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
@@ -64,7 +67,6 @@ public class WeatherListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = FragmentWeatherListBinding.inflate(inflater);
         return binding.getRoot();
     }
@@ -75,6 +77,12 @@ public class WeatherListFragment extends Fragment {
         FragmentWeatherListBinding binding = FragmentWeatherListBinding.bind(getView());
         binding.buttonSearch.setOnClickListener(this::searchZip);
         binding.buttonMap.setOnClickListener(this::searchMap);
+
+        WeatherListFragmentArgs args = WeatherListFragmentArgs.fromBundle(getArguments());
+        if (!args.getLat().equals("default") && !args.getLng().equals("default")){
+            Log.d("Lat/Long", "You got here!" + args.getLat() + args.getLng());
+            mModel.connectGet(args.getLat(),args.getLng());
+        }
 
         mModel.addLocationObserver(getViewLifecycleOwner(), location -> {
             if (!location.isEmpty()) {
@@ -115,11 +123,14 @@ public class WeatherListFragment extends Fragment {
     }
 
     private void searchZip(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
         mModel.connectGet(binding.textviewZipData.getText().toString());
     }
 
     private void searchMap(View view) {
-//        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToPasswordRecoveryFragment()));
         Navigation.findNavController(getView()).navigate(WeatherListFragmentDirections.actionWeatherListFragmentToWeatherMapFragment());
     }
 }
