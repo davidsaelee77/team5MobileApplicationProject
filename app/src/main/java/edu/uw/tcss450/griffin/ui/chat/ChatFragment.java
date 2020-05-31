@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentChatBinding;
@@ -55,7 +56,7 @@ public class ChatFragment extends Fragment {
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         //mChatModel.getFirstMessages(mChatId, mUserModel.getJwt());
 
         mSendModel = provider.get(ChatSendViewModel.class);

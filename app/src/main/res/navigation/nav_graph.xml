@@ -11,15 +11,6 @@
     android:label="@string/textview_bottomMenu_home"
     tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/weatherFragment"
-        android:name="edu.uw.tcss450.griffin.ui.weather.WeatherFragment"
-        android:label="@string/textview_bottomMenu_weather"
-        tools:layout="@layout/fragment_weather" >
-        <argument
-            android:name="weatherData"
-            app:argType="edu.uw.tcss450.griffin.ui.weather.WeatherData" />
-    </fragment>
-    <fragment
         android:id="@+id/chatFragment"
         android:name="edu.uw.tcss450.griffin.ui.chat.ChatFragment"
         android:label="@string/textview_bottomMenu_chat"
@@ -64,9 +55,6 @@
         android:name="edu.uw.tcss450.griffin.ui.weather.WeatherListFragment"
         android:label="@string/textview_bottomMenu_weather"
         tools:layout="@layout/fragment_weather_list">
-        <action
-            android:id="@+id/action_weatherListFragment_to_weatherFragment"
-            app:destination="@id/weatherFragment" />
         <action
             android:id="@+id/action_weatherListFragment_to_weatherMapFragment"
             app:destination="@id/weatherMapFragment" />
