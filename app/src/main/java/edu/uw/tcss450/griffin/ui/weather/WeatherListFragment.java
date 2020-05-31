@@ -76,6 +76,12 @@ public class WeatherListFragment extends Fragment {
         binding.buttonSearch.setOnClickListener(this::searchZip);
         binding.buttonMap.setOnClickListener(this::searchMap);
 
+        WeatherListFragmentArgs args = WeatherListFragmentArgs.fromBundle(getArguments());
+        if (!args.getLat().equals("default") && !args.getLng().equals("default")){
+            Log.d("Lat/Long", "You got here!" + args.getLat() + args.getLng());
+            mModel.connectGet(args.getLat(),args.getLng());
+        }
+
         mModel.addLocationObserver(getViewLifecycleOwner(), location -> {
             if (!location.isEmpty()) {
                 binding.textviewZipData.setText(location.get("zip"));

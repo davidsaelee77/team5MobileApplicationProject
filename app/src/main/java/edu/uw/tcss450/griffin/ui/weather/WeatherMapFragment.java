@@ -67,8 +67,11 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
     }
 
     private void searchLatLong(View view) {
-
-        Navigation.findNavController(getView()).navigate(WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment());
+        WeatherMapFragmentDirections.ActionWeatherMapFragmentToWeatherListFragment directions = WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment();
+        directions.setLat(Double.toString(mLatLng.latitude));
+        directions.setLng(Double.toString(mLatLng.longitude));
+        Navigation.findNavController(getView()).navigate(directions);
+//        Navigation.findNavController(getView()).navigate(WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment());
     }
 
     @Override
