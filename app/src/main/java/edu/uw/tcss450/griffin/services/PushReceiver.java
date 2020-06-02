@@ -3,6 +3,7 @@ package edu.uw.tcss450.griffin.services;
 import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Person;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -86,6 +87,18 @@ public class PushReceiver extends BroadcastReceiver {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
                     i, PendingIntent.FLAG_UPDATE_CURRENT);
 
+            /**
+            if (!mMessagesByRoom.containsKey(chatId)) {
+                mMessagesByRoom.put(chatId).add(message);
+            }
+
+            mMessagesByRoom.get(chatId).add(message);
+
+            Person sender = new Person.Builder()
+                    .setName(message.getSender())
+                   .build();
+            **/
+
             //research more on notifications the how to display them
             //https://developer.android.com/guide/topics/ui/notifiers/notifications
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
@@ -104,7 +117,7 @@ public class PushReceiver extends BroadcastReceiver {
                     (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
             // Build the notification and display it
-            notificationManager.notify(1, builder.build());
+            notificationManager.notify(chatId, builder.build());
         }
 
     }
