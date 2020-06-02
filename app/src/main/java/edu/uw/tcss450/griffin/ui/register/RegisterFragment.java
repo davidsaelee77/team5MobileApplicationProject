@@ -24,6 +24,8 @@ import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkExcludeWhite
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdDigit;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLength;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdLowerCase;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdMatchesExp;
+import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdMaxLength;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdSpecialChar;
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkPwdUpperCase;
 
@@ -49,6 +51,14 @@ public class RegisterFragment extends Fragment {
      * Method to validate name.
      */
     private PasswordValidator mNameValidator = checkPwdLength(1);
+
+    /**
+     *
+     */
+    private PasswordValidator mUsernameValidator = checkPwdLength(3)
+            .and(checkPwdMaxLength(33))
+            .and(checkPwdMatchesExp("^\\w+$"));
+
     /**
      * Method to validate email.
      */
@@ -160,7 +170,7 @@ public class RegisterFragment extends Fragment {
      */
     private void validateUsername() {
         mNameValidator.processResult(
-                mNameValidator.apply(binding.textviewUsername.getText().toString().trim()),
+                mUsernameValidator.apply(binding.textviewUsername.getText().toString().trim()),
                 this::validateEmail,
                 result -> binding.textviewUsername.setError("Please enter a valid user name."));
     }
@@ -193,12 +203,11 @@ public class RegisterFragment extends Fragment {
     private void verifyAuthWithServer() {
 
         mRegisterModel.connect(
-                binding.textplainFirstName.getText().toString(),
-                binding.textplainLastName.getText().toString(),
-                binding.textviewUsername.getText().toString(),
-                binding.emailInput.getText().toString(),
-                binding.passwordPassword.getText().toString());
-
+                binding.textplainFirstName.getText().toString().trim(),
+                binding.textplainLastName.getText().toString().trim(),
+                binding.textviewUsername.getText().toString().trim(),
+                binding.emailInput.getText().toString().trim(),
+                binding.passwordPassword.getText().toString().trim());
     }
 
     /**
@@ -209,8 +218,8 @@ public class RegisterFragment extends Fragment {
         RegisterFragmentDirections.ActionRegisterFragmentToLoginFragment directions =
                 RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
 
-         directions.setEmail(binding.emailInput.getText().toString());
-         directions.setPassword(binding.passwordPassword.getText().toString());
+         directions.setEmail(binding.emailInput.getText().toString().trim());
+         directions.setPassword(binding.passwordPassword.getText().toString().trim());
 
         Navigation.findNavController(getView()).navigate(directions);
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,37 +75,28 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     }
 
     public Boolean usernameValidation(List<String> username) {
-
         for (int i = 0; i < username.size(); i++) {
 
             if (username.get(i).equals("")) {
-                binding.editTextEnterUser.setError("Not a valid e-mail.  No input was provided");
+                binding.editTextEnterUser.setError("One or more blank username(s)");
+                binding.editTextEnterUser.requestFocus();
                 return false;
-            } else if (username.get(i).length() > 0) {
-                int count = 0;
-                for (int j = 0; j < username.get(i).length(); j++) {
-
-                    if ((int) username.get(i).charAt(j) == 64) {
-                        count++;
-                    }
-                }
-                if (count <= 0) {
-
-                    binding.editTextEnterUser.setError("You have entered an invalid e-mail.  Missing at least 1 @ from address");
-                    return false;
-                }
+            } else if (username.get(i).length() > 32 || username.get(i).length() < 4) {
+                binding.editTextEnterUser.setError("Valid usernames are 4-32 characters long");
+                binding.editTextEnterUser.requestFocus();
+                return false;
+            } else if (!username.get(i).matches("^\\w+$")) {
+                binding.editTextEnterUser.setError("Usernames must be alphanumeric");
+                binding.editTextEnterUser.requestFocus();
+                return false;
             }
         }
-
+        binding.editTextEnterUser.setError(null);
         return true;
     }
 
     public List<String> parseUsername(String str) {
-
-        List<String> usernames = new ArrayList<String>(Arrays.asList(str.split(" , ")));
-
-        return usernames;
-
+        return new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
     }
 
     @Override
