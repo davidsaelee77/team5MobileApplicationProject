@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +61,6 @@ public class WeatherListFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
-            mModel.connectGet();
         }
     }
 
@@ -68,6 +68,7 @@ public class WeatherListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentWeatherListBinding.inflate(inflater);
+        mModel.connectGet();
         return binding.getRoot();
     }
 
