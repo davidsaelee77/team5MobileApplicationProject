@@ -8,7 +8,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homenotificationslist_root"
-        android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"
         android:layout_width="395dp"
         android:layout_height="542dp"
         android:layout_marginStart="8dp"
@@ -23,3 +22,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--        android:name="edu.uw.tcss450.team5tcss450client.ui.home.HomeFragment"-->

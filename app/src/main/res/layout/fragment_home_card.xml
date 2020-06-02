@@ -39,6 +39,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="315dp"
             android:layout_marginBottom="27dp"
+            android:text="@string/member_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -63,7 +63,7 @@ public class HomeNotificationRecylcerViewAdapter extends RecyclerView.Adapter<Ho
         void setNotifications(final HomeNotifications notifications) {
 
 
-            binding.numberNotificationTextView.setText(notifications.getNotifications());
+            binding.numberNotificationTextView.setText(notifications.getNotifications() + "");
 
         }
     }

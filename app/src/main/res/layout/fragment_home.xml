@@ -58,4 +58,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_welcome" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homenotificationslist_root"
+        android:layout_width="395dp"
+        android:layout_height="542dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageicon_weatherIcon"
+        tools:context="edu.uw.tcss450.griffin.ui.home.HomeNotificationListFragment"
+        tools:listitem="@layout/fragment_home_card" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

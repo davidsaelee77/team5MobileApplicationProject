@@ -12,16 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeBinding;
+import edu.uw.tcss450.griffin.databinding.FragmentHomeNotificationListBinding;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.ui.weather.WeatherRecyclerViewAdapter;
 import edu.uw.tcss450.griffin.ui.weather.WeatherViewModel;
 import edu.uw.tcss450.griffin.ui.weather.WeatherWeekRecyclerViewAdapter;
 
 /**
- *
  * @author David Saelee
  * @version May 2020
  */
@@ -36,6 +39,11 @@ public class HomeFragment extends Fragment {
      */
     private WeatherViewModel mWeatherModel;
 
+    private HomeNotificationListViewModel mModel;
+
+    private List<HomeNotifications> list = new ArrayList<>();
+
+
     /**
      * FragmentHomeBinding object.
      */
@@ -49,15 +57,26 @@ public class HomeFragment extends Fragment {
     }
 
 
-        public void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
-            if (getActivity() instanceof MainActivity) {
-                MainActivity activity = (MainActivity) getActivity();
-                mWeatherModel.setUserInfoViewModel(activity.getUserInfoViewModel());
-                mWeatherModel.connectGet();
-            }
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        if (getActivity() instanceof MainActivity) {
+            MainActivity activity = (MainActivity) getActivity();
+            mWeatherModel.setUserInfoViewModel(activity.getUserInfoViewModel());
+            mWeatherModel.connectGet();
         }
+        mModel = new ViewModelProvider(getActivity()).get(HomeNotificationListViewModel.class);
+
+        generateRandomData();
+    }
+
+    public void generateRandomData() {
+
+        for (int i = 0; i < 5; i++) {
+
+            list.add(new HomeNotifications(i));
+        }
+    }
 
     /**
      * Instantiates home fragment UI view.
@@ -91,20 +110,26 @@ public class HomeFragment extends Fragment {
         mWeatherModel.addWeatherObserver(getViewLifecycleOwner(), weatherList -> {
             binding.textviewCurrentData.setText(weatherList.get(0).getWeather() +
                     ", " + String.format("%.2f", weatherList.get(0).getTemp()) + " F");
-            if (weatherList.get(0).getWeather().equals("Thunderstorm")){
+            if (weatherList.get(0).getWeather().equals("Thunderstorm")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_thunder_art);
-            } else if (weatherList.get(0).getWeather().equals("Drizzle")){
+            } else if (weatherList.get(0).getWeather().equals("Drizzle")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_drizzle_art);
-            } else if (weatherList.get(0).getWeather().equals("Rain")){
+            } else if (weatherList.get(0).getWeather().equals("Rain")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_rain_art);
-            }else if (weatherList.get(0).getWeather().equals("Snow")){
+            } else if (weatherList.get(0).getWeather().equals("Snow")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_snow_art);
-            } else if (weatherList.get(0).getWeather().equals("Mist")){
+            } else if (weatherList.get(0).getWeather().equals("Mist")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_mist_art);
-            } else if (weatherList.get(0).getWeather().equals("Clear")){
+            } else if (weatherList.get(0).getWeather().equals("Clear")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_clear_art);
-            } else if (weatherList.get(0).getWeather().equals("Clouds")){
+            } else if (weatherList.get(0).getWeather().equals("Clouds")) {
                 binding.imageiconWeatherIcon.setImageResource(R.drawable.weather_clouds_art);
+            }
+        });
+
+        mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
+            if (!requestNotifications.isEmpty()) {
+                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(list));
             }
         });
     }

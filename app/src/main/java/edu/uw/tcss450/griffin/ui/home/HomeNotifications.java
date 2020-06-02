@@ -10,9 +10,7 @@ public class HomeNotifications implements Serializable {
     public HomeNotifications(int notifications) {
 
         this.mNotifications = notifications;
-
     }
-
 
     public int getNotifications() {
         return mNotifications;

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
@@ -25,9 +26,9 @@ import edu.uw.tcss450.griffin.ui.contacts.ContactListViewModel;
  */
 public class HomeNotificationListFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
-
     private HomeNotificationListViewModel mModel;
+//
+//    private List<HomeNotifications> list = new ArrayList<>();
 
     public HomeNotificationListFragment() {
         // Required empty public constructor
@@ -39,6 +40,8 @@ public class HomeNotificationListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(HomeNotificationListViewModel.class);
 
+//        generateRandomData();
+
     }
 
 
@@ -46,22 +49,26 @@ public class HomeNotificationListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater);
-
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_home_notification_list, container, false);
     }
+
+//    public void generateRandomData() {
+//
+//        for (int i = 0; i < 5; i++) {
+//
+//            list.add(new HomeNotifications(i));
+//        }
+//    }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        FragmentHomeNotificationListBinding binding = FragmentHomeNotificationListBinding.bind(getView());
-
-        mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
-            if (!requestNotifications.isEmpty()) {
-                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(requestNotifications));
-            }
-        });
-
-
+//
+//        FragmentHomeNotificationListBinding binding = FragmentHomeNotificationListBinding.bind(getView());
+//
+//        mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
+//            if (!requestNotifications.isEmpty()) {
+//                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(list));
+//            }
+//        });
     }
 }
