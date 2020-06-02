@@ -46,7 +46,6 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
         holder.setWeather(mData.get(position));
-
     }
 
     @Override
