@@ -36,6 +36,7 @@ public class ChatListFragment extends Fragment {
      * Binding for Chat List.
      */
     private FragmentChatListBinding binding;
+
     /**
      * Empty public constructor.
      */
@@ -52,6 +53,8 @@ public class ChatListFragment extends Fragment {
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
         mModel.connectGet();
+
+
     }
 
     @Override

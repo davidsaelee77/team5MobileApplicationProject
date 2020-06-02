@@ -20,6 +20,7 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
+import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 
 
 /**
@@ -30,6 +31,10 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     private ChatListViewModel mModel;
 
     private FragmentAddChatBinding binding;
+
+    private UserInfoViewModel mUsermodel;
+
+//    private ChatFragmentArgs args;
 
     public AddChatFragment() {
         // Required empty public constructor
@@ -44,6 +49,7 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
+//        args = ChatFragmentArgs.fromBundle(getArguments());
     }
 
     @Override
@@ -58,6 +64,7 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         binding.editTextEnterChatNameAddchatfragment.setOnClickListener(this);
         binding.imageButtonAddChatAddchatfragment.setOnClickListener(this);
@@ -96,7 +103,15 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     }
 
     public List<String> parseUsername(String str) {
-        return new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
+
+        ArrayList userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
+//
+//        for(int i = 0; i < userNames.size(); i++) {
+//
+//            mModel.connectAddMemberInChatPut(userNames.get(i));
+//        }
+
+        return userNames;
     }
 
     @Override

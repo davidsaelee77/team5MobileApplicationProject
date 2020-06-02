@@ -17,6 +17,7 @@
     <!-- Home Fragment -->
     <string name="textview_home_welcome">Welcome home!</string>
     <string name="textview_home_forecast">Forecast</string>
+    <string name="textview_home_notification">Notifications</string>
 
 
     <!-- Register Fragment -->
@@ -124,5 +125,8 @@
     <string name="keys_prefs_memberid">Sharded Prefs MemberID</string>
     <string name="keys_prefs_theme">Sharded Prefs Theme</string>
     <string name="action_sign_out">Sign Out</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
