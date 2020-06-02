@@ -97,19 +97,30 @@ public class MainActivity extends AppCompatActivity {
      */
     public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
             UPDATE_INTERVAL_IN_MILLISECONDS / 2;
-
-    // A constant int for the permissions request code. Must be a 16 bit number
+    
+    /**
+     * A constant int for the permissions request code. Must be a 16 bit number.
+     */
     private static final int MY_PERMISSIONS_LOCATIONS = 8414;
 
+    /**
+     * LocationRequest object.
+     */
     private LocationRequest mLocationRequest;
 
-    //Use a FusedLocationProviderClient to request the location
+    /**
+     *Use a FusedLocationProviderClient to request the location .
+     */
     private FusedLocationProviderClient mFusedLocationClient;
 
-    // Will use this call back to decide what to do when a location change is detected
+    /**
+     *  Will use this call back to decide what to do when a location change is detected.
+    */
     private LocationCallback mLocationCallback;
 
-    //The ViewModel that will store the current location
+    /**
+     * The ViewModel that will store the current location.
+     */
     private WeatherMapViewModel mLocationModel;
 
     /**
@@ -366,7 +377,9 @@ public class MainActivity extends AppCompatActivity {
         return userInfoViewModel;
     }
 
-
+    /**
+     * Allows user to sign out in app.
+     */
     private void signOut() {
         SharedPreferences prefs =
                 getSharedPreferences(
@@ -417,6 +430,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method to request location from phone.
+     */
     private void requestLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -443,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Create and configure a Location Request used when retrieving location updates
+     * Create and configure a Location Request used when retrieving location updates.
      */
     private void createLocationRequest() {
         mLocationRequest = LocationRequest.create();

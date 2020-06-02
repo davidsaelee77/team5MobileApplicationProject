@@ -46,6 +46,7 @@ public class WeatherListFragment extends Fragment {
      */
     private List<WeatherData> dayList;
 
+    private static boolean mFirst = true;
     /**
      * Empty public constructor. 
      */
@@ -68,7 +69,10 @@ public class WeatherListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentWeatherListBinding.inflate(inflater);
-        mModel.connectGet();
+        if(mFirst){
+            mModel.connectGet();
+            mFirst = false;
+        }
         return binding.getRoot();
     }
 
@@ -78,10 +82,10 @@ public class WeatherListFragment extends Fragment {
         FragmentWeatherListBinding binding = FragmentWeatherListBinding.bind(getView());
         binding.buttonSearch.setOnClickListener(this::searchZip);
         binding.buttonMap.setOnClickListener(this::searchMap);
-
         WeatherListFragmentArgs args = WeatherListFragmentArgs.fromBundle(getArguments());
+
         if (!args.getLat().equals("default") && !args.getLng().equals("default")){
-            Log.d("Lat/Long", "You got here!" + args.getLat() + args.getLng());
+            Log.d("Lat/Long", "You got here!" + args.getLat() + "" + args.getLng());
             mModel.connectGet(args.getLat(),args.getLng());
         }
 

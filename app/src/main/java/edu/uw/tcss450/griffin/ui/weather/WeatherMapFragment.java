@@ -29,15 +29,25 @@ import edu.uw.tcss450.griffin.databinding.FragmentWeatherMapBinding;
  */
 public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
-
+    /**
+     * WeatherMapViewModel object.
+     */
     private WeatherMapViewModel mModel;
-
+    /**
+     * WeatherViewModel object.
+     */
     private WeatherViewModel mModelData;
-
+    /**
+     * GoogleMap object.
+     */
     private GoogleMap mMap;
-
+    /**
+     * LatLng object.
+     */
     private LatLng mLatLng;
-
+    /**
+     * Empty public constructor.
+     */
     public WeatherMapFragment() {
         // Required empty public constructor
     }
@@ -50,7 +60,7 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
         return inflater.inflate(R.layout.fragment_weather_map, container, false);
     }
 
-
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FragmentWeatherMapBinding binding = FragmentWeatherMapBinding.bind(getView());
@@ -66,6 +76,10 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
         mapFragment.getMapAsync(this);
     }
 
+    /**
+     * Function for passing latitude and longitude on button press.
+     * @param view
+     */
     private void searchLatLong(View view) {
         WeatherMapFragmentDirections.ActionWeatherMapFragmentToWeatherListFragment directions = WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment();
         directions.setLat(Double.toString(mLatLng.latitude));
