@@ -1,5 +1,6 @@
 package edu.uw.tcss450.griffin.ui.contacts;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.griffin.MainActivity;
+import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentContactListBinding;
 
 
@@ -33,8 +35,7 @@ public class ContactsListFragment extends Fragment {
      * FragmentContactListBinding object.
      */
     private FragmentContactListBinding binding;
-    //private List<Contacts> list;
-    // private List<String> alphabet;
+
 
     /**
      * Empty public constructor.
@@ -42,8 +43,6 @@ public class ContactsListFragment extends Fragment {
     public ContactsListFragment() {
         // Required empty public constructor
 
-//        list = new ArrayList<Contacts>();
-//        alphabet = new ArrayList<>();
     }
 
     @Override
@@ -55,8 +54,6 @@ public class ContactsListFragment extends Fragment {
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
         mModel.connectGet();
-        //generateAlphabet();
-        //generateRandomData();
     }
 
     /**
@@ -97,10 +94,15 @@ public class ContactsListFragment extends Fragment {
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
 
             if (!contactList.isEmpty()) {
-                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(contactList));
+                binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(contactList, this));
             }
         });
 
     }
+
+    public void deleteContact(final int memberId) {
+        mModel.connectDeleteContact(memberId);
+    }
+
 }
 

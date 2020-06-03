@@ -15,10 +15,13 @@ import edu.uw.tcss450.griffin.databinding.FragmentContactrequestCardBinding;
 
 public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<ContactRequestRecyclerViewAdapter.ContactRequestViewHolder> {
 
+    private final RequestContactFragment mParent;
+
     List<Contacts> mContactRequests;
 
-    public ContactRequestRecyclerViewAdapter(List<Contacts> requests) {
+    public ContactRequestRecyclerViewAdapter(List<Contacts> requests, RequestContactFragment parent) {
         this.mContactRequests = requests;
+        this.mParent = parent;
     }
 
     @NonNull
@@ -48,17 +51,30 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
             mView = view;
 
             binding = FragmentContactrequestCardBinding.bind(view);
-            //binding.buttonSeeMore.setOnClickListener(this::acceptRequest);
-            //binding.buttonDecline.setOnClickListener(this::declineRequest);
+
 
         }
 
         void setRequest(final Contacts contact) {
-//            binding.buttonFullPost.setOnClickListener(view -> Log.d("WHAT IS THIS", "what"));
-//            binding.textviewMemberID.setText(contact.getMemberID());
-            binding.textviewUsername.setText(contact.getUserName());
-//            binding.textviewFirstName.setText(contact.getFirstName());
-//            binding.textviewLastName.setText(contact.getLastName());
+            binding.textviewFirstName.setText(contact.getUserName());
+            String fullName = contact.getFirstName() + " " + contact.getLastName();
+            binding.textviewLastName.setText(fullName);
+            binding.buttonAcceptContact.setOnClickListener(view -> acceptRequest(this, contact));
+            binding.buttonDeclineContact.setOnClickListener(view -> declineRequest(this, contact));
         }
+    }
+
+    private void acceptRequest(final ContactRequestViewHolder view, Contacts contact) {
+        mContactRequests.remove(contact);
+        notifyItemRemoved(view.getLayoutPosition());
+        final int memberId = Integer.parseInt(contact.getMemberID());
+        mParent.acceptContact(memberId);
+    }
+
+    private void declineRequest(final ContactRequestViewHolder view, Contacts contact) {
+        mContactRequests.remove(contact);
+        notifyItemRemoved(view.getLayoutPosition());
+        final int memberId = Integer.parseInt(contact.getMemberID());
+        mParent.deleteContact(memberId);
     }
 }

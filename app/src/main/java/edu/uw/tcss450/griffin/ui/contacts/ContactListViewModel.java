@@ -183,15 +183,62 @@ public class ContactListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
+    public void connectDeleteContact(final int memberid) {
+        String url = getApplication().getResources().getString(R.string.base_url) + "contact" +
+                "?memberId=" + memberid;
+        Request request = new JsonObjectRequest(Request.Method.DELETE, url, null,
+                this::handleDeleteResult, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
 
-    public void connectAddContactPost(final int memberidA, final int memberidB) {
+    private void handleDeleteResult(JSONObject result) {
+        try {
+            Log.d("ContactListViewModel DELETE", "Result for delete attempt: " +
+                    result.getString("success"));
+        } catch (JSONException e) {
+            throw new IllegalStateException("Unexpected response in ContactListViewModel: " + result);
+        }
+    }
+
+    public void connectAcceptContact(final int memberid) {
+        if (userInfoViewModel == null) {
+            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+        }
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "contact?memberId=" + memberid;
+        Request request = new JsonObjectRequest(Request.Method.PUT, url, null,
+                null, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", userInfoViewModel.getJwt());
+
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+
+    public void connectAddContactPost(String username) {
         String url = getApplication().getResources().getString(R.string.base_url) +
                 "contact";
 
         JSONObject body = new JSONObject();
         try {
-            body.put("memberid_a", memberidA);
-            body.put("memberid_b", memberidB);
+            body.put("username", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }

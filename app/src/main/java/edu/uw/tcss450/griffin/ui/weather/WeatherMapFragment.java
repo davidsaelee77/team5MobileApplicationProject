@@ -113,6 +113,7 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
     public void onMapClick(LatLng latLng) {
         FragmentWeatherMapBinding binding = FragmentWeatherMapBinding.bind(getView());
         Log.d("LAT/LONG", latLng.toString());
+        mMap.clear();
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .title("New Marker"));

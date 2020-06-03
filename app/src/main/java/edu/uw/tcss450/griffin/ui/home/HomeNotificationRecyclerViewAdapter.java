@@ -13,12 +13,12 @@ import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeCardBinding;
 import edu.uw.tcss450.griffin.model.Notification;
 
-public class HomeNotificationRecylcerViewAdapter extends RecyclerView.Adapter<HomeNotificationRecylcerViewAdapter.HomeNotificationViewHolder> {
+public class HomeNotificationRecyclerViewAdapter extends RecyclerView.Adapter<HomeNotificationRecyclerViewAdapter.HomeNotificationViewHolder> {
 
 
     private final List<Notification> mNotifications;
 
-    public HomeNotificationRecylcerViewAdapter(List<Notification> notifications) {
+    public HomeNotificationRecyclerViewAdapter(List<Notification> notifications) {
 
         this.mNotifications = notifications;
     }

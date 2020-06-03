@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
         //mNotificationModel.addHomeNotificationListObserver(getViewLifecycleOwner(), notifications -> {
         userInfoViewModel.addNotificationsObserver(getViewLifecycleOwner(), notifications -> {
             if (!notifications.isEmpty()) {
-                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(notifications));
+                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecyclerViewAdapter(notifications));
             }
         });
     }

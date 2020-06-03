@@ -66,7 +66,7 @@ public class HomeNotificationListFragment extends Fragment {
 
         mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
             if (!requestNotifications.isEmpty()) {
-                //binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter());
+                //binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecyclerViewAdapter());
             }
         });
     }

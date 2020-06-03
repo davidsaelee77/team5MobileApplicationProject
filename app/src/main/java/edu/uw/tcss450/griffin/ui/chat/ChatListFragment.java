@@ -84,9 +84,6 @@ public class ChatListFragment extends Fragment {
     }
 
     public void deleteChat(final int chatId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.dialog_chatListRecycler_title);
-        builder.setMessage(R.string.dialog_chatListRecycler_message);
         mModel.connectDeleteChat(chatId);
     }
 }

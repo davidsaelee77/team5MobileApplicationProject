@@ -56,7 +56,7 @@ public class RequestContactFragment extends Fragment implements View.OnClickList
 
         mModel.addRequestListObserver(getViewLifecycleOwner(), requestList -> {
             if (!requestList.isEmpty()) {
-                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList));
+                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList, this));
             }
         });
 
@@ -66,5 +66,13 @@ public class RequestContactFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void deleteContact(final int memberId) {
+        mModel.connectDeleteContact(memberId);
+    }
+
+    public void acceptContact(final int memberId) {
+        mModel.connectAcceptContact(memberId);
     }
 }

@@ -42,7 +42,7 @@
         android:id="@+id/imageButton_addChat_chatlistfragment"
         style="@android:style/Widget.DeviceDefault.Light.ImageButton"
         android:layout_width="86dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="303dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"

@@ -118,7 +118,7 @@
     <fragment
         android:id="@+id/addContactFragment"
         android:name="edu.uw.tcss450.griffin.ui.contacts.AddContactFragment"
-        android:label="fragment_add_contact"
+        android:label="Add New Contact"
         tools:layout="@layout/fragment_add_contact" >
         <action
             android:id="@+id/action_addContactFragment_to_contactListFragment"
@@ -127,7 +127,7 @@
     <fragment
         android:id="@+id/requestContactFragment"
         android:name="edu.uw.tcss450.griffin.ui.contacts.RequestContactFragment"
-        android:label="fragment_request_contact"
+        android:label="Contact Requests"
         tools:layout="@layout/fragment_request_contact" >
         <action
             android:id="@+id/action_requestContactFragment_to_contactListFragment"

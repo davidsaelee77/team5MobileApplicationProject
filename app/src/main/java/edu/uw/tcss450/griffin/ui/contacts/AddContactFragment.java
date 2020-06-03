@@ -79,9 +79,10 @@ public class AddContactFragment extends Fragment implements
             binding.editTextSearchUsernameAddcontactfragment.setError("Usernames must be alphanumeric");
             binding.editTextSearchUsernameAddcontactfragment.requestFocus();
             return false;
+        } else {
+            binding.editTextSearchUsernameAddcontactfragment.setError(null);
+            return true;
         }
-        binding.editTextSearchUsernameAddcontactfragment.setError(null);
-        return true;
     }
 
 
@@ -91,7 +92,7 @@ public class AddContactFragment extends Fragment implements
         if (usernameValidation(binding.editTextSearchUsernameAddcontactfragment.getText().toString())) {
 
             if (v == binding.imageButtonSearchUserContactfragment) {
-                mModel.connectAddContactPost(mUsermodel.getMemberId(), mUsermodel.getMemberId());
+                mModel.connectAddContactPost(binding.editTextSearchUsernameAddcontactfragment.getText().toString());
                 // Navigation.findNavController(getView()).navigate(RequestContactFragmentDirections.actionRequestContactFragmentToContactListFragment());
             }
 

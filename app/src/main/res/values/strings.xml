@@ -75,9 +75,6 @@
     <string name="title_conversation">Conversation</string>
     <string name="text_conversation_message">Message</string>
     <string name="button_conversation_send">Send</string>
-    <string name="button_contactList_seeMoreDescription">See More</string>
-    <string name="button_contactRequest_accept">Accept</string>
-    <string name="button_contactRequest_decline">Decline</string>
     <string name="string_chat_sendDescription">Sends the message</string>
     <string name="string_chat_messageEntryDescription">Message</string>
     <string name="button_chat_delete">Delete Chat</string>
@@ -89,6 +86,7 @@
     but you will no longer be a part of it.</string>
     <string name="dialog_chatListRecycler_positive">Confirm</string>
     <string name="dialog_chatListRecycler_negative">Cancel</string>
+
     <string name="textview_addchatname">CHAT NAME ENTRY:</string>
     <string name="textview_addusername">USERNAME ENTRY:</string>
     <string name="editText_addusername">Enter username(s).</string>
@@ -98,8 +96,16 @@
 
     <!-- Contacts -->
     <string name="title_searchContacts">Find New Contacts</string>
-    <string name="textplain_contacts_search">Search Contacts</string>
-    <string name="textplain_contacts_request">Request Contacts</string>
+    <string name="textplain_contacts_search">Add New Contact</string>
+    <string name="textplain_contacts_request">Incoming Requests</string>
+    <string name="dialog_contactListRecycler_title">Confirm Delete?</string>
+    <string name="dialog_contactListRecycler_message">Do you wish to delete this contact?</string>
+    <string name="dialog_contactListRecycler_positive">Confirm</string>
+    <string name="dialog_contactListRecycler_negative">Cancel</string>
+    <string name="button_contactList_seeMoreDescription">See More</string>
+    <string name="button_contactRequest_accept">Accept</string>
+    <string name="button_contactRequest_decline">Decline</string>
+    <string name="button_contact_delete">Delete Contact</string>
 
     <!-- Weather -->
     <string name="textview_weatherWeekCard_low">Low</string>

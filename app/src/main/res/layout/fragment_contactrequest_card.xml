@@ -16,14 +16,14 @@
 
         android:id="@+id/layout_inner"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="147dp"
         app:layout_constraintBottom_toTopOf="@+id/textview_firstName"
         app:layout_constraintTop_toTopOf="@+id/textview_firstName">
 
         <TextView
             android:id="@+id/textview_username"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:background="@color/colorPrimary_UW"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -40,10 +40,10 @@
 
         <TextView
             android:id="@+id/textview_firstName"
-            android:layout_width="152dp"
+            android:layout_width="120dp"
             android:layout_height="32dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="80dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
@@ -55,35 +55,41 @@
 
         <TextView
             android:id="@+id/textview_lastName"
-            android:layout_width="152dp"
+            android:layout_width="200dp"
             android:layout_height="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textview_firstName"
             app:layout_constraintTop_toTopOf="@+id/textview_firstName"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textview_preview"
-            android:layout_width="10dp"
-            android:layout_height="162dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="8dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
+        <Button
+            android:id="@+id/button_accept_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/button_contactRequest_accept"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="141dp"
-            tools:text="@string/button_contactList_seeMoreDescription" />
+            card_view:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/button_decline_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/button_contactRequest_decline"
+            app:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
