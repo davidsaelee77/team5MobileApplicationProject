@@ -19,20 +19,25 @@ public class HomeNotificationListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Notification>> mNotificationList;
 
+    private ArrayList<Notification> listOfNotifications;
+
     private UserInfoViewModel mUserModel;
 
 
     public HomeNotificationListViewModel(@NonNull Application application) {
         super(application);
-
-        mNotificationList = new MutableLiveData<List<Notification>>();
-
-       // mNotificationList.setValue(mUserModel.getNotifications());
-
+        //mNotificationList = mUserModel.getNotifications();
+        mNotificationList = new MutableLiveData<>();
+        mNotificationList.setValue(new ArrayList<>());
+        //listOfNotifications = new ArrayList<>();
     }
 
     public void addHomeNotificationListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Notification>> observer) {
         mNotificationList.observe(owner, observer);
+    }
+
+    public MutableLiveData<List<Notification>> getNotifications() {
+        return this.mNotificationList;
     }
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {

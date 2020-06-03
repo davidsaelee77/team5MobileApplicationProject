@@ -5,25 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeBinding;
-import edu.uw.tcss450.griffin.databinding.FragmentHomeNotificationListBinding;
-import edu.uw.tcss450.griffin.model.Notification;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
-import edu.uw.tcss450.griffin.ui.weather.WeatherRecyclerViewAdapter;
 import edu.uw.tcss450.griffin.ui.weather.WeatherViewModel;
-import edu.uw.tcss450.griffin.ui.weather.WeatherWeekRecyclerViewAdapter;
 
 /**
  * @author David Saelee
@@ -40,7 +32,9 @@ public class HomeFragment extends Fragment {
      */
     private WeatherViewModel mWeatherModel;
 
-    private HomeNotificationListViewModel mModel;
+    private HomeNotificationListViewModel mNotificationModel;
+
+    private UserInfoViewModel userInfoViewModel;
 
 //    private List<Notification> list = new ArrayList<>();
 
@@ -61,28 +55,17 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        mNotificationModel = new ViewModelProvider(getActivity()).get(HomeNotificationListViewModel.class);
+        userInfoViewModel = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
         if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             mWeatherModel.setUserInfoViewModel(activity.getUserInfoViewModel());
+            mNotificationModel.setUserInfoViewModel(activity.getUserInfoViewModel());
             mWeatherModel.connectGet();
         }
-        mModel = new ViewModelProvider(getActivity()).get(HomeNotificationListViewModel.class);
 
-        if (getActivity() instanceof MainActivity) {
-            MainActivity activity = (MainActivity) getActivity();
-            mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
-        }
-
-       // generateRandomData();
     }
 
-//    public void generateRandomData() {
-//
-//        for (int i = 0; i < 5; i++) {
-//
-//            list.add(new HomeNotifications(i));
-//        }
-//    }
 
     /**
      * Instantiates home fragment UI view.
@@ -109,6 +92,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mWeatherModel.addLocationObserver(getViewLifecycleOwner(), location -> {
             binding.textViewLocation.setText(location.get("city"));
         });
@@ -133,9 +117,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
-            if (!requestNotifications.isEmpty()) {
-                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(requestNotifications));
+        //mNotificationModel.addHomeNotificationListObserver(getViewLifecycleOwner(), notifications -> {
+        userInfoViewModel.addNotificationsObserver(getViewLifecycleOwner(), notifications -> {
+            if (!notifications.isEmpty()) {
+                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(notifications));
             }
         });
     }

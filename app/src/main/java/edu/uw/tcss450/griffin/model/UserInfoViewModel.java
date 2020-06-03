@@ -1,7 +1,9 @@
 package edu.uw.tcss450.griffin.model;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,7 +15,7 @@ public class UserInfoViewModel extends ViewModel {
     private final String mEmail;
     private final String mJwt;
     private final int mMemberId;
-    private final ArrayList<Notification> mNotificationList = new ArrayList<Notification>();
+    private final MutableLiveData<List<Notification>> mNotificationList;
 
     /**
      * Constructor that instantiates fields with given email and jwt.
@@ -26,6 +28,9 @@ public class UserInfoViewModel extends ViewModel {
         mEmail = email;
         mJwt = jwt;
         mMemberId = memberId;
+
+        mNotificationList = new MutableLiveData<>();
+        mNotificationList.setValue(new ArrayList<>());
     }
 
     /**
@@ -52,16 +57,24 @@ public class UserInfoViewModel extends ViewModel {
         return mMemberId;
     }
 
-    public ArrayList<Notification> getNotifications() {
+    public MutableLiveData<List<Notification>> getNotifications() {
         return this.mNotificationList;
     }
 
     public void addNotifications(Notification notification) {
-        this.mNotificationList.add(notification);
+        List<Notification> newList = this.mNotificationList.getValue();
+        newList.add(notification);
+        this.mNotificationList.setValue(newList);
     }
 
     public void clearNotifications() {
-        this.mNotificationList.clear();
+        List<Notification> newList = this.mNotificationList.getValue();
+        newList.clear();
+        this.mNotificationList.setValue(newList);
+    }
+
+    public void addNotificationsObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Notification>> observer) {
+        mNotificationList.observe(owner, observer);
     }
 
 
