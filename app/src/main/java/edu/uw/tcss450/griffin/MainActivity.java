@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         mArgs = MainActivityArgs.fromBundle(getIntent().getExtras());
 
         userInfoViewModel = new ViewModelProvider(this,
-                new UserInfoViewModel.UserInfoViewModelFactory(mArgs.getEmail(), mArgs.getJwt(), mArgs.getMemberid())
+                new UserInfoViewModel.UserInfoViewModelFactory(mArgs.getEmail(), mArgs.getJwt(), mArgs.getMemberid(), mArgs.getUsername())
         ).get(UserInfoViewModel.class);
 
 

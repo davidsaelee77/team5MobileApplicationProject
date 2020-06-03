@@ -15,6 +15,7 @@ public class UserInfoViewModel extends ViewModel {
     private final String mEmail;
     private final String mJwt;
     private final int mMemberId;
+    private final String mUsername;
     private final MutableLiveData<List<Notification>> mNotificationList;
 
     /**
@@ -24,11 +25,11 @@ public class UserInfoViewModel extends ViewModel {
      * @param email
      * @param jwt
      */
-    private UserInfoViewModel(String email, String jwt, int memberId) {
+    private UserInfoViewModel(String email, String jwt, int memberId, String username) {
         mEmail = email;
         mJwt = jwt;
         mMemberId = memberId;
-
+        mUsername = username;
         mNotificationList = new MutableLiveData<>();
         mNotificationList.setValue(new ArrayList<>());
     }
@@ -55,6 +56,10 @@ public class UserInfoViewModel extends ViewModel {
 
     public int getMemberId(){
         return mMemberId;
+    }
+
+    public String getUsername() {
+        return mUsername;
     }
 
     public MutableLiveData<List<Notification>> getNotifications() {
@@ -88,23 +93,25 @@ public class UserInfoViewModel extends ViewModel {
         private final String email;
         private final String jwt;
         private final int memberId;
+        private final String username;
 
         /**
          * UserInfoViewModelFactory constructor.
          * @param email
          * @param jwt
          */
-        public UserInfoViewModelFactory(String email, String jwt, int memberId) {
+        public UserInfoViewModelFactory(String email, String jwt, int memberId, String username) {
             this.email = email;
             this.jwt = jwt;
             this.memberId = memberId;
+            this.username = username;
         }
 
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
             if (modelClass == UserInfoViewModel.class) {
-                return (T) new UserInfoViewModel(email, jwt, memberId);
+                return (T) new UserInfoViewModel(email, jwt, memberId, username);
             }
             throw new IllegalArgumentException(
                     "Argument must be: " + UserInfoViewModel.class);

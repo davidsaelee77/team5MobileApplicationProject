@@ -48,6 +48,9 @@
         <argument
             android:name="memberid"
             app:argType="integer" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </activity>
     <fragment
         android:id="@+id/passwordRecoveryFragment"

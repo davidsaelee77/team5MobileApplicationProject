@@ -201,7 +201,7 @@ public class LoginFragment extends Fragment {
      * @param email users email
      * @param jwt   the JSON Web Token supplied by the server
      */
-    private void navigateToSuccess(final String email, final String jwt, final int memberid) {
+    private void navigateToSuccess(final String email, final String jwt, final int memberid, final String user) {
 
         if (binding.switchSignin.isChecked()) {
             SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.keys_shared_prefs), Context.MODE_PRIVATE);
@@ -211,7 +211,7 @@ public class LoginFragment extends Fragment {
             prefs.edit().putInt(getString(R.string.keys_prefs_memberid), memberid).apply();
         }
 
-        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt, memberid));
+        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToMainActivity(email, jwt, memberid, user));
 
         getActivity().finish();
     }
@@ -229,7 +229,8 @@ public class LoginFragment extends Fragment {
             if (!jwt.isExpired(0)) {
                 String email = jwt.getClaim("email").asString();
                 int memberid = jwt.getClaim("memberid").asInt();
-                navigateToSuccess(email, token, memberid);
+                String user = jwt.getClaim("username").asString();
+                navigateToSuccess(email, token, memberid, user);
                 return;
             }
         }
@@ -264,7 +265,8 @@ public class LoginFragment extends Fragment {
                     mUserViewModel = new ViewModelProvider(getActivity(), new UserInfoViewModel.UserInfoViewModelFactory(
                             binding.emailInput.getText().toString(),
                             response.getString("token"),
-                            response.getInt("memberid")
+                            response.getInt("memberid"),
+                            response.getString("username")
                     )).get(UserInfoViewModel.class);
                     sendPushyToken();
 
@@ -321,7 +323,7 @@ public class LoginFragment extends Fragment {
                 //this error cannot be fixed by the user changing credentials...
                 binding.emailInput.setError("Error Authenticating on Push Token. Please contact support");
             } else {
-                navigateToSuccess(binding.emailInput.getText().toString(), mUserViewModel.getJwt(), mUserViewModel.getMemberId());
+                navigateToSuccess(binding.emailInput.getText().toString(), mUserViewModel.getJwt(), mUserViewModel.getMemberId(), mUserViewModel.getUsername());
             }
         }
     }

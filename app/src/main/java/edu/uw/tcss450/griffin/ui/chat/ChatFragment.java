@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,7 +86,7 @@ public class ChatFragment extends Fragment {
         //holds.
         rv.setAdapter(new ChatRecyclerViewAdapter(
                 mChatModel.getMessageListByChatId(mChatId),
-                mUserModel.getEmail()));
+                mUserModel.getUsername()));
 
 
         //When the user scrolls to the top of the RV, the swiper list will "refresh"

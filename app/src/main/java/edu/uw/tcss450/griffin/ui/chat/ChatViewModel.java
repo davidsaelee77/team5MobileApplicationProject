@@ -217,7 +217,7 @@ public class ChatViewModel extends AndroidViewModel {
                 ChatMessageFragment cMessage = new ChatMessageFragment(
                         message.getInt("messageid"),
                         message.getString("message"),
-                        message.getString("email"),
+                        message.getString("username"),
                         message.getString("timestamp")
                 );
                 if (!list.contains(cMessage)) {
