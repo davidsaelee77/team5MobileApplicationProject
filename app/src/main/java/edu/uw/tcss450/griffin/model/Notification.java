@@ -65,7 +65,7 @@ public class Notification {
      * @return A string representation of the notification message or null
      */
     public String getNotificationMessage() {
-        if (this.mInvitation != null) return this.mInvitation.getSenderUsername() + " " + R.string.notification_newContactMessage;
+        if (this.mInvitation != null) return this.mInvitation.getSenderUsername() + " wants to be your buddy";
         else if (this.mChatMessageFragment != null) return this.mChatMessageFragment.getMessage();
         else return null;
     }
@@ -75,9 +75,9 @@ public class Notification {
      * @return  string representation of the notification title or null
      */
     public String getNotificationTitle() {
-        if (this.mInvitation != null) return this.mInvitation.getSenderUsername();
+        if (this.mInvitation != null) return "Contact request from: " + this.mInvitation.getSenderUsername();
         else if (this.mChatMessageFragment != null)  {
-            String title = R.string.notification_newMessageTitle + " "
+            String title =  "New message from: "
                     + this.mChatMessageFragment.getSender();
             return title;
         }

@@ -78,7 +78,7 @@ public class ChatListFragment extends Fragment {
             if (!chatRoomList.isEmpty()) {
                 binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList, this));
             }
-            //TODO: sorry no chats message if it's empty?
+
         });
 
     }

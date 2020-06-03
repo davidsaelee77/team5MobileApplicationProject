@@ -16,7 +16,7 @@ import edu.uw.tcss450.griffin.model.Notification;
 public class HomeNotificationRecylcerViewAdapter extends RecyclerView.Adapter<HomeNotificationRecylcerViewAdapter.HomeNotificationViewHolder> {
 
 
-    List<Notification> mNotifications;
+    private final List<Notification> mNotifications;
 
     public HomeNotificationRecylcerViewAdapter(List<Notification> notifications) {
 
