@@ -36,7 +36,6 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<String> userNames;
 
-//    private ChatFragmentArgs args;
 
     public AddChatFragment() {
         // Required empty public constructor
@@ -51,7 +50,6 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
-//        args = ChatFragmentArgs.fromBundle(getArguments());
     }
 
     @Override
@@ -107,8 +105,6 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     public List<String> parseUsername(String str) {
 
         userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
-
-//        ArrayList userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
 
         return userNames;
     }

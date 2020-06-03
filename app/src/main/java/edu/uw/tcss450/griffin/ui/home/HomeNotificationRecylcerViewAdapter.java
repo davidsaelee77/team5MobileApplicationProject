@@ -11,13 +11,14 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeCardBinding;
+import edu.uw.tcss450.griffin.model.Notification;
 
 public class HomeNotificationRecylcerViewAdapter extends RecyclerView.Adapter<HomeNotificationRecylcerViewAdapter.HomeNotificationViewHolder> {
 
 
-    List<HomeNotifications> mNotifications;
+    List<Notification> mNotifications;
 
-    public HomeNotificationRecylcerViewAdapter(List<HomeNotifications> notifications) {
+    public HomeNotificationRecylcerViewAdapter(List<Notification> notifications) {
 
         this.mNotifications = notifications;
     }
@@ -60,10 +61,10 @@ public class HomeNotificationRecylcerViewAdapter extends RecyclerView.Adapter<Ho
         }
 
 
-        void setNotifications(final HomeNotifications notifications) {
+        void setNotifications(final Notification notifications) {
 
-
-            binding.numberNotificationTextView.setText(notifications.getNotifications() + "");
+            binding.textViewNotificationHomefragment.setText(notifications.getNotificationMessage());
+            binding.textViewNotificationLabelHomefragment.setText(notifications.getNotificationTitle());
 
         }
     }

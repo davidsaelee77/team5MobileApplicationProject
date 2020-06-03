@@ -55,6 +55,7 @@ import edu.uw.tcss450.griffin.services.PushReceiver;
 import edu.uw.tcss450.griffin.ui.chat.ChatMessageFragment;
 import edu.uw.tcss450.griffin.ui.chat.ChatViewModel;
 import edu.uw.tcss450.griffin.ui.contacts.Invitation;
+import edu.uw.tcss450.griffin.ui.home.HomeNotificationListViewModel;
 import edu.uw.tcss450.griffin.ui.weather.WeatherMapViewModel;
 import edu.uw.tcss450.griffin.util.Utils;
 
@@ -358,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private class MainPushReceiver extends BroadcastReceiver {
         private ChatViewModel mModel = new ViewModelProvider(MainActivity.this).get(ChatViewModel.class);
+        private HomeNotificationListViewModel mNotificationModel = new ViewModelProvider(MainActivity.this).get(HomeNotificationListViewModel.class);
 
         @Override
         public void onReceive(Context context, Intent intent) {

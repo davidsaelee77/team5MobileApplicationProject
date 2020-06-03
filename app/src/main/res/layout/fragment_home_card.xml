@@ -17,7 +17,7 @@
 
 
         <TextView
-            android:id="@+id/homefragmentTextView"
+            android:id="@+id/textView_notificationLabel_homefragment"
             android:layout_width="393dp"
             android:layout_height="59dp"
             android:background="@color/colorPrimaryDark_UW"
@@ -32,18 +32,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/number_notification_textView"
+            android:id="@+id/textView_notification_homefragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="315dp"
-            android:layout_marginBottom="27dp"
-            android:text="@string/member_info"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/notification_newNotification"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homefragmentTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_notificationLabel_homefragment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

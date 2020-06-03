@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +26,18 @@ import edu.uw.tcss450.griffin.databinding.FragmentContactListBinding;
  */
 public class ContactsListFragment extends Fragment {
     /**
-     * ContactListViewModel object. 
+     * ContactListViewModel object.
      */
     private ContactListViewModel mModel;
     /**
-     * FragmentContactListBinding object. 
+     * FragmentContactListBinding object.
      */
     private FragmentContactListBinding binding;
     //private List<Contacts> list;
     // private List<String> alphabet;
 
     /**
-     * Empty public constructor. 
+     * Empty public constructor.
      */
     public ContactsListFragment() {
         // Required empty public constructor
@@ -49,7 +50,7 @@ public class ContactsListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity()).get(ContactListViewModel.class);
-        if (getActivity() instanceof MainActivity){
+        if (getActivity() instanceof MainActivity) {
             MainActivity activity = (MainActivity) getActivity();
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
@@ -87,6 +88,9 @@ public class ContactsListFragment extends Fragment {
 
         FragmentContactListBinding binding = FragmentContactListBinding.bind(getView());
 
+        binding.imageButtonAddContactContactfragment.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(ContactsListFragmentDirections.actionContactListFragmentToAddContactFragment()));
+
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
 
             if (!contactList.isEmpty()) {
@@ -94,11 +98,11 @@ public class ContactsListFragment extends Fragment {
             }
         });
 
-        mModel.addRequestListObserver(getViewLifecycleOwner(), requestList -> {
-            if (!requestList.isEmpty()) {
-                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList));
-            }
-        });
+//        mModel.addRequestListObserver(getViewLifecycleOwner(), requestList -> {
+//            if (!requestList.isEmpty()) {
+//                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList));
+//            }
+//        });
 
 
     }

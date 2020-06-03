@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_contactListFragment_to_contactsFragment"
             app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
@@ -108,6 +111,15 @@
         <action
             android:id="@+id/action_homeNotificationListFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="edu.uw.tcss450.griffin.ui.contacts.AddContactFragment"
+        android:label="fragment_add_contact"
+        tools:layout="@layout/fragment_add_contact" >
+        <action
+            android:id="@+id/action_addContactFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment" />
     </fragment>
 
 </navigation>

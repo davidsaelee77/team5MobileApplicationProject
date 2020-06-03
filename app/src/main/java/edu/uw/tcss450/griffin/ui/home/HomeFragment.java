@@ -19,6 +19,7 @@ import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeBinding;
 import edu.uw.tcss450.griffin.databinding.FragmentHomeNotificationListBinding;
+import edu.uw.tcss450.griffin.model.Notification;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.ui.weather.WeatherRecyclerViewAdapter;
 import edu.uw.tcss450.griffin.ui.weather.WeatherViewModel;
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment {
 
     private HomeNotificationListViewModel mModel;
 
-    private List<HomeNotifications> list = new ArrayList<>();
+//    private List<Notification> list = new ArrayList<>();
 
 
     /**
@@ -67,16 +68,21 @@ public class HomeFragment extends Fragment {
         }
         mModel = new ViewModelProvider(getActivity()).get(HomeNotificationListViewModel.class);
 
-        generateRandomData();
-    }
-
-    public void generateRandomData() {
-
-        for (int i = 0; i < 5; i++) {
-
-            list.add(new HomeNotifications(i));
+        if (getActivity() instanceof MainActivity) {
+            MainActivity activity = (MainActivity) getActivity();
+            mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
+
+       // generateRandomData();
     }
+
+//    public void generateRandomData() {
+//
+//        for (int i = 0; i < 5; i++) {
+//
+//            list.add(new HomeNotifications(i));
+//        }
+//    }
 
     /**
      * Instantiates home fragment UI view.
@@ -129,7 +135,7 @@ public class HomeFragment extends Fragment {
 
         mModel.addHomeNotificationListObserver(getViewLifecycleOwner(), requestNotifications -> {
             if (!requestNotifications.isEmpty()) {
-                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(list));
+                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecylcerViewAdapter(requestNotifications));
             }
         });
     }
