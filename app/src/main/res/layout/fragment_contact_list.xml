@@ -12,23 +12,21 @@
         android:layout_width="258dp"
         android:layout_height="43dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/textplain_contacts_search"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/list_root"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
         android:name="edu.uw.tcss450.griffin.ui.contacts.ContactsFragment"
         android:layout_width="395dp"
-        android:layout_height="542dp"
+        android:layout_height="0dp"
         android:layout_below="@id/layout_root"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="8dp"
         android:nestedScrollingEnabled="false"
         android:orientation="vertical"
@@ -36,6 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_requestContact_contactfragment"
         tools:context="edu.uw.tcss450.griffin.ui.contacts.ContactsListFragment"
         tools:listitem="@layout/fragment_contactlist_card" />
 
@@ -45,11 +44,32 @@
         android:layout_height="0dp"
         android:layout_marginStart="303dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/list_root"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView_requestContact_contactfragment"
+        android:layout_width="258dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/textplain_contacts_request"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_addContact_contactfragment" />
+
+    <ImageButton
+        android:id="@+id/imageButton_requestContact_contactfragment"
+        android:layout_width="86dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="303dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_addContact_contactfragment"
+        app:srcCompat="@drawable/add_button_black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

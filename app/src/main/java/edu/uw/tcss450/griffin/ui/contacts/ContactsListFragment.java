@@ -91,19 +91,15 @@ public class ContactsListFragment extends Fragment {
         binding.imageButtonAddContactContactfragment.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(ContactsListFragmentDirections.actionContactListFragmentToAddContactFragment()));
 
+        binding.imageButtonRequestContactContactfragment.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(ContactsListFragmentDirections.actionContactListFragmentToRequestContactFragment()));
+
         mModel.addContactListObserver(getViewLifecycleOwner(), contactList -> {
 
             if (!contactList.isEmpty()) {
                 binding.listRoot.setAdapter(new ContactListRecyclerViewAdapter(contactList));
             }
         });
-
-//        mModel.addRequestListObserver(getViewLifecycleOwner(), requestList -> {
-//            if (!requestList.isEmpty()) {
-//                binding.recyclerViewRequests.setAdapter(new ContactRequestRecyclerViewAdapter(requestList));
-//            }
-//        });
-
 
     }
 }

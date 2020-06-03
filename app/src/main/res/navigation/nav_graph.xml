@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_contactListFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_requestContactFragment"
+            app:destination="@id/requestContactFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
@@ -119,6 +122,15 @@
         tools:layout="@layout/fragment_add_contact" >
         <action
             android:id="@+id/action_addContactFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestContactFragment"
+        android:name="edu.uw.tcss450.griffin.ui.contacts.RequestContactFragment"
+        android:label="fragment_request_contact"
+        tools:layout="@layout/fragment_request_contact" >
+        <action
+            android:id="@+id/action_requestContactFragment_to_contactListFragment"
             app:destination="@id/contactListFragment" />
     </fragment>
 

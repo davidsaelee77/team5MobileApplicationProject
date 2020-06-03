@@ -26,9 +26,11 @@ import java.util.Map;
 
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.constants.JSONKeys;
+import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 
 //import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
+
 /**
  * @author David Salee
  * @version May 2020
@@ -41,8 +43,10 @@ public class ContactListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Contacts>> mRequestList;
 
+    private final MutableLiveData<JSONObject> mResponse;
+
     /**
-     * UserInfoViewModel. 
+     * UserInfoViewModel.
      */
     private UserInfoViewModel userInfoViewModel;
     // private MutableLiveData<List<String>> mAlaphabet;
@@ -54,9 +58,11 @@ public class ContactListViewModel extends AndroidViewModel {
 //    private MutableLiveData<JSONObject> mResponse;
 
     // private MutableLiveData<List<Contacts>> mResponse;
+
     /**
-     * Constructor that instantiates fields.   
-     * @param application Application object. 
+     * Constructor that instantiates fields.
+     *
+     * @param application Application object.
      */
     public ContactListViewModel(@NonNull Application application) {
         super(application);
@@ -70,10 +76,13 @@ public class ContactListViewModel extends AndroidViewModel {
         mContactList.setValue(new ArrayList<>());
         mRequestList.setValue(new ArrayList<>());
 
+        mResponse = new MutableLiveData<>();
+        mResponse.setValue(new JSONObject());
+
     }
 
     /**
-     * Method to add ContactListObserver. 
+     * Method to add ContactListObserver.
      */
     public void addContactListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Contacts>> observer) {
         mContactList.observe(owner, observer);
@@ -84,7 +93,7 @@ public class ContactListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Method that handles errors. 
+     * Method that handles errors.
      */
     private void handleError(final VolleyError error) {
         if (error != null && error.getMessage() != null) {
@@ -92,19 +101,34 @@ public class ContactListViewModel extends AndroidViewModel {
             throw new IllegalStateException(error.getMessage());
         }
     }
-    
+
     /**
-     * Method that populates list of contacts based on JSON object. 
+     * Method that populates list of contacts based on JSON object.
+     *
      * @param result
      */
     private void handleResult(final JSONObject result) {
+
         // IntFunction<String> getString = getApplication().getResources()::getString;
         try {
             JSONObject root = result;
+
             if (root.has(JSONKeys.success)) {
                 boolean isSuccess = root.getBoolean(JSONKeys.success);
                 if (!isSuccess) {
                     return;
+                }
+
+                JSONArray invitations = root.getJSONArray(JSONKeys.invitations);
+                ArrayList<Contacts> listOfInvites = new ArrayList<>();
+                for (int i = 0; i < invitations.length(); i++) {
+                    JSONObject jsonContact = invitations.getJSONObject(i);
+                    try {
+                        Contacts contact = new Contacts(jsonContact);
+                        listOfInvites.add(contact);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 JSONArray contacts = root.getJSONArray(JSONKeys.contacts);
                 ArrayList<Contacts> listOfContacts = new ArrayList<>();
@@ -119,7 +143,7 @@ public class ContactListViewModel extends AndroidViewModel {
                     }
                 }
                 mContactList.setValue(listOfContacts);
-                mRequestList.setValue(listOfContacts); //TODO: Replace with proper parse/set value
+                mRequestList.setValue(listOfInvites); //TODO: Replace with proper parse/set value
             } else {
                 Log.e("ERROR!", "No response");
             }
@@ -128,10 +152,11 @@ public class ContactListViewModel extends AndroidViewModel {
             Log.e("ERROR!", e.getMessage());
         }
         mContactList.setValue(mContactList.getValue());
+        mRequestList.setValue(mRequestList.getValue());
     }
 
     /**
-     * Method to connect to webservice and get contacts from server. 
+     * Method to connect to webservice and get contacts from server.
      */
     public void connectGet() {
         if (userInfoViewModel == null) {
@@ -156,6 +181,45 @@ public class ContactListViewModel extends AndroidViewModel {
         request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+
+    public void connectAddContactPost(final int memberidA, final int memberidB) {
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "contact";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("memberid_a", memberidA);
+            body.put("memberid_b", memberidB);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body, //push token found in the JSONObject body
+                mResponse::setValue, // we get a response but do nothing with it
+                this::handleError) {
+
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                // headers.put("Authorization", "Bearer " + jwt);
+                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+                .addToRequestQueue(request);
     }
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {

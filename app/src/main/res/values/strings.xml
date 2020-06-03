@@ -99,6 +99,7 @@
     <!-- Contacts -->
     <string name="title_searchContacts">Find New Contacts</string>
     <string name="textplain_contacts_search">Search Contacts</string>
+    <string name="textplain_contacts_request">Request Contacts</string>
 
     <!-- Weather -->
     <string name="textview_weatherWeekCard_low">Low</string>

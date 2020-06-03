@@ -21,6 +21,6 @@ public class JSONKeys {
     /**
      * Stores string value
      */
-    public static final String pending = "requests";
+    public static final String invitations = "invitations";
 
 }
