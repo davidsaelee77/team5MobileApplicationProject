@@ -140,11 +140,11 @@ public class LoginFragment extends Fragment {
 
         LoginFragmentArgs args = LoginFragmentArgs.fromBundle(getArguments());
 
-//        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
-//        binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
+        binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
+        binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
 
-        binding.emailInput.setText("test1@test.com");
-        binding.passwordPassword.setText("test12345");
+//        binding.emailInput.setText("test1@test.com");
+//        binding.passwordPassword.setText("test12345");
 
         //don't allow sign in until pushy token retrieved
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(),
