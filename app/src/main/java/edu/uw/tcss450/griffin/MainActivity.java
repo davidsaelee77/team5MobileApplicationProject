@@ -48,6 +48,7 @@ import java.util.Objects;
 import edu.uw.tcss450.griffin.databinding.ActivityMainBinding;
 import edu.uw.tcss450.griffin.model.NewContactCountViewModel;
 import edu.uw.tcss450.griffin.model.NewMessageCountViewModel;
+import edu.uw.tcss450.griffin.model.Notification;
 import edu.uw.tcss450.griffin.model.PushyTokenViewModel;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.services.PushReceiver;
@@ -360,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Notification notification = new Notification();
             NavController nc = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment);
             NavDestination nd = nc.getCurrentDestination();
             Log.d("PUSHY", "result: " + intent.toString());
@@ -369,11 +371,11 @@ public class MainActivity extends AppCompatActivity {
                 //If the user is not on the chat screen, update the
                 // NewMessageCountView Model
                 if (nd.getId() != R.id.chatFragment) {
-
                     mNewMessageModel.increment();
                 }
                 //Inform the view model holding chatroom messages of the new
                 // message.
+                notification.setData(cm);
                mModel.addMessage(intent.getIntExtra("chatid", -1), cm);
             } else if (intent.hasExtra("invitation")) {
                 Log.d("PUSHY", "MainActivity has received a new contact request");
@@ -381,8 +383,11 @@ public class MainActivity extends AppCompatActivity {
                 if (nd.getId() != R.id.contactListFragment) {
                     mNewContactModel.increment();
                 }
+                notification.setData(contactRequest);
                 //need contactViewModel?
             }
+
+            userInfoViewModel.addNotifications(notification);
         }
     }
 
