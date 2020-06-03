@@ -172,7 +172,7 @@ public class ChatListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
-    private void handleAddChatResponse(final JSONObject response) {
+    private void handleAddChatResponse(final JSONObject response, ArrayList<String> usernames) {
         if (!response.has("success")) {
             throw new IllegalStateException("Unexpected response in ChatListViewModel: " + response);
         }
@@ -183,8 +183,12 @@ public class ChatListViewModel extends AndroidViewModel {
             ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatID);
             list.add(cr);
             listOfChatRooms.addAll(list);
-            connectAddChatPut(Integer.toString(chatID));
-//            connectAddMemberInChatPut(chatID, userInfoViewModel.getMemberId());
+           // connectAddChatPut(Integer.toString(chatID));
+
+            for (int i = 0; i < usernames.size(); i++) {
+                connectAddMemberInChatPut(chatID, usernames.get(i));
+            }
+
             mChatRoomList.setValue(listOfChatRooms);
 
         } catch (JSONException e) {
@@ -193,7 +197,7 @@ public class ChatListViewModel extends AndroidViewModel {
 
     }
 
-    public void connectAddChat(String nameOfChat) {
+    public void connectAddChat(String nameOfChat, ArrayList<String> usernames) {
         if (userInfoViewModel == null) {
             throw new IllegalArgumentException("No UserInfoViewModel is assigned");
         }
@@ -207,7 +211,7 @@ public class ChatListViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
         Request request = new JsonObjectRequest(Request.Method.POST, url, body,
-                this::handleAddChatResponse, this::handleError) {
+                response -> handleAddChatResponse(response, usernames), this::handleError) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -223,52 +227,21 @@ public class ChatListViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
 
-
-    public void connectAddChatPut(String chatID) {
-        if (userInfoViewModel == null) {
-            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
-        }
-        String url = getApplication().getResources().getString(R.string.base_url) +
-                "chats?chatId=" + chatID;
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("chatId", chatID);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Request request = new JsonObjectRequest(Request.Method.PUT, url, body,
-                null, this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", userInfoViewModel.getJwt());
-
-                return headers;
-            }
-        };
-
-        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
-    }
-
-
-//    public void connectAddMemberInChatPut(int chatID, String userName) {
+//
+//    public void connectAddChatPut(String chatID) {
 //        if (userInfoViewModel == null) {
 //            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
 //        }
 //        String url = getApplication().getResources().getString(R.string.base_url) +
-//                "chats?chatId=" + chatID + "&memberId=" + userName;
+//                "chats?chatId=" + chatID;
 //
-////        JSONObject body = new JSONObject();
-////        try {
-////            body.put("chatId", chatID);
-////        } catch (JSONException e) {
-////            e.printStackTrace();
-////        }
-//        Request request = new JsonObjectRequest(Request.Method.PUT, url, null,
+//        JSONObject body = new JSONObject();
+//        try {
+//            body.put("chatId", chatID);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        Request request = new JsonObjectRequest(Request.Method.PUT, url, body,
 //                null, this::handleError) {
 //            @Override
 //            public Map<String, String> getHeaders() {
@@ -284,6 +257,31 @@ public class ChatListViewModel extends AndroidViewModel {
 //        //Instantiate the RequestQueue and add the request to the queue
 //        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
 //    }
+
+
+    public void connectAddMemberInChatPut(int chatID, String userName) {
+        if (userInfoViewModel == null) {
+            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
+        }
+        String url = getApplication().getResources().getString(R.string.base_url) +
+                "chats?chatId=" + chatID + "&username=" + userName;
+
+        Request request = new JsonObjectRequest(Request.Method.PUT, url, null,
+                null, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", userInfoViewModel.getJwt());
+
+                return headers;
+            }
+        };
+
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
 
 
     public void setUserInfoViewModel(UserInfoViewModel vm) {

@@ -34,6 +34,8 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
 
     private UserInfoViewModel mUsermodel;
 
+    private ArrayList<String> userNames;
+
 //    private ChatFragmentArgs args;
 
     public AddChatFragment() {
@@ -104,15 +106,14 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
 
     public List<String> parseUsername(String str) {
 
-        ArrayList userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
-//
-//        for(int i = 0; i < userNames.size(); i++) {
-//
-//            mModel.connectAddMemberInChatPut(userNames.get(i));
-//        }
+        userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
+
+//        ArrayList userNames = new ArrayList<String>(Arrays.asList(str.trim().split("\\s*,\\s*")));
 
         return userNames;
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -122,7 +123,7 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
 
             if (v == binding.imageButtonAddChatAddchatfragment) {
                 mModel.connectAddChat(
-                        binding.editTextEnterChatNameAddchatfragment.getText().toString());
+                        binding.editTextEnterChatNameAddchatfragment.getText().toString(), userNames);
                 Navigation.findNavController(getView()).navigate(AddChatFragmentDirections.actionAddChatFragmentToChatListFragment());
             }
 //             else {
