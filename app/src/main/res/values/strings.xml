@@ -97,6 +97,7 @@
     <string name="member_info">Member Info.</string>
 
     <!-- Contacts -->
+    <string name="title_searchContacts">Find New Contacts</string>
     <string name="textplain_contacts_search">Search Contacts</string>
 
     <!-- Weather -->

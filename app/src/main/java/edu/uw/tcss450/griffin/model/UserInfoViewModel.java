@@ -1,14 +1,19 @@
 package edu.uw.tcss450.griffin.model;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserInfoViewModel extends ViewModel {
 
     private final String mEmail;
     private final String mJwt;
     private final int mMemberId;
+    private final ArrayList<Notification> mNotificationList = new ArrayList<Notification>();
 
     /**
      * Constructor that instantiates fields with given email and jwt.
@@ -46,6 +51,19 @@ public class UserInfoViewModel extends ViewModel {
     public int getMemberId(){
         return mMemberId;
     }
+
+    public ArrayList<Notification> getNotifications() {
+        return this.mNotificationList;
+    }
+
+    public void addNotifications(Notification notification) {
+        this.mNotificationList.add(notification);
+    }
+
+    public void clearNotifications() {
+        this.mNotificationList.clear();
+    }
+
 
     /**
      * Subclass that instantiates ViewModels
