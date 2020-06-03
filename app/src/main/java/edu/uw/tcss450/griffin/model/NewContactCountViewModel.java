@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel;
  * View model that used to observe
  * and manipulate data from chat message fragment.
  */
-public class NewMessageCountViewModel extends ViewModel {
+public class NewContactCountViewModel extends ViewModel {
 
     /**
      * Stores mutable live data integer value.
@@ -24,7 +24,7 @@ public class NewMessageCountViewModel extends ViewModel {
     /**
      * View model constructor
      */
-    public NewMessageCountViewModel() {
+    public NewContactCountViewModel() {
         mNewNotificationCount = new MutableLiveData<>();
         mNewNotificationCount.setValue(0);
     }
@@ -35,7 +35,7 @@ public class NewMessageCountViewModel extends ViewModel {
      * @param owner  lifespan of given owner.
      * @param observer  callback from live data.
      */
-    public void addMessageCountObserver(@NonNull LifecycleOwner owner,
+    public void addContactCountObserver(@NonNull LifecycleOwner owner,
                                         @NonNull Observer<? super Integer> observer) {
         mNewNotificationCount.observe(owner, observer);
     }

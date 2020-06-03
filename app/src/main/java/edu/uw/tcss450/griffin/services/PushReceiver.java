@@ -150,9 +150,10 @@ public class PushReceiver extends BroadcastReceiver {
 
             //create an Intent to broadcast a message to other parts of the app.
             Intent i = new Intent(RECEIVED_NEW_CONTACT);
-            i.putExtra("Invitation", newContact);
+            i.putExtra("invitation", newContact);
             i.putExtra("senderUsername", senderUsername);
             i.putExtras(intent.getExtras());
+
 
             context.sendBroadcast(i);
         } else {

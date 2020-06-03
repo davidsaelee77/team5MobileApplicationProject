@@ -46,12 +46,14 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 
 import edu.uw.tcss450.griffin.databinding.ActivityMainBinding;
+import edu.uw.tcss450.griffin.model.NewContactCountViewModel;
 import edu.uw.tcss450.griffin.model.NewMessageCountViewModel;
 import edu.uw.tcss450.griffin.model.PushyTokenViewModel;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 import edu.uw.tcss450.griffin.services.PushReceiver;
 import edu.uw.tcss450.griffin.ui.chat.ChatMessageFragment;
 import edu.uw.tcss450.griffin.ui.chat.ChatViewModel;
+import edu.uw.tcss450.griffin.ui.contacts.Invitation;
 import edu.uw.tcss450.griffin.ui.weather.WeatherMapViewModel;
 import edu.uw.tcss450.griffin.util.Utils;
 
@@ -68,8 +70,11 @@ import edu.uw.tcss450.griffin.util.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainPushMessageReceiver mPushMessageReceiver;
+    private MainPushReceiver mPushReceiver;
+
     private NewMessageCountViewModel mNewMessageModel;
+
+    private NewContactCountViewModel mNewContactModel;
 
     private ActivityMainBinding binding;
 
@@ -156,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
         mResponse.setValue(new JSONObject());
 
         mNewMessageModel = new ViewModelProvider(this).get(NewMessageCountViewModel.class);
+        mNewContactModel = new ViewModelProvider(this).get(NewContactCountViewModel.class);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.chatListFragment) {
@@ -163,8 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 // This will need some extra logic for your project as it should have
                 // multiple chat rooms.
                 mNewMessageModel.reset();
+            } else if (destination.getId() == R.id.contactListFragment) {
+                mNewContactModel.reset();
             }
         });
+
         mNewMessageModel.addMessageCountObserver(this, count -> {
 
             BadgeDrawable badge = binding.bottomMenuBar.getOrCreateBadge(R.id.chatListFragment); //THIS WAS NAV_CHAT BEFORE I CHANGED IT
@@ -179,6 +188,22 @@ public class MainActivity extends AppCompatActivity {
                 badge.setVisible(false);
             }
         });
+
+        mNewContactModel.addContactCountObserver(this, count -> {
+            BadgeDrawable badge = binding.bottomMenuBar.getOrCreateBadge(R.id.contactListFragment);
+            badge.setMaxCharacterCount(2);
+            if (count > 0) {
+                //new messages! update and show the notification badge.
+                badge.setNumber(count);
+                badge.setVisible(true);
+            } else {
+                //user did some action to clear the new messages, remove the badge
+                badge.clearNumber();
+                badge.setVisible(false);
+            }
+        });
+
+
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -330,15 +355,16 @@ public class MainActivity extends AppCompatActivity {
     /**
      * A BroadcastReceiver that listens for messages sent from PushReceiver
      */
-    private class MainPushMessageReceiver extends BroadcastReceiver {
+    private class MainPushReceiver extends BroadcastReceiver {
         private ChatViewModel mModel = new ViewModelProvider(MainActivity.this).get(ChatViewModel.class);
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d("PUSHY", "MainActivity has received something");
             NavController nc = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment);
             NavDestination nd = nc.getCurrentDestination();
+            Log.d("PUSHY", "result: " + intent.toString());
             if (intent.hasExtra("chatMessage")) {
+                Log.d("PUSHY", "MainActivity has received chat message2");
                 ChatMessageFragment cm = (ChatMessageFragment) intent.getSerializableExtra("chatMessage");
                 //If the user is not on the chat screen, update the
                 // NewMessageCountView Model
@@ -348,7 +374,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //Inform the view model holding chatroom messages of the new
                 // message.
-                mModel.addMessage(intent.getIntExtra("chatid", -1), cm);
+               mModel.addMessage(intent.getIntExtra("chatid", -1), cm);
+            } else if (intent.hasExtra("invitation")) {
+                Log.d("PUSHY", "MainActivity has received a new contact request");
+                Invitation contactRequest = (Invitation) intent.getSerializableExtra("invitation");
+                if (nd.getId() != R.id.contactListFragment) {
+                    mNewContactModel.increment();
+                }
+                //need contactViewModel?
             }
         }
     }
@@ -356,18 +389,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (mPushMessageReceiver == null) {
-            mPushMessageReceiver = new MainPushMessageReceiver();
+        if (mPushReceiver == null) {
+            mPushReceiver = new MainPushReceiver();
         }
-        IntentFilter iFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_MESSAGE);
-        registerReceiver(mPushMessageReceiver, iFilter);
+        IntentFilter iFilter = new IntentFilter();
+        iFilter.addAction(PushReceiver.RECEIVED_NEW_MESSAGE);
+        iFilter.addAction(PushReceiver.RECEIVED_NEW_CONTACT);
+        registerReceiver(mPushReceiver, iFilter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (mPushMessageReceiver != null) {
-            unregisterReceiver(mPushMessageReceiver);
+        if (mPushReceiver != null) {
+            unregisterReceiver(mPushReceiver);
         }
     }
 

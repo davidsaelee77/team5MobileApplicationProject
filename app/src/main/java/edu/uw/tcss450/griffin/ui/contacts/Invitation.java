@@ -18,6 +18,7 @@ public class Invitation implements Serializable {
         this.mSenderUsername = senderUsername;
     }
 
+    //TODO: utilize or remove
     /**
      * Static factory method to turn a properly formatted JSON String into a
      * Invitation object.
@@ -40,7 +41,7 @@ public class Invitation implements Serializable {
     public boolean equals(@Nullable Object other) {
         boolean result = false;
         if (other instanceof Invitation) {
-            result = mSenderUsername == ((Invitation) other).mSenderUsername;
+            result = mSenderUsername.equals(((Invitation) other).getSenderUsername());
         }
         return result;
     }
