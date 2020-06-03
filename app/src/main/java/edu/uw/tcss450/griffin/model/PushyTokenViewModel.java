@@ -38,7 +38,6 @@ import me.pushy.sdk.Pushy;
  */
 public class PushyTokenViewModel extends AndroidViewModel {
 
-
     /**
      * Stores mutable live data string value.
      */
