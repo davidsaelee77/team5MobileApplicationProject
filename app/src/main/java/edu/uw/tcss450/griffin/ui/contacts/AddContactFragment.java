@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class AddContactFragment extends Fragment implements
         View.OnClickListener {
 
     private ContactListViewModel mModel;
+
+    private String[] testSearch = new String[]{"DevPat", "cfb3", "dsael1"};
 
     private UserInfoViewModel mUsermodel;
 
@@ -44,6 +48,7 @@ public class AddContactFragment extends Fragment implements
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
         mUsermodel = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
+
     }
 
 
@@ -53,11 +58,15 @@ public class AddContactFragment extends Fragment implements
 
         binding = FragmentAddContactBinding.inflate(inflater);
         return binding.getRoot();
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AutoCompleteTextView editText = getView().findViewById(R.id.editText_searchUsername_addcontactfragment);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, testSearch);
+        editText.setAdapter(adapter);
 
 
         binding.editTextSearchUsernameAddcontactfragment.setOnClickListener(this);
