@@ -13,14 +13,14 @@
 
         android:id="@+id/layout_inner"
         android:layout_width="match_parent"
-        android:layout_height="121dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/textview_firstName"
         app:layout_constraintTop_toTopOf="@+id/textview_firstName">
 
         <TextView
             android:id="@+id/textview_username"
             android:layout_width="0dp"
-            android:layout_height="16dp"
+            android:layout_height="32dp"
             android:background="@color/colorPrimary_UW"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -67,9 +67,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textview_username" />
 
         <TextView
-            android:id="@+id/textview_preview"
-            android:layout_width="10dp"
-            android:layout_height="162dp"
+            android:id="@+id/text_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingBottom="8dp"
@@ -77,49 +78,46 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="46dp"
-            tools:text="@string/button_contactList_seeMoreDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/button_more" />
 
 
-        <Button
-            android:id="@+id/button_fullPost"
-            style="@android:style/Widget.Material.Light.Button"
+        <ImageButton
+            android:id="@+id/button_more"
+            style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="52dp"
-            android:text="@string/member_info"
-            android:textColor="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/screen_background_light_transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_lastName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_lastName"
-            app:layout_constraintVertical_bias="0.058"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/textview_memberID"
-            android:layout_width="75dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textview_username"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
 
         <Button
             android:id="@+id/button_delete"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/button_contact_delete"
+            android:textColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_firstName"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textview_memberID"
+            android:layout_width="68dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/keys_prefs_memberid"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textview_username"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

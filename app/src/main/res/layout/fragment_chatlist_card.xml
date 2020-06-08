@@ -24,7 +24,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:text="@string/button_chat_goTo"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/colorPrimary_SONIC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chatRoomTextView"

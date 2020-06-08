@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
     private final RequestContactFragment mParent;
 
     List<Contacts> mContactRequests;
+
+    RequestContactFragment binding;
+
+
 
     public ContactRequestRecyclerViewAdapter(List<Contacts> requests, RequestContactFragment parent) {
         this.mContactRequests = requests;
@@ -69,6 +74,12 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
         notifyItemRemoved(view.getLayoutPosition());
         final int memberId = Integer.parseInt(contact.getMemberID());
         mParent.acceptContact(memberId);
+//        Navigation.findNavController(view).navigate(ContactRequestFragmentDirections);
+        //binding.buttonFullPost.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ContactsListFragmentDirections.actionContactListFragmentToContactsFragment(contact)));
+
+
+
+
     }
 
     private void declineRequest(final ContactRequestViewHolder view, Contacts contact) {
