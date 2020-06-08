@@ -1,6 +1,5 @@
 package edu.uw.tcss450.griffin.ui.contacts;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +19,6 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
 
     List<Contacts> mContactRequests;
 
-    RequestContactFragment binding;
-
-
 
     public ContactRequestRecyclerViewAdapter(List<Contacts> requests, RequestContactFragment parent) {
         this.mContactRequests = requests;
@@ -32,8 +28,8 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
     @NonNull
     @Override
     public ContactRequestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ContactRequestViewHolder(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.fragment_contactrequest_card, parent, false));
+        return new ContactRequestViewHolder(LayoutInflater
+                .from(parent.getContext()).inflate(R.layout.fragment_contactrequest_card, parent, false));
     }
 
     @Override
@@ -67,25 +63,20 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
             binding.buttonAcceptContact.setOnClickListener(view -> acceptRequest(this, contact));
             binding.buttonDeclineContact.setOnClickListener(view -> declineRequest(this, contact));
         }
-    }
 
-    private void acceptRequest(final ContactRequestViewHolder view, Contacts contact) {
-        mContactRequests.remove(contact);
-        notifyItemRemoved(view.getLayoutPosition());
-        final int memberId = Integer.parseInt(contact.getMemberID());
-        mParent.acceptContact(memberId);
-//        Navigation.findNavController(view).navigate(ContactRequestFragmentDirections);
-        //binding.buttonFullPost.setOnClickListener(view -> Navigation.findNavController(mView).navigate(ContactsListFragmentDirections.actionContactListFragmentToContactsFragment(contact)));
+        private void acceptRequest(final ContactRequestViewHolder view, Contacts contact) {
+            mContactRequests.remove(contact);
+            notifyItemRemoved(view.getLayoutPosition());
+            final int memberId = Integer.parseInt(contact.getMemberID());
+            mParent.acceptContact(memberId);
+            Navigation.findNavController(mView).navigate(RequestContactFragmentDirections.actionRequestContactFragmentToContactListFragment());
+        }
 
-
-
-
-    }
-
-    private void declineRequest(final ContactRequestViewHolder view, Contacts contact) {
-        mContactRequests.remove(contact);
-        notifyItemRemoved(view.getLayoutPosition());
-        final int memberId = Integer.parseInt(contact.getMemberID());
-        mParent.deleteContact(memberId);
+        private void declineRequest(final ContactRequestViewHolder view, Contacts contact) {
+            mContactRequests.remove(contact);
+            notifyItemRemoved(view.getLayoutPosition());
+            final int memberId = Integer.parseInt(contact.getMemberID());
+            mParent.deleteContact(memberId);
+        }
     }
 }

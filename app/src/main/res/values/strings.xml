@@ -18,6 +18,7 @@
     <string name="textview_home_welcome">Welcome home!</string>
     <string name="textview_home_forecast">Forecast</string>
     <string name="textview_home_notification">Notifications</string>
+    <string name="textview_home_delete">Delete</string>
 
 
     <!-- Register Fragment -->

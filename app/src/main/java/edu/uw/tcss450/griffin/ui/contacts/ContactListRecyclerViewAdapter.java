@@ -21,12 +21,13 @@ import edu.uw.tcss450.griffin.databinding.FragmentContactlistCardBinding;
  */
 public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<ContactListRecyclerViewAdapter.ContactListViewHolder> {
 
+
+    private final ContactsListFragment mParent;
+
     /**
      * List of contacts.
      */
     List<Contacts> mContacts;
-
-    ContactsListFragment mParent;
 
     /**
      * Constructor that instantiates fields.

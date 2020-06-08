@@ -36,8 +36,6 @@ public class HomeFragment extends Fragment {
 
     private UserInfoViewModel userInfoViewModel;
 
-//    private List<Notification> list = new ArrayList<>();
-
 
     /**
      * FragmentHomeBinding object.
@@ -45,7 +43,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     /**
-     * Empty public constructor. 
+     * Empty public constructor.
      */
     public HomeFragment() {
         // Required empty public constructor
@@ -70,8 +68,8 @@ public class HomeFragment extends Fragment {
     /**
      * Instantiates home fragment UI view.
      *
-     * @param inflater object to inflate any view in layout.
-     * @param container parent view fragment UI is attached to.
+     * @param inflater           object to inflate any view in layout.
+     * @param container          parent view fragment UI is attached to.
      * @param savedInstanceState reconstructed fragment from previous saved state.
      * @return home fragment view.
      */
@@ -86,7 +84,7 @@ public class HomeFragment extends Fragment {
     /**
      * Home fragment view constructor
      *
-     * @param view returned by onCreateView.
+     * @param view               returned by onCreateView.
      * @param savedInstanceState reconstructed fragment from previous saved state.
      */
     @Override
@@ -117,15 +115,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        binding.buttonClear.setOnClickListener(button -> {
-                userInfoViewModel.clearNotifications();
-                binding.homenotificationslistRoot.getAdapter().notifyDataSetChanged();
-        });
 
         //mNotificationModel.addHomeNotificationListObserver(getViewLifecycleOwner(), notifications -> {
         userInfoViewModel.addNotificationsObserver(getViewLifecycleOwner(), notifications -> {
             if (!notifications.isEmpty()) {
-                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecyclerViewAdapter(notifications));
+                binding.homenotificationslistRoot.setAdapter(new HomeNotificationRecyclerViewAdapter(notifications, getActivity()));
+            }
+
+            if (!notifications.isEmpty()) {
+                binding.buttonClear.setOnClickListener(button -> {
+                    userInfoViewModel.clearNotifications();
+                    binding.homenotificationslistRoot.getAdapter().notifyDataSetChanged();
+
+                });
             }
         });
     }
