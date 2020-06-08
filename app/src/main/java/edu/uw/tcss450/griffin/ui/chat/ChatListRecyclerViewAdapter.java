@@ -102,12 +102,6 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
             mObserver = observer;
             String emails = String.join(", ", liveData.getValue());
             binding.chatRoomTextView.setText("Chat Room: #: " + emails);
-
-            // binding.chatRoomTextView.setText("Chat Room No " + chatRoom.getChatRoomID());
-
-            //for (int i = 0; i < chatRoom.getRowCount(); i++) {
-
-            //}
         }
     }
 

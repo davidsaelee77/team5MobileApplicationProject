@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.griffin.MainActivity;
-import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentRequestContactBinding;
 
 /**

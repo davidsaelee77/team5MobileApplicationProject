@@ -3,7 +3,6 @@ package edu.uw.tcss450.griffin.ui.contacts;
 import androidx.annotation.Nullable;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 

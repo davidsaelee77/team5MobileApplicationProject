@@ -58,7 +58,6 @@ public class ChatFragment extends Fragment {
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        //mChatModel.getFirstMessages(mChatId, mUserModel.getJwt());
 
         mSendModel = provider.get(ChatSendViewModel.class);
 

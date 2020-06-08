@@ -25,7 +25,6 @@ import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentLoginBinding;
 import edu.uw.tcss450.griffin.model.PushyTokenViewModel;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
-import edu.uw.tcss450.griffin.util.Utils;
 import edu.uw.tcss450.griffin.utility.PasswordValidator;
 
 import static edu.uw.tcss450.griffin.utility.PasswordValidator.checkExcludeWhiteSpace;
@@ -143,8 +142,6 @@ public class LoginFragment extends Fragment {
         binding.emailInput.setText(args.getEmail().equals("default") ? "" : args.getEmail());
         binding.passwordPassword.setText(args.getPassword().equals("default") ? "" : args.getPassword());
 
-//        binding.emailInput.setText("test1@test.com");
-//        binding.passwordPassword.setText("test12345");
 
         //don't allow sign in until pushy token retrieved
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(),
@@ -269,8 +266,6 @@ public class LoginFragment extends Fragment {
                             response.getString("username")
                     )).get(UserInfoViewModel.class);
                     sendPushyToken();
-
-                    //navigateToSuccess(binding.emailInput.getText().toString(), response.getString("token"), response.getInt("memberid"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
                     binding.emailInput.requestFocus();
@@ -283,7 +278,6 @@ public class LoginFragment extends Fragment {
 
     }
 
-    //pushy not currently used
     private void sendPushyToken() {
         mPushyTokenViewModel.sendTokenToWebservice(mUserViewModel.getJwt());
     }

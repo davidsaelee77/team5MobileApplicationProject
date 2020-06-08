@@ -1,7 +1,6 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import edu.uw.tcss450.griffin.R;
-import edu.uw.tcss450.griffin.databinding.FragmentWeatherCardBinding;
 import edu.uw.tcss450.griffin.databinding.FragmentWeatherWeekCardBinding;
 
 /**
@@ -80,16 +78,12 @@ public class WeatherWeekRecyclerViewAdapter extends RecyclerView.Adapter<Weather
          @RequiresApi(api = Build.VERSION_CODES.O)
          void setWeather(final WeatherData data) {
              LocalDate today = LocalDate.now();
-//            binding.weatherTimeText.setText(String.valueOf(data.getIncrement()));
             binding.textviewTime.setText(today.plusDays(data.getIncrement()).getDayOfWeek().name());
             binding.textviewType.setText(data.getWeather());
             if (data.getTemp() == -1|| data.getTemp() < -459) {
-//                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
                 binding.textviewLowTemp.setText(String.format("%.2f", data.getTempMin()));
-//                binding.weatherHighText.setText(String.valueOf(data.getTempMax()));
                 binding.textviewHighTemp.setText(String.format("%.2f", data.getTempMax()));
             } else {
-//                binding.weatherHighText.setText(String.valueOf(data.getTemp()));
                 binding.textviewHighTemp.setText(String.format("%.2f", data.getTemp()));
             }
         }

@@ -1,6 +1,5 @@
 package edu.uw.tcss450.griffin.ui.chat;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,13 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.badge.BadgeDrawable;
-
 import java.util.ArrayList;
 
 import edu.uw.tcss450.griffin.MainActivity;
-import edu.uw.tcss450.griffin.R;
-import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
 import edu.uw.tcss450.griffin.databinding.FragmentChatListBinding;
 
 /**

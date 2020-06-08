@@ -38,7 +38,6 @@ public class WeatherViewModel extends AndroidViewModel {
     private MutableLiveData<Map<String, String>> mLocationData;
 
     private UserInfoViewModel userInfoViewModel;
-    // private List<WeatherData> list;
 
 
     public WeatherViewModel(@NonNull Application application) {

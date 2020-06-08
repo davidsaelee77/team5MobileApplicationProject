@@ -122,13 +122,10 @@ public class PasswordRecoveryFragment extends Fragment {
             //don't want the client "user" to know if the email was correct or not?
             //email was or wasn't send, we want to create a dialog possible success dialog
             createDialogAcknowledge();
-            //Snackbar mySnackbar = Snackbar.make(getView(),
-            //       R.string.forgotPassword_snackbar_acknowledge, Snackbar.LENGTH_SHORT);
+
         } else {
             Log.d("JSON Response", "No Response");
-            //binding.emailText.setError("Unable to communicate with Server");
-            //binding.emailText.requestFocus();
-            //couldn't connect with the server error
+
         }
     }
     /**

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ import java.util.List;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
-import edu.uw.tcss450.griffin.model.UserInfoViewModel;
+
 
 
 /**
@@ -34,8 +33,6 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     private ChatListViewModel mModel;
 
     private FragmentAddChatBinding binding;
-
-    private UserInfoViewModel mUsermodel;
 
     private ArrayList<String> userNames;
 

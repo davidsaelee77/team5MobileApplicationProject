@@ -1,6 +1,5 @@
 package edu.uw.tcss450.griffin.ui.contacts;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.griffin.MainActivity;
-import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentContactListBinding;
 
 

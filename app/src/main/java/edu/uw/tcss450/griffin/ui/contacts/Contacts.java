@@ -39,7 +39,6 @@ public class Contacts implements Serializable {
         this.mUserName = userName;
         this.mFirstName = mFirstName;
         this.mLastName = mLastName;
-        // this.alphabet = alphabet;
     }
 
     /**
@@ -78,11 +77,5 @@ public class Contacts implements Serializable {
      * Returns member id. 
      */
     public String getMemberID() {return mMemberID;}
-
-//    public String getAlphabet() {
-//
-//        return alphabet;
-//    }
-
 
 }

@@ -15,9 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
-
-import java.util.Arrays;
 import java.util.List;
 
 import edu.uw.tcss450.griffin.MainActivity;

@@ -118,9 +118,7 @@ public class WeatherData implements Serializable {
     }
 
     public double kelvinToFahrenheit(double kTemp){
-//        if(kTemp == -1){
-//            return -1;
-//        }
+
         return ((kTemp - 273) * 9/5 + 32);
     }
 

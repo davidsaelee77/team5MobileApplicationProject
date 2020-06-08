@@ -7,7 +7,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +18,13 @@ public class HomeNotificationListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Notification>> mNotificationList;
 
-    private ArrayList<Notification> listOfNotifications;
-
     private UserInfoViewModel mUserModel;
 
 
     public HomeNotificationListViewModel(@NonNull Application application) {
         super(application);
-        //mNotificationList = mUserModel.getNotifications();
         mNotificationList = new MutableLiveData<>();
         mNotificationList.setValue(new ArrayList<>());
-        //listOfNotifications = new ArrayList<>();
     }
 
     public void addHomeNotificationListObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Notification>> observer) {

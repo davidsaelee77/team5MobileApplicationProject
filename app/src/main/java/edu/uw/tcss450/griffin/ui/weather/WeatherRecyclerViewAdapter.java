@@ -1,6 +1,5 @@
 package edu.uw.tcss450.griffin.ui.weather;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +76,6 @@ public class WeatherRecyclerViewAdapter extends RecyclerView.Adapter<WeatherRecy
             binding.textviewTime.setText(String.valueOf(data.getIncrement()) + ":00");
             binding.textviewType.setText(data.getWeather());
             if (data.getTemp() == -1 || data.getTemp() < -459) {
-//                binding.weatherLowText.setText(String.valueOf(data.getTempMin()));
-//                binding.weatherHighText.setText(String.valueOf(data.getTempMax()));
                 binding.textviewHighTemp.setText(String.format("%.2f", data.getTempMax()));
             } else {
                 binding.textviewHighTemp.setText(String.format("%.2f", data.getTemp()));

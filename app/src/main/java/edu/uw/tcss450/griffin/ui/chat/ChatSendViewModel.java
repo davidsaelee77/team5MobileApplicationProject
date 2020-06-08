@@ -82,7 +82,6 @@ public class ChatSendViewModel extends AndroidViewModel {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
-               // headers.put("Authorization", "Bearer " + jwt);
                 headers.put("Authorization", jwt);
                 return headers;
             }

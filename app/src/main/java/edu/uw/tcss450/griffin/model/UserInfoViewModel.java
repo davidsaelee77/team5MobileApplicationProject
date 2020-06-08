@@ -80,13 +80,6 @@ public class UserInfoViewModel extends ViewModel {
 
     public void deleteNotification(final Notification toDelete) {
         List<Notification> newList = this.mNotificationList.getValue();
-        /*
-        for (Notification element : newList) {
-            if (element.equals(toDelete)) {
-                newList.remove(toDelete);
-            }
-        }
-         */
         newList.remove(toDelete);
         this.mNotificationList.setValue(newList);
     }

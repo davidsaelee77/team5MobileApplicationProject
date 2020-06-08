@@ -17,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,9 +44,6 @@ public class ChatRoom implements Serializable {
 
     private UserInfoViewModel userInfoViewModel;
 
-    //connectGet
-
-    //handleResponse() -> assigns the emails for this chatRoom
 
     /**
      * @param context
@@ -68,7 +64,7 @@ public class ChatRoom implements Serializable {
     }
 
     private void connectGetEmails() {
-        // Log.d("ChatRoom", "calling chatroom connect");
+
         String url = mContext.getResources().getString(R.string.base_url)
                 + "chats?chatId=" + mChatId;
 
@@ -113,7 +109,6 @@ public class ChatRoom implements Serializable {
                 listOfEmails.add(email);
             }
             mEmailList.setValue(listOfEmails);
-            // Log.d("ChatRoom", ("ChatId:" + mChatId + " emails in chat: " + listOfEmails.toString()));
         } catch (JSONException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {

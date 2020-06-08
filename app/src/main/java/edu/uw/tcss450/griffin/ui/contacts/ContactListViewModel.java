@@ -29,7 +29,6 @@ import edu.uw.tcss450.griffin.constants.JSONKeys;
 import edu.uw.tcss450.griffin.io.RequestQueueSingleton;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
 
-//import static edu.uw.tcss450.team5tcss450client.ui.contacts.ContactsGenerator.randomNameGenerator;
 
 /**
  * @author David Salee
@@ -51,16 +50,6 @@ public class ContactListViewModel extends AndroidViewModel {
      * UserInfoViewModel.
      */
     private UserInfoViewModel userInfoViewModel;
-    // private MutableLiveData<List<String>> mAlaphabet;
-
-//    private List<Contacts> list;
-//
-//    private List<String> alphabet;
-
-//    private MutableLiveData<JSONObject> mResponse;
-
-    // private MutableLiveData<List<Contacts>> mResponse;
-
     /**
      * Constructor that instantiates fields.
      *
@@ -68,10 +57,6 @@ public class ContactListViewModel extends AndroidViewModel {
      */
     public ContactListViewModel(@NonNull Application application) {
         super(application);
-
-//        list = new ArrayList<>();
-//
-//        alphabet = new ArrayList<>();
 
         mContactList = new MutableLiveData<>();
         mRequestList = new MutableLiveData<>();
@@ -114,7 +99,6 @@ public class ContactListViewModel extends AndroidViewModel {
      */
     private void handleResult(final JSONObject result) {
 
-        // IntFunction<String> getString = getApplication().getResources()::getString;
         try {
             JSONObject root = result;
 
@@ -169,8 +153,6 @@ public class ContactListViewModel extends AndroidViewModel {
         }
         String url = getApplication().getResources().getString(R.string.base_url) +
                 "contact";
-
-//        String url = getApplication().getResources().getString(R.string.base_url);
 
         Request request = new JsonObjectRequest(Request.Method.GET, url, null,
                 //no body for this get request
@@ -259,7 +241,6 @@ public class ContactListViewModel extends AndroidViewModel {
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
-                // headers.put("Authorization", "Bearer " + jwt);
                 headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
                 return headers;
             }

@@ -1,7 +1,6 @@
 package edu.uw.tcss450.griffin.util;
 
 import android.app.Activity;
-import android.content.Intent;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
@@ -12,17 +11,19 @@ public class Utils {
     public final static int SONICS_THEME = 1;
     public final static int BLUEGREY_THEME = 2;
 
-    /*
+    /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
+     *
+     * @param activity
+     * @param theme
      */
     public static void changeToTheme(Activity activity, int theme) {
         sTheme = theme;
         activity.recreate();
-        // activity.finish();
-        //  activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
-    /* Set the theme of the activity, according to the configuration.
+    /**
+     * Set the theme of the activity, according to the configuration.
      *
      * @param activity
      */

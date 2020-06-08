@@ -236,7 +236,6 @@ public class RegisterFragment extends Fragment {
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
-                    //binding.emailText.setError("Error Authenticating: " + response.getJSONObject("data").getString("message"));
                     JSONObject jObject = new JSONObject(response.getString("data"));
                     String message = jObject.getString("message");
                     binding.emailInput.setError("Error Authenticating: " + message);

@@ -85,7 +85,6 @@ public class WeatherMapFragment extends Fragment implements OnMapReadyCallback, 
         directions.setLat(Double.toString(mLatLng.latitude));
         directions.setLng(Double.toString(mLatLng.longitude));
         Navigation.findNavController(getView()).navigate(directions);
-//        Navigation.findNavController(getView()).navigate(WeatherMapFragmentDirections.actionWeatherMapFragmentToWeatherListFragment());
     }
 
     @Override

@@ -179,7 +179,6 @@ public class ChatListViewModel extends AndroidViewModel {
 
             ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatID);
             list.add(cr);
-           // connectAddChatPut(Integer.toString(chatID));
 
             for (int i = 0; i < usernames.size(); i++) {
                 connectAddMemberInChatPut(chatID, usernames.get(i));
@@ -220,37 +219,6 @@ public class ChatListViewModel extends AndroidViewModel {
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
     }
-
-//
-//    public void connectAddChatPut(String chatID) {
-//        if (userInfoViewModel == null) {
-//            throw new IllegalArgumentException("No UserInfoViewModel is assigned");
-//        }
-//        String url = getApplication().getResources().getString(R.string.base_url) +
-//                "chats?chatId=" + chatID;
-//
-//        JSONObject body = new JSONObject();
-//        try {
-//            body.put("chatId", chatID);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        Request request = new JsonObjectRequest(Request.Method.PUT, url, body,
-//                null, this::handleError) {
-//            @Override
-//            public Map<String, String> getHeaders() {
-//                Map<String, String> headers = new HashMap<>();
-//                // add headers <key,value>
-//                headers.put("Authorization", userInfoViewModel.getJwt());
-//
-//                return headers;
-//            }
-//        };
-//
-//        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//        //Instantiate the RequestQueue and add the request to the queue
-//        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
-//    }
 
 
     public void connectAddMemberInChatPut(int chatID, String userName) {
