@@ -5,16 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-
-import java.util.List;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
@@ -29,9 +30,11 @@ public class AddContactFragment extends Fragment implements
 
     private ContactListViewModel mModel;
 
-    private String[] testSearch = new String[]{"DevPat", "cfb3", "dsael1"};
+    private String[] searchResult = new String[]{"DevPat", "cfb3", "dsael1"};
 
     private UserInfoViewModel mUsermodel;
+
+    private ArrayAdapter<String> adapter;
 
     FragmentAddContactBinding binding;
 
@@ -49,6 +52,8 @@ public class AddContactFragment extends Fragment implements
         }
         mUsermodel = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
+
+
     }
 
 
@@ -65,10 +70,32 @@ public class AddContactFragment extends Fragment implements
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         AutoCompleteTextView editText = getView().findViewById(R.id.editText_searchUsername_addcontactfragment);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, testSearch);
-        editText.setAdapter(adapter);
+        //adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, searchResult);
+        //editText.setAdapter(adapter);
 
+        mModel.addSearchResultObserver(getViewLifecycleOwner(), result -> {
+            editText.setAdapter(new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, result));
+        });
 
+        binding.editTextSearchUsernameAddcontactfragment.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //do nothing
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //send new information to the server to update testSearch
+                Log.d("CONTACTS", "searching for new string: " + s.toString());
+                mModel.connectGetSearch(s.toString());
+                //searchResult = mModel.getSearchResult();
+            }
+        });
         binding.editTextSearchUsernameAddcontactfragment.setOnClickListener(this);
         binding.imageButtonSearchUserContactfragment.setOnClickListener(this);
 
@@ -94,7 +121,6 @@ public class AddContactFragment extends Fragment implements
         }
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -107,4 +133,5 @@ public class AddContactFragment extends Fragment implements
 
         }
     }
+
 }

@@ -45,6 +45,8 @@ public class ContactListViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
+    private MutableLiveData<String[]> searchResult;
+
     /**
      * UserInfoViewModel.
      */
@@ -78,6 +80,9 @@ public class ContactListViewModel extends AndroidViewModel {
 
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
+
+        searchResult = new MutableLiveData<>();
+        searchResult.setValue(new String[]{"null"});
 
     }
 
@@ -273,4 +278,57 @@ public class ContactListViewModel extends AndroidViewModel {
         userInfoViewModel = vm;
     }
 
+    public void connectGetSearch(String stringToSearch) {
+        String url = getApplication().getResources().getString(R.string.base_url)
+                + "searchContacts?searchString=" + stringToSearch;
+        Log.d("CONTACTS", "Results: " + stringToSearch);
+        Request request = new JsonObjectRequest(Request.Method.GET, url, null,
+                this::handleSearchResult, this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", "Bearer " + userInfoViewModel.getJwt());
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(10_000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext()).add(request);
+    }
+
+    private void handleSearchResult(JSONObject result) {
+        if (!result.has("rows")) {
+            throw new IllegalStateException("Unexpected response in ContactSearch: " + result);
+        }
+        try {
+            Log.d("CONTACTS", "Results: " + result.toString());
+            JSONArray rows = result.getJSONArray("rows");
+            String[] stringResults = new String[rows.length()];
+
+            for (int counter = 0; counter < rows.length(); counter++) {
+                JSONObject row = rows.getJSONObject(counter);
+                String username = row.getString("username");
+                stringResults[counter] = username;
+            }
+            this.searchResult.setValue(stringResults);
+            String log = "none";
+            if (stringResults.length > 0) {
+                log = stringResults[0];
+            }
+            Log.d("CONTACTS", "results for search in AddContactFragment: " + log);
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public String[] getSearchResult() {
+        return searchResult.getValue();
+    }
+
+    public void addSearchResultObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super String[]> observer) {
+        this.searchResult.observe(owner, observer);
+    }
 }
