@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.badge.BadgeDrawable;
 
+import java.util.ArrayList;
+
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentAddChatBinding;
@@ -36,6 +38,8 @@ public class ChatListFragment extends Fragment {
      * Binding for Chat List.
      */
     private FragmentChatListBinding binding;
+
+    private ChatListRecyclerViewAdapter chatListRecyclerViewAdapter;
 
     /**
      * Empty public constructor.
@@ -73,12 +77,10 @@ public class ChatListFragment extends Fragment {
         //TODO: Figure out how to implement adding chat name to chat room.
         binding.imageButtonAddChatChatlistfragment.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(ChatListFragmentDirections.actionChatListFragmentToAddChatFragment()));
-
+        chatListRecyclerViewAdapter = new ChatListRecyclerViewAdapter(new ArrayList<>(), this);
+        binding.chatlistRoot.setAdapter(chatListRecyclerViewAdapter);
         mModel.addChatListObserver(getViewLifecycleOwner(), chatRoomList -> {
-            if (!chatRoomList.isEmpty()) {
-                binding.chatlistRoot.setAdapter(new ChatListRecyclerViewAdapter(chatRoomList, this));
-            }
-
+            chatListRecyclerViewAdapter.setChatRooms(chatRoomList);
         });
 
     }

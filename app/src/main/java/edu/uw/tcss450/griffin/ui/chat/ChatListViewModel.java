@@ -38,8 +38,6 @@ public class ChatListViewModel extends AndroidViewModel {
      */
     private MutableLiveData<List<ChatRoom>> mChatRoomList;
 
-    private ArrayList<ChatRoom> listOfChatRooms;
-
 
     /**
      * UserInfoViewModel object.
@@ -56,10 +54,6 @@ public class ChatListViewModel extends AndroidViewModel {
 
         mChatRoomList = new MutableLiveData<>();
         mChatRoomList.setValue(new ArrayList<>());
-
-        listOfChatRooms = new ArrayList<>();
-
-
     }
 
     /**
@@ -109,7 +103,7 @@ public class ChatListViewModel extends AndroidViewModel {
         }
         try {
             JSONArray rows = result.getJSONArray("rows");
-            listOfChatRooms = new ArrayList<>();
+            ArrayList<ChatRoom> listOfChatRooms = new ArrayList<>();
             for (int i = 0; i < rows.length(); i++) {
                 JSONObject row = rows.getJSONObject(i);
                 int chatId = row.getInt("chatid");
@@ -178,19 +172,19 @@ public class ChatListViewModel extends AndroidViewModel {
         }
         try {
             ArrayList<ChatRoom> list = new ArrayList<>();
+            if (mChatRoomList.getValue() != null){
+                list.addAll(mChatRoomList.getValue());
+            }
             int chatID = response.getInt("chatID");
 
             ChatRoom cr = new ChatRoom(getApplication(), userInfoViewModel, chatID);
             list.add(cr);
-            listOfChatRooms.addAll(list);
            // connectAddChatPut(Integer.toString(chatID));
 
             for (int i = 0; i < usernames.size(); i++) {
                 connectAddMemberInChatPut(chatID, usernames.get(i));
             }
-
-            mChatRoomList.setValue(listOfChatRooms);
-
+            mChatRoomList.setValue(list);
         } catch (JSONException e) {
             e.printStackTrace();
         }

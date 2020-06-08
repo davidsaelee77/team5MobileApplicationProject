@@ -1,22 +1,15 @@
 package edu.uw.tcss450.griffin.ui.settings;
 
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.uw.tcss450.griffin.MainActivity;
-import edu.uw.tcss450.griffin.R;
-import edu.uw.tcss450.griffin.application.GriffinApplication;
 import edu.uw.tcss450.griffin.databinding.FragmentChangeThemeBinding;
 import edu.uw.tcss450.griffin.util.SharedPreferencesManager;
 import edu.uw.tcss450.griffin.util.Utils;

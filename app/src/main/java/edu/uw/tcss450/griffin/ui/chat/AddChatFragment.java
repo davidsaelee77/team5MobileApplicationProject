@@ -110,12 +110,11 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View v) {
 
         if (chatNameValidation(binding.editTextEnterChatNameAddchatfragment.getText().toString()) &&
-                usernameValidation(parseUsername(binding.editTextEnterUser.getText().toString()))) {
+                usernameValidation(parseUsername(binding.editTextEnterUser.getText().toString())))
 
             if (v == binding.imageButtonAddChatAddchatfragment) {
                 mModel.connectAddChat(
@@ -127,6 +126,6 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
 //
 //            }
 
-        }
     }
 }
+

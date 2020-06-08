@@ -3,6 +3,7 @@ package edu.uw.tcss450.griffin.ui.chat;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -38,6 +39,8 @@ public class ChatRoom implements Serializable {
 
     private final int mChatId;
 
+    private String mChatRoomName;
+
     private final Context mContext;
 
     private UserInfoViewModel userInfoViewModel;
@@ -53,6 +56,7 @@ public class ChatRoom implements Serializable {
      */
     public ChatRoom(final Context context, UserInfoViewModel model, final int chatId) {
         mContext = context;
+        mChatRoomName = "Dummy Room Name";
         userInfoViewModel = model;
         mChatId = chatId;
         mEmailList = new MutableLiveData<>();
@@ -121,6 +125,13 @@ public class ChatRoom implements Serializable {
         return mChatId;
     }
 
+    public String getChatRoomName(){
+        return mChatRoomName;
+    }
+
+    public LiveData<List<String>> getLiveEmailList(){
+        return mEmailList;
+    };
 }
 
 
