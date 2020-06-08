@@ -1,8 +1,11 @@
 package edu.uw.tcss450.griffin.ui.contacts;
 
+import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -19,10 +22,13 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
 
     List<Contacts> mContactRequests;
 
+    private Context context;
+
 
     public ContactRequestRecyclerViewAdapter(List<Contacts> requests, RequestContactFragment parent) {
         this.mContactRequests = requests;
         this.mParent = parent;
+        context = parent.getContext();
     }
 
     @NonNull
@@ -69,6 +75,13 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
             notifyItemRemoved(view.getLayoutPosition());
             final int memberId = Integer.parseInt(contact.getMemberID());
             mParent.acceptContact(memberId);
+
+            CharSequence text = "You've Accepted A Request!";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
             Navigation.findNavController(mView).navigate(RequestContactFragmentDirections.actionRequestContactFragmentToContactListFragment());
         }
 
@@ -77,6 +90,13 @@ public class ContactRequestRecyclerViewAdapter extends RecyclerView.Adapter<Cont
             notifyItemRemoved(view.getLayoutPosition());
             final int memberId = Integer.parseInt(contact.getMemberID());
             mParent.deleteContact(memberId);
+
+            CharSequence text = "You've Declined A Request!";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
         }
     }
 }

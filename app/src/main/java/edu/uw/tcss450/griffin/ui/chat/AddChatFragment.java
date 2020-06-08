@@ -1,5 +1,6 @@
 package edu.uw.tcss450.griffin.ui.chat;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -119,12 +122,17 @@ public class AddChatFragment extends Fragment implements View.OnClickListener {
             if (v == binding.imageButtonAddChatAddchatfragment) {
                 mModel.connectAddChat(
                         binding.editTextEnterChatNameAddchatfragment.getText().toString(), userNames);
+
+                Context context = getContext();
+                CharSequence text = "You've Added A Chat!";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
                 Navigation.findNavController(getView()).navigate(AddChatFragmentDirections.actionAddChatFragmentToChatListFragment());
             }
-//             else {
-//                binding.imageButtonAddChatAddchatfragment.setVisibility(View.GONE);
-//
-//            }
 
     }
 }
