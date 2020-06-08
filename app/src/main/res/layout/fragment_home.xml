@@ -61,19 +61,45 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homenotificationslist_root"
-        android:layout_width="395dp"
-        android:layout_height="542dp"
+        android:layout_width="392dp"
+        android:layout_height="500dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageicon_weatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/button_clear"
+        app:layout_constraintVertical_bias="0.103"
         tools:context="edu.uw.tcss450.griffin.ui.home.HomeNotificationListFragment"
         tools:listitem="@layout/fragment_home_card" />
+
+    <TextView
+        android:id="@+id/textView_notification_title"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/textView_notification_title"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/button_clear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_currentData" />
+
+    <Button
+        android:id="@+id/button_clear"
+        android:layout_width="101dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_notification_clearAll"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_currentData" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

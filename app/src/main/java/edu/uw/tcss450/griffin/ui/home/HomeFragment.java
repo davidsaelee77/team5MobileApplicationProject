@@ -117,6 +117,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        binding.buttonClear.setOnClickListener(button -> {
+                userInfoViewModel.clearNotifications();
+                binding.homenotificationslistRoot.getAdapter().notifyDataSetChanged();
+        });
+
         //mNotificationModel.addHomeNotificationListObserver(getViewLifecycleOwner(), notifications -> {
         userInfoViewModel.addNotificationsObserver(getViewLifecycleOwner(), notifications -> {
             if (!notifications.isEmpty()) {

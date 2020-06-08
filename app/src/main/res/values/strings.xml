@@ -135,6 +135,8 @@
     <string name="action_sign_out">Sign Out</string>
 
     <!-- Notifications -->
+    <string name="textView_notification_title">Notifications</string>
+    <string name="button_notification_clearAll">Clear All</string>
     <string name="notification_newContactMessage"> wants to be your buddy!</string>
     <string name="notification_newMessageTitle">Message From: </string>
     <string name="notification_newNotification">New Notification: </string>

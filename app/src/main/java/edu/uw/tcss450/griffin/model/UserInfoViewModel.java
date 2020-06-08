@@ -78,6 +78,19 @@ public class UserInfoViewModel extends ViewModel {
         this.mNotificationList.setValue(newList);
     }
 
+    public void deleteNotification(final Notification toDelete) {
+        List<Notification> newList = this.mNotificationList.getValue();
+        /*
+        for (Notification element : newList) {
+            if (element.equals(toDelete)) {
+                newList.remove(toDelete);
+            }
+        }
+         */
+        newList.remove(toDelete);
+        this.mNotificationList.setValue(newList);
+    }
+
     public void addNotificationsObserver(@NonNull LifecycleOwner owner, @NonNull Observer<? super List<Notification>> observer) {
         mNotificationList.observe(owner, observer);
     }

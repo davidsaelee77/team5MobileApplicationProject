@@ -104,4 +104,18 @@ public class Notification {
         else return null;
     }
 
+    public boolean equals(Object theOther) {
+        if (theOther == null) return false;
+        if (this.mInvitation != null) {
+            if(!((Notification) theOther).getType().equals(TYPE_INVITATION)) return false;
+            else if(this.mInvitation.getSenderUsername().equals(((Notification) theOther).mInvitation.getSenderUsername())) return true;
+            else return false;
+        } else if (this.mChatMessageFragment != null) {
+            if(!((Notification) theOther).getType().equals(TYPE_CHAT_MESSAGE)) return false;
+            else if (this.mChatMessageFragment.getMessageId() == ((Notification) theOther).mChatMessageFragment.getMessageId()) return true;
+            else return false;
+        }
+        else return false;
+    }
+
 }
