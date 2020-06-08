@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
             NavDestination nd = nc.getCurrentDestination();
             Log.d("PUSHY", "result: " + intent.toString());
             if (intent.hasExtra("chatMessage")) {
-                Log.d("PUSHY", "MainActivity has received chat message2");
+                Log.d("PUSHY", "MainActivity has received chat message");
                 ChatMessageFragment cm = (ChatMessageFragment) intent.getSerializableExtra("chatMessage");
                 //If the user is not on the chat screen, update the
                 // NewMessageCountView Model
@@ -377,7 +377,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //Inform the view model holding chatroom messages of the new
                 // message.
-                notification.setData(cm);
+                if (userInfoViewModel != null && userInfoViewModel.getUsername() != null) {
+                    Log.d("PUSHY", "Message from" + cm.getSender());
+                    if (!cm.getSender().equals(userInfoViewModel.getUsername())) {
+                        Log.d("PUSHY", "We didn't send this message!" + cm.getSender());
+                        notification.setData(cm);
+                        userInfoViewModel.addNotifications(notification);
+                    }
+                }
+
                mModel.addMessage(intent.getIntExtra("chatid", -1), cm);
             } else if (intent.hasExtra("invitation")) {
                 Log.d("PUSHY", "MainActivity has received a new contact request");
@@ -386,10 +394,11 @@ public class MainActivity extends AppCompatActivity {
                     mNewContactModel.increment();
                 }
                 notification.setData(contactRequest);
+                userInfoViewModel.addNotifications(notification);
                 //need contactViewModel?
             }
 
-            userInfoViewModel.addNotifications(notification);
+
         }
     }
 
