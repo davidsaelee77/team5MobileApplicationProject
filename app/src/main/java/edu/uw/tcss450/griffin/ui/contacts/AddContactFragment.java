@@ -1,5 +1,6 @@
 package edu.uw.tcss450.griffin.ui.contacts;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.view.Gravity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,11 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import edu.uw.tcss450.griffin.MainActivity;
 import edu.uw.tcss450.griffin.R;
 import edu.uw.tcss450.griffin.databinding.FragmentAddContactBinding;
 import edu.uw.tcss450.griffin.model.UserInfoViewModel;
+import edu.uw.tcss450.griffin.ui.chat.AddChatFragmentDirections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,8 +55,6 @@ public class AddContactFragment extends Fragment implements
             mModel.setUserInfoViewModel(activity.getUserInfoViewModel());
         }
         mUsermodel = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
-
-
 
     }
 
@@ -128,7 +130,17 @@ public class AddContactFragment extends Fragment implements
 
             if (v == binding.imageButtonSearchUserContactfragment) {
                 mModel.connectAddContactPost(binding.editTextSearchUsernameAddcontactfragment.getText().toString());
-                // Navigation.findNavController(getView()).navigate(RequestContactFragmentDirections.actionRequestContactFragmentToContactListFragment());
+
+                Context context = getContext();
+                CharSequence text = "You've Sent a Request!";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                Navigation.findNavController(getView()).navigate(AddContactFragmentDirections.actionAddContactFragmentToContactListFragment());
+
             }
 
         }
