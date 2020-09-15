@@ -20,4 +20,4 @@ GOALS:
 OUTCOME: 
 
 (In Progress) Buggy chat application that fulfills 90% of customer specifications.
-*MISSING* Chat room linking and notification
+- *MISSING* Chat room linking and notification
